@@ -14,7 +14,7 @@ export class LoginPageComponent   {
    constructor(public fireService: FireService, private router: Router) {}
   login() {
     this.fireService.loginWithGoogle().then((data) => {
-      // nos envia a la pagina home una vez logeados
+      // nos envia a la pagina home una vez logueados
       this.router.navigate(['']);
     });
   }

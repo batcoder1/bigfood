@@ -1,6 +1,8 @@
 import { Subscription } from 'rxjs/Rx';
 import { Route, NavigationEnd, Router } from '@angular/router';
 import { EventService } from '../providers/event.service';
+import { ChangeDetectorRef } from '@angular/core';
+
 import {
   AfterViewChecked,
   AfterViewInit,
@@ -42,14 +44,17 @@ export class HomePageComponent implements AfterViewChecked, OnInit {
   meal: Meal;
   unit: Units;
   totalCalories = 0;
-  goalDay = 0;
+  goalDay: number;
   exercise = 0;
   rest = 0;
   activity = [1.2, 1.375, 1.55, 1.725, 1.9];
   fireService: FireService;
   buttonSubscription: Subscription;
 
-  constructor(fireService: FireService, private eventService: EventService, private router: Router) {
+  constructor(fireService: FireService,
+    private eventService: EventService,
+    private router: Router,
+    private cdr: ChangeDetectorRef) {
     this.fireService = fireService;
   }
 
@@ -119,10 +124,11 @@ export class HomePageComponent implements AfterViewChecked, OnInit {
   ngAfterViewChecked() {
 
     this.totalCalories = 0;
-    if (this.user) {
+    if (this.meals) {
       this.mealsCaloriesSum();
       this.goalDay = this.caloriesBurnedAtDay();
       this.rest = this.goalDay - this.totalCalories + this.exercise;
+      this.cdr.detectChanges();
 
     }
   }
@@ -130,19 +136,18 @@ export class HomePageComponent implements AfterViewChecked, OnInit {
   mealsCaloriesSum() {
     this.totalMealCalories = [];
     let foodExist = false;
-    if (this.user) {
-      this.meals.forEach(meal => {
-        let totalCalories = 0;
-        meal.foods.forEach(food => {
-          totalCalories += food.calories;
-          foodExist = true;
-        });
-        if (foodExist) {
-          this.totalMealCalories.push(totalCalories);
-          this.totalCalories += totalCalories;
-        }
+
+    this.meals.forEach(meal => {
+      let totalCalories = 0;
+      meal.foods.forEach(food => {
+        totalCalories += food.calories;
+        foodExist = true;
       });
-    }
+      if (foodExist) {
+        this.totalMealCalories.push(totalCalories);
+        this.totalCalories += totalCalories;
+      }
+    });
   }
 
   caloriesBurnedAtDay(): number {

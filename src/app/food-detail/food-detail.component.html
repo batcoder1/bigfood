@@ -1,59 +1,42 @@
- 
-<md-card class="todoapp">
-  <md-toolbar color="primary">
-    Añadir alimento
-    <button md-fab class="fab-add" (click)="addFood()">
-      <md-icon>ok</md-icon>
-    </button>
-  </md-toolbar>
- <md-card-content *ngIf="todoList">
+<md-card>
+  <md-card-content>
+    <md-list>
+      <md-list-item >
+       
+        <span md-line class="md-font">{{food.name}}</span>
+       
+        <span md-line class="md-font" >Numero de raciones  </span>
+        <section layout-align="end" layout-wrap>
+          <span class="md-font" (click)="openDialog(food)">  {{food.amount}}</span>
+        </section>
+       
+        <span md-line class="md-font">Tamaño unidad  </span>
+        <section layout-align="end" layout-wrap>
+          <md-select placeholder="grs">
+            <md-option *ngFor="let unit of units" [value]="unit">{{ unit }}</md-option>
+          </md-select>
+        </section>
 
-        <div class="list-item">
-          <md-checkbox color="primary" type="checkbox"  >
-            <span [class.completed]="todo.completed">{{food.name}}</span>
-          </md-checkbox>
-          <span [class.completed]="todo.completed">{{food.name}}</span>
-          <span>
-            <button md-mini-fab (click)="remove(index)" color="primary">
-              <md-icon>delete_forever</md-icon>
-            </button>
+        <div md-line>
+          <div class="container">
+            <span class="macros md-font">{{food.calories}}</span>
+            <span class="macros md-font">{{food.macros.hc}}</span>
+            <span class="macros md-font">{{food.fat}}</span>
+            <span class="macros md-font">{{food.protein}}</span>
 
-            <button md-mini-fab (click)="todoDialog(todo)" color="primary"
-                    [disabled]="todo.completed">
-              <md-icon>mode_edit</md-icon>
-            </button>
-          </span>
+          </div>
         </div>
- 
+        <div md-line>
+          <div class="container">
+            <span class="macros md-font">Calorias</span>
+            <span class="macros md-font">Carbohidratos</span>
+            <span class="macros md-font">Grasas</span>
+            <span class="macros md-font">Proteina</span>
+
+          </div>
+        </div>
+      </md-list-item>
+    </md-list>
   </md-card-content>
 </md-card>
 
-<p> name: {{ food.name }}</p>
-<p> description: {{ food.description }}</p>
-<p> amount: {{ food.amount }}</p>
-<p> unit: {{ food.unit }}</p>
-<div class="calories">
-  calories: {{ food.calories }}
-  <div class="macros">
-    <div class="table-responsive-vertical">
-      <table id="table" class="table table-hover table-mc-light-blue">
-        <tr>
-            <td data-title="hc">Carbos</td>
-            <td data-title="fat">Fat</td>
-            <td data-title="protein">Protein</td>
-        </tr>
-        <tr>
-            <td data-title="hc">{{food.macros.hc}}</td>
-            <td data-title="fat">{{food.macros.fat }}</td>
-            <td data-title="protein"> {{ food.macros.protein }}</td>
-        </tr>
-      </table>
-    </div>
- 
-  </div>
-</div>
- 
-
-<app-dialog [title]="'New Task'" [template]="'Enter Task:'" [placeholder]="'Cantidad?'" [okText]="okButtonText"
-  [value]="fieldValue" (valueEmitted)="updateTodo($event)" [showPrompt]="showDialog">
-</app-dialog>

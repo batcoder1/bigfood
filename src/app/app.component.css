@@ -29,3 +29,6 @@ button.mat-menu-item{
 mat-card-content {
     margin-bottom: 1em!important;
 }
+.mat-card {
+    padding: 34px 10px!important;
+}

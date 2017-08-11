@@ -1,19 +1,23 @@
-<div class="overlay" *ngIf="showPrompt">
-  <md-card class="modalDialog">
-    <md-toolbar color="primary">
-      {{title}}
-    </md-toolbar>
-    <md-card-content>
-      <br>{{template}}<br><br>
-      <md-input class="full-width" [placeholder]="placeholder"
-                
-                (keyup.enter)="emitValue(value)"
-                (keyup.escape)="emitValue(null)"></md-input>
-    </md-card-content>
-    <md-card-actions class="center">
-      <button md-button (click)="emitValue(null)" color="primary">{{cancelText}}</button>
-      <button md-raised-button (click)="emitValue(value)" color="primary">{{okText}}</button>
-    </md-card-actions>
-  </md-card>
-</div>
- 
+<!-- <md-dialog>
+  <md-dialog-title>Dialog</md-dialog-title>
+  <md-dialog-content>What would you like to do?</md-dialog-content>
+  <md-dialog-actions>
+    <md-button md-dialog-close="cancel" (click)="emitValue(null)" color="primary" >Cancel</md-button>
+    <md-raised-button color="primary" md-dialog-close="ok" (click)="emitValue(value)" >OK</md-raised-button >
+  </md-dialog-actions>
+</md-dialog> -->
+
+ <md-card class="modalDialog">
+     {{food.name}}
+  <md-card-content>
+    
+     <md-input-container class="example-full-width">
+        <input mdInput    [(ngModel)]="food.amount" placeholder="cantidad"  required>
+    </md-input-container> 
+     
+  </md-card-content>
+  <md-card-actions class="center">
+    <button md-button (click)="emitValue(null)" md-dialog-close="null" color="primary">{{cancelText}}</button>
+    <button md-button (click)="emitValue(food)" md-dialog-close="ok" color="primary">{{okText}}</button>
+  </md-card-actions>
+</md-card> 

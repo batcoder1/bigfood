@@ -1,6 +1,8 @@
 import * as events from 'events';
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Inject, Input, Output } from '@angular/core';
 import { Food, Macros , units} from '../data-model';
+import { MdDialog, MdDialogRef} from '@angular/material';
+import {MD_DIALOG_DATA} from '@angular/material';
 
 
 @Component({
@@ -8,7 +10,7 @@ import { Food, Macros , units} from '../data-model';
   templateUrl: './dialog.component.html',
 })
 export class DialogComponent  {
-  @Input() food: Food;
+
   @Input() value: string;
   @Input() showPrompt: boolean;
   @Input() placeholder: string;
@@ -18,9 +20,10 @@ export class DialogComponent  {
   @Input() cancelText: string;
   @Output() valueEmitted = new EventEmitter<string>();
 
-  constructor() {
+  constructor(public dialogRef: MdDialogRef<DialogComponent>, @Inject(MD_DIALOG_DATA) public food: any) {
     this.okText = 'OK';
     this.cancelText = 'Cancel';
+
   }
 
   emitValue(value) {

@@ -1,4 +1,9 @@
-import { Component, Input } from '@angular/core';
+import { FireService } from '../providers/fire.service';
+import { ActivatedRoute } from '@angular/router';
+import { Units } from './../data-model';
+import { DialogComponent } from './../dialog/dialog.component';
+import { MdDialog } from '@angular/material';
+import { Component, Input, OnInit, OnDestroy } from '@angular/core';
 import { Food, Macros , units} from '../data-model';
 
 
@@ -6,56 +11,36 @@ import { Food, Macros , units} from '../data-model';
   selector: 'app-food-detail',
   templateUrl: './food-detail.component.html'
 })
-export class FoodDetailComponent  {
-  @Input() food: Food;
-
+export class FoodDetailComponent implements OnInit, OnDestroy  {
+  food: Food;
+  id: number;
   units = units;
-
-  showDialog = false;
-  editingTodo = null;
-  fieldValue = '';
+  selectedOption: string;
   todoList: any = [];
   okButtonText = 'Create task';
+  sub: any;
 
-  todoDialog(todo = null) {
-    this.okButtonText = 'Create task';
-    this.fieldValue = '';
-    this.editingTodo = todo;
-    if (todo) {
-      this.fieldValue = todo.title;
-      this.okButtonText = 'Edit task';
-    }
-    this.showDialog = true;
+  constructor(public dialog: MdDialog,
+    private route: ActivatedRoute,
+    private fireService: FireService) {}
+
+  ngOnInit() {
+    this.sub = this.route.params.subscribe(params => {
+       this.id = +params['id']; // (+) converts string 'id' to a number
+
+       // In a real app: dispatch action to load the details here.
+    });
+    this.fireService.getFoodById(this.id).then(food => this.food = food);
   }
 
-  remove(index: number) {
-    this.todoList.splice(index, 1);
+   openDialog(food) {
+    const dialogRef = this.dialog.open(DialogComponent, {data: food});
+    dialogRef.afterClosed().subscribe(result => {
+      this.selectedOption = result;
+    });
   }
 
-  updateTodo(title) {
-    if (title) {
-      title = title.trim();
-      if (this.editingTodo) {
-        this.editTodo(title);
-      } else {
-        this.addTodo(title);
-      }
-    }
-    this.hideDialog();
-  }
-
-  editTodo(title) {
-    this.editingTodo.title = title;
-  }
-
-  addTodo(title) {
-    const todo = {title: title, completed: false};
-    this.todoList.push(todo);
-  }
-
-  hideDialog() {
-    this.showDialog = false;
-    this.editingTodo = null;
-    this.fieldValue = null; // make sure Input is always new
+   ngOnDestroy() {
+    this.sub.unsubscribe();
   }
 }

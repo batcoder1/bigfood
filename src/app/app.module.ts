@@ -1,3 +1,4 @@
+import { MdDialogModule, MdDialogRef } from '@angular/material';
 import { EventService } from './providers/event.service';
 import { ActiveStateService } from './providers/active-state.service';
 import { FireService } from './providers/fire.service';
@@ -14,7 +15,7 @@ import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MdButtonModule, MdCheckboxModule, MdListModule, MdCardModule,
-  MdToolbarModule, MdListItem, MdIconModule, MdMenuModule, MdTabsModule
+  MdToolbarModule, MdListItem, MdIconModule, MdMenuModule, MdTabsModule, MdDialogContainer, MdSelectModule
 } from '@angular/material';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { AngularFireAuthModule, AngularFireAuth } from 'angularfire2/auth';
@@ -40,7 +41,7 @@ export const firebaseConfig = {
 const routes: Routes = [
   { path: '', component: HomePageComponent, data: { stateName: 'home' } },
   { path: 'food-list', component: FoodListComponent , data: { stateName: 'food-list'} },
-  { path: 'food-detail', component: FoodDetailComponent , data: { stateName: 'food-detail'}},
+  { path: 'food-detail/:id', component: FoodDetailComponent , data: { stateName: 'food-detail'}},
   { path: 'food-update', component: FoodUpdateComponent , data: { stateName: 'food-update' }},
   { path: 'profile', component: ProfilePageComponent , data: { stateName: 'profile' }},
   { path: 'login', component: LoginPageComponent , data: { stateName: 'login' }}
@@ -54,8 +55,12 @@ const routes: Routes = [
     BrowserAnimationsModule,
     MdButtonModule, MdCheckboxModule, MdListModule, MdCardModule, // material
     MdToolbarModule , MdIconModule, MdMenuModule, MdTabsModule, // material
-    ReactiveFormsModule,
+    MdSelectModule,  MdDialogModule,
+    ReactiveFormsModule, FormsModule,
     RouterModule.forRoot(routes)
+  ],
+  entryComponents: [
+    DialogComponent
   ],
   declarations: [
     AppComponent,
@@ -64,10 +69,10 @@ const routes: Routes = [
     FoodUpdateComponent,
     FoodListComponent,
     LoginPageComponent,
-    DialogComponent,
     FoodDetailComponent,
     LoginPageComponent,
-    ProfilePageComponent
+    ProfilePageComponent,
+    DialogComponent
   ],
   exports: [
     AppComponent,
@@ -76,8 +81,9 @@ const routes: Routes = [
     FoodUpdateComponent,
     FoodListComponent,
     DialogComponent,
+    FormsModule,
     MdButtonModule, MdCheckboxModule, MdListModule, MdCardModule, MdMenuModule, // material
-    MdToolbarModule , MdIconModule, MdTabsModule // material
+    MdToolbarModule , MdIconModule, MdTabsModule , MdDialogModule, MdSelectModule// material
   ],
   providers: [ FireService, ActiveStateService, EventService],
   bootstrap: [ AppComponent ],
