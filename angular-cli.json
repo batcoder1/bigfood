@@ -1,7 +1,7 @@
 {
   "project": {
-    "version": "1.0.0-beta.28.3",
-    "name": "reactive-forms"
+    "version": "1.0",
+    "name": "ng-material-reactive-forms"
   },
   "apps": [
     {
@@ -17,6 +17,7 @@
       "test": "test.ts",
       "tsconfig": "tsconfig.json",
       "prefix": "app",
+      "mobile": true,
       "styles": [
         "styles.css"
       ],

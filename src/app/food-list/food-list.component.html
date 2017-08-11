@@ -1,0 +1,21 @@
+<md-tab-group>
+  <md-tab label="Recientes">
+    <md-card>
+      <md-card-content>
+        <md-list>
+          <md-list-item *ngFor="let food of foods | async">
+            <span class="md-font" md-line> {{food.name}}  </span>
+            <section layout-align="end" layout-wrap>
+              <span class="md-font">  {{food.calories}}</span>
+            </section>
+            <p md-line>
+              <span class="sm-font left grey">{{food.description}}, {{food.amount}}{{food.unit}}</span>
+            </p>
+          </md-list-item>
+        </md-list>
+      </md-card-content>
+    </md-card>
+  </md-tab>
+  <md-tab label="Comidas"></md-tab>
+
+</md-tab-group>

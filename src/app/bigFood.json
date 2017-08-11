@@ -1,0 +1,228 @@
+{
+  "foods" : [ {
+    "amount" : 100,
+    "calories" : 58,
+    "description" : "pera",
+    "id" : 1,
+    "macros" : {
+      "fat" : 0.1,
+      "hc" : 15.5,
+      "protein" : 0.4
+    },
+    "name" : "pera",
+    "unit" : "g"
+  }, {
+    "amount" : 100,
+    "calories" : 375,
+    "description" : "Nordwaldtaler ",
+    "id" : 2,
+    "macros" : {
+      "fat" : 7,
+      "hc" : 59,
+      "protein" : 14
+    },
+    "name" : "Haferflocken (Lidl Avena)",
+    "unit" : "g"
+  }, {
+    "amount" : 100,
+    "calories" : 150,
+    "description" : "lidl",
+    "id" : 3,
+    "macros" : {
+      "fat" : 3.9,
+      "hc" : 0,
+      "protein" : 24
+    },
+    "name" : "carne picada ternera ecólogica",
+    "unit" : "g"
+  }, {
+    "amount" : 100,
+    "calories" : 140,
+    "description" : "lidl",
+    "id" : 4,
+    "macros" : {
+      "fat" : 2,
+      "hc" : 0,
+      "protein" : 21
+    },
+    "name" : "pechuga pollo",
+    "unit" : "g"
+  }, {
+    "amount" : 100,
+    "calories" : 140,
+    "description" : "lidl",
+    "id" : 5,
+    "macros" : {
+      "fat" : 9,
+      "hc" : 1,
+      "protein" : 20
+    },
+    "name" : "muslo de pollo",
+    "unit" : "g"
+  }, {
+    "amount" : 100,
+    "calories" : 80,
+    "description" : "conservas dori",
+    "id" : 6,
+    "macros" : {
+      "fat" : 0,
+      "hc" : 45,
+      "protein" : 1
+    },
+    "name" : "piña",
+    "unit" : "g"
+  }, {
+    "amount" : 100,
+    "calories" : 47,
+    "description" : "milbona",
+    "id" : 7,
+    "macros" : {
+      "fat" : 1.5,
+      "hc" : 5,
+      "protein" : 3.4
+    },
+    "name" : "leche semi-desnatada",
+    "unit" : "ml"
+  }, {
+    "amount" : 100,
+    "calories" : 140,
+    "description" : "Dee thai",
+    "id" : 8,
+    "macros" : {
+      "fat" : 17,
+      "hc" : 0,
+      "protein" : 2.9
+    },
+    "name" : "leche de coco",
+    "unit" : "ml"
+  }, {
+    "amount" : 100,
+    "calories" : 746,
+    "description" : "Hacendado",
+    "id" : 9,
+    "macros" : {
+      "fat" : 82,
+      "hc" : 1.5,
+      "protein" : 0.5
+    },
+    "name" : "mantequilla",
+    "unit" : "g"
+  }, {
+    "amount" : 100,
+    "calories" : 140,
+    "description" : "lidl",
+    "id" : 10,
+    "macros" : {
+      "fat" : 2,
+      "hc" : 0,
+      "protein" : 21
+    },
+    "name" : "pechuga pollo",
+    "unit" : "g"
+  }, {
+    "amount" : 1,
+    "calories" : 23,
+    "description" : "calabacín",
+    "id" : 11,
+    "macros" : {
+      "fat" : 0.5,
+      "hc" : 2,
+      "protein" : 1.9
+    },
+    "name" : "calabacín",
+    "unit" : "unidad"
+  }, {
+    "amount" : 100,
+    "calories" : 341,
+    "description" : "milbona",
+    "id" : 12,
+    "macros" : {
+      "fat" : 25.5,
+      "hc" : 2.4,
+      "protein" : 25.5
+    },
+    "name" : "4 quesos",
+    "unit" : "g"
+  }, {
+    "amount" : 100,
+    "calories" : 148,
+    "description" : "lidl",
+    "id" : 13,
+    "macros" : {
+      "fat" : 3.6,
+      "hc" : 21.1,
+      "protein" : 5.6
+    },
+    "name" : "Pan semillas",
+    "unit" : "g"
+  }, {
+    "amount" : 100,
+    "calories" : 62,
+    "description" : "minuto verde",
+    "id" : 14,
+    "macros" : {
+      "fat" : 0.8,
+      "hc" : 8.4,
+      "protein" : 1.1
+    },
+    "name" : "Frutos rojos",
+    "unit" : "g"
+  }, {
+    "amount" : 1,
+    "calories" : 140,
+    "description" : "entero",
+    "id" : 15,
+    "macros" : {
+      "fat" : 5.3,
+      "hc" : 0.6,
+      "protein" : 6.3
+    },
+    "name" : "huevo",
+    "unit" : "unidad"
+  } ],
+  "meals" : {
+    "2SD1xPGogjVUTgWzCPMftMFvoQS2" : {
+      "meals" : [ {
+        "foods" : [ 
+          {"amount" : 130, "id" : 3},
+          {"amount" : 30, "id" : 1 } 
+        ],
+        "name" : "Desayuno"
+       }, {
+         "foods" : [ {"amount" : 200, "id" : 3} ],
+         "name" : "Comida"
+       }, {
+        "foods" :
+         [ { 
+            "amount" : 130,
+            "id" : 1
+            }, {
+            "amount" : 30,
+            "id" : 2
+            }, {
+            "amount" : 200,
+            "id" : 4
+          } ],
+        "name" : "Cena"
+      } ]
+    }
+  },
+  "profiles" : {
+    "2SD1xPGogjVUTgWzCPMftMFvoQS2" : {
+      "birthday" : "15-06-1980",
+      "country" : "España",
+      "email" : "erubio@autentia.com",
+      "height" : 173,
+      "imageUrl" : "https://lh4.googleusercontent.com/-B3P9lilMdB8/AAAAAAAAAAI/AAAAAAAAAF0/fWtvO4Bc1m8/photo.jpg",
+      "postalCode" : 28020,
+      "username" : "erubio",
+      "weight" : 75
+    }
+  },
+  "users" : {
+    "2SD1xPGogjVUTgWzCPMftMFvoQS2" : {
+      "email" : "erubio@autentia.com",
+      "profile_picture" : "https://lh4.googleusercontent.com/-B3P9lilMdB8/AAAAAAAAAAI/AAAAAAAAAF0/fWtvO4Bc1m8/photo.jpg"
+    }
+  }
+}
