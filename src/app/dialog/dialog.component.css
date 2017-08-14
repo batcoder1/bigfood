@@ -1,17 +1,6 @@
-.md-dialog {
-      background-color: #000;
-      width: 250px!important;
-      height: 250px!important
+.input{
+    border-bottom: 1px solid grey;
 }
-    .demo-dialog-card {
-  max-width: 405px;
-  margin: 20px 0;
-}   
-
-.example-form {
-  width: 500px;
-}
-
-.example-full-width {
-  width: 100%;
+.right{
+    text-align: right
 }
