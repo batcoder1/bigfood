@@ -1,3 +1,4 @@
+import { EventService } from './../providers/event.service';
 import * as events from 'events';
 import { Component, EventEmitter, Inject, Input, Output } from '@angular/core';
 import { Food, Macros , units} from '../data-model';
@@ -20,17 +21,15 @@ export class DialogComponent  {
   @Input() cancelText: string;
   @Output() valueEmitted = new EventEmitter<string>();
 
-  constructor(public dialogRef: MdDialogRef<DialogComponent>, @Inject(MD_DIALOG_DATA) public food: any) {
-    this.okText = 'OK';
-    this.cancelText = 'Cancel';
-
+  constructor(public dialogRef: MdDialogRef<DialogComponent>,
+    @Inject(MD_DIALOG_DATA) public food: any,
+    private eventService: EventService) {
   }
 
-  emitValue(value) {
-    this.valueEmitted.emit(value);
-  }
-
-  ngOnInit() {
+  saveAmount() {
+   // this.valueEmitted.emit(value);
+    this.eventService.displayCancel(false);
+    this.eventService.displaySave(true);
   }
 
 }
