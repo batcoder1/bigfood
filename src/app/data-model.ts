@@ -31,11 +31,11 @@ export class Profile {
       username: string;
       imageUrl: string  ;
       email: string;
-      birthday: '';
-      height: 0;
-      weight: 0;
-      country: '';
-      postalCode: '';
+      birthday: string;
+      height: number;
+      weight: number;
+      country: string;
+      postalCode: number;
 }
 
 export class Units {
