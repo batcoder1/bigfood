@@ -17,6 +17,7 @@ import {Location} from '@angular/common';
 export class AppComponent implements DoCheck {
    public isLoggedIn: boolean;
    activaCancelBotton= false;
+   activaSaveBotton= false;
    state: ActiveStateService;
    subscribe: any;
 
@@ -52,6 +53,9 @@ export class AppComponent implements DoCheck {
   goBack() {
         this._location.back();
   }
+  goHome() {
+        this.router.navigate(['']);
+  }
 
   doLogout() {
     console.log('logout');
@@ -70,6 +74,11 @@ ngDoCheck() {
  eventListener() {
     this.eventService.displayStream.subscribe(buttonShow => {
           this.activaCancelBotton = buttonShow;
+
+    });
+    this.eventService.saveStream.subscribe(buttonShow => {
+          this.activaSaveBotton = buttonShow;
+
     });
 
   }
