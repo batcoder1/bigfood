@@ -31,7 +31,6 @@ import { Observable } from 'rxjs/Observable';
 })
 export class HomePageComponent implements AfterViewChecked, OnInit {
 
-
   isloggin: boolean;
   user: User;
   myUser: any;
@@ -65,6 +64,8 @@ export class HomePageComponent implements AfterViewChecked, OnInit {
     this.rest = 0;
 
     this.fireUser = JSON.parse(localStorage.getItem('fireUser'));
+    this.eventService.displaySave(false);
+
     this.profile = new Profile();
     this.fireService.setUserData(this.fireUser);
 
@@ -72,11 +73,11 @@ export class HomePageComponent implements AfterViewChecked, OnInit {
       imageUrl: this.fireUser.photoURL,
       email: this.fireUser.email,
       username: this.fireUser.email.split('@')[0],
-      birthday: '',
-      height: 0,
-      weight: 0,
-      country: '',
-      postalCode: ''
+      birthday: '15-06-1980',
+      height: 173,
+      weight: 76,
+      country: 'España',
+      postalCode: 28020
     };
     // fireService.setUserProfile(this.fireUser.uid, this.profile);
 
@@ -92,7 +93,7 @@ export class HomePageComponent implements AfterViewChecked, OnInit {
 
 
     this.fireService.getUserProfile()
-      .then(snapshot => this.user = snapshot.val());
+      .then(snapshot => this.profile = snapshot.val());
 
 
     this.fireService.getFoods()
@@ -122,49 +123,71 @@ export class HomePageComponent implements AfterViewChecked, OnInit {
       });
   }
   ngAfterViewChecked() {
-
-    this.totalCalories = 0;
     if (this.meals) {
+      this.totalCalories = 0;
+    this.addFoodToMeal();
       this.mealsCaloriesSum();
       this.goalDay = this.caloriesBurnedAtDay();
       this.rest = this.goalDay - this.totalCalories + this.exercise;
       this.cdr.detectChanges();
-
     }
   }
 
   mealsCaloriesSum() {
     this.totalMealCalories = [];
     let foodExist = false;
+    if (this.meals) {
+      this.meals.forEach(meal => {
+        let totalCalories = 0;
+        if (meal.foods) {
+          meal.foods.forEach(food => {
+            totalCalories += food.calories;
+            foodExist = true;
+          });
+          if (foodExist) {
+            this.totalMealCalories.push(totalCalories);
+            this.totalCalories += totalCalories;
+          }
 
-    this.meals.forEach(meal => {
-      let totalCalories = 0;
-      meal.foods.forEach(food => {
-        totalCalories += food.calories;
-        foodExist = true;
+        }
       });
-      if (foodExist) {
-        this.totalMealCalories.push(totalCalories);
-        this.totalCalories += totalCalories;
-      }
-    });
+
+    }
   }
 
+  addFoodToMeal() {
+    if (this.meals) {
+      this.meals.forEach(meal => {
+        if (meal.foods && meal.foods.length > 0) {
+          meal.foods.forEach(food => {
+            if (localStorage.getItem('foodDetail')) {
+              const foodDetail = JSON.parse(localStorage.getItem('foodDetail'));
+              // TODO cuando se crea el usuario, las meals no tienen food, no se puede hacer push si no existe el array foods
+              this.meals[0].foods.push(foodDetail);
+              localStorage.removeItem('foodDetail');
+              this.fireService.setUserMeals(this.fireUser.uid, this.meals);
+            }
+          });
+        }
+      });
+    }
+
+  }
   caloriesBurnedAtDay(): number {
-    const res = this.user.birthday.split('-');
+    const res = this.profile.birthday.split('-');
     const fechaNac = new Date(res[1] + '-' + res[0] + '-' + res[2]);
     const fechaNacMilisec = fechaNac.getMilliseconds();
     const hoy = new Date();
     const hoyMilisec = hoy.getMilliseconds();
     const edad = (hoyMilisec - fechaNacMilisec) / 1000 / 60 / 60 / 24 / 365;
 
-    const tmb = (10 * this.user.weight) + (6.25 * this.user.height) - (5 * edad);
+    const tmb = (10 * this.profile.weight) + (6.25 * this.profile.height) - (5 * edad);
     const total = Math.round(tmb * this.activity[this.goals.activityLevel]);
 
     return total;
   }
   goToFoodList() {
-    this.eventService.display(true);
+    this.eventService.displayCancel(true);
     this.router.navigate(['/food-list']);
     event.preventDefault();
   }
