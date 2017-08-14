@@ -1,42 +1,88 @@
 <md-card>
   <md-card-content>
-    <md-list>
-      <md-list-item >
-       
-        <span md-line class="md-font">{{food.name}}</span>
-       
-        <span md-line class="md-font" >Numero de raciones  </span>
-        <section layout-align="end" layout-wrap>
-          <span class="md-font" (click)="openDialog(food)">  {{food.amount}}</span>
-        </section>
-       
-        <span md-line class="md-font">Tamaño unidad  </span>
-        <section layout-align="end" layout-wrap>
-          <md-select placeholder="grs">
-            <md-option *ngFor="let unit of units" [value]="unit">{{ unit }}</md-option>
-          </md-select>
-        </section>
+    <md-list *ngIf="food">
+      <md-list-item>
 
-        <div md-line>
-          <div class="container">
-            <span class="macros md-font">{{food.calories}}</span>
-            <span class="macros md-font">{{food.macros.hc}}</span>
-            <span class="macros md-font">{{food.fat}}</span>
-            <span class="macros md-font">{{food.protein}}</span>
-
-          </div>
-        </div>
-        <div md-line>
-          <div class="container">
-            <span class="macros md-font">Calorias</span>
-            <span class="macros md-font">Carbohidratos</span>
-            <span class="macros md-font">Grasas</span>
-            <span class="macros md-font">Proteina</span>
-
-          </div>
-        </div>
+        <span md-line class="big-font">{{food.name}} ({{food.description}})</span>
       </md-list-item>
+
+      <md-list-item>
+        <span md-line class="md-font">Numero de raciones  </span>
+        <section layout-align="end" layout-wrap>
+          <span class="md-font" (click)="openDialog(food)">{{food.amount}}</span>
+        </section>
+
+      </md-list-item>
+
+      <md-list-item>
+        <span md-line class="md-font">Unidad    </span>
+        <section layout-align="end" layout-wrap>
+          <!-- <md-select>
+              <md-option *ngFor="let unit of units" [value]="unit">{{ unit }}</md-option>
+            </md-select> -->
+          <span class="md-font" (click)="openDialog(food)">{{food.unit}}</span>
+        </section>
+
+      </md-list-item>
+
+
+
+      <div class="flex-container">
+
+        <md-progress-spinner class="progress" color="warn" mode="determinate" [value]="porcentaje.hc">
+        </md-progress-spinner>
+
+        <md-progress-spinner [style.transform]="'rotate(' + (hcGrades ? hcGrades : 0) + 'deg)'" class="progress" color="primary"
+          mode="determinate" [value]="porcentaje.protein">
+        </md-progress-spinner>
+
+        <md-progress-spinner [style.transform]="'rotate(' + (proteinHcSumGrades ? proteinHcSumGrades : 0) + 'deg)'" class="progress"
+          color="accent" mode="determinate" [value]="porcentaje.fat">
+        </md-progress-spinner>
+
+      </div>
+      <div class="flex-container">
+        <div class="macros">
+          <span class=" big-font">  </span>
+        </div>
+        <div class="macros">
+          <span class=" sm-font center grey">{{porcentaje.hc}}%</span>
+        </div>
+        <div class="macros">
+          <span class=" sm-font center grey">{{porcentaje.protein}}%</span>
+        </div>
+        <div class="macros">
+          <span class=" sm-font center grey">{{porcentaje.fat}}%</span>
+        </div>
+      </div>
+      <div class="flex-container">
+
+        <div class="macros">
+          <span class="big-font center"> {{food.calories}}</span>
+        </div>
+        <div class="macros">
+          <span class="big-font center">{{food.macros.hc}} g</span>
+        </div>
+        <div class="macros">
+          <span class="big-font center">{{food.macros.protein}} g</span>
+        </div>
+        <div class="macros">
+          <span class="big-font center">{{food.macros.fat}} g</span>
+        </div>
+
+      </div>
+
+
+
+      <div class="flex-container">
+
+        <span class="macros md-font">Calorias</span>
+        <span class="macros hc md-font">Carbohidratos</span>
+        <span class="macros protein md-font">Proteina</span>
+        <span class="macros fat md-font">Grasas</span>
+
+      </div>
     </md-list>
+
   </md-card-content>
 </md-card>
-

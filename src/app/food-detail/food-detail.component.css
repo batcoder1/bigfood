@@ -1,12 +1,14 @@
-.title{
-    font-size: 14px;
+.title {
+  font-size: 14px;
 }
 
-.left{
-    float:left;
+.left {
+  float: left;
 }
-.right{ float:right;}
 
+.right {
+  float: right;
+}
 
 .list-item {
   width: 100%
@@ -21,10 +23,7 @@
 }
 
 .list-item:hover button {
-  float: right;
   margin: 7px 5px;
-  width: 30px;
-  height: 30px;
   display: inline;
 }
 
@@ -46,3 +45,80 @@
   right: 30px;
   top: 50px;
 }
+
+.example-margin {
+  margin: 0 10px;
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+ 
+}
+
+.macros {
+  -ms-box-orient: horizontal;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -moz-flex;
+  display: -webkit-flex;
+  flex-basis: 25%; 
+  justify-content: center;
+   
+  
+}
+.progress {
+   position: absolute;
+  top: 0.5em;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+.fat {
+  display: flex;
+  color: #e20000;
+  text-align: center;
+}
+
+.protein {
+  display: flex;
+  color: #2147ed;
+  text-align: center;
+}
+
+.hc {
+  display: flex;
+  color: #ed6321;
+  text-align: center;
+   
+}
+
+.flex-container {
+  position: relative;
+  display: flex;
+  flex-direction: row;      
+  align-items: center;     /* center items vertically, in this case */
+   padding-top: 0.5em;
+  padding-left: 0.4em;
+  
+}
+ 
+
+ 
+.mat-list, .mat-nav-list {
+    
+    padding-bottom: 4em;
+ 
+}
+  .big-font {
+    font-size: 16px!important;
+     
+}
+  .md-font {
+    font-size: 12px!important;
+     
+}
+  span.macros.big-font{
+    text-align: center;
+  }
