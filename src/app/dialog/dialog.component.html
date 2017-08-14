@@ -7,17 +7,16 @@
   </md-dialog-actions>
 </md-dialog> -->
 
- <md-card class="modalDialog">
-     {{food.name}}
-  <md-card-content>
-    
-     <md-input-container class="example-full-width">
-        <input mdInput    [(ngModel)]="food.amount" placeholder="cantidad"  required>
-    </md-input-container> 
-     
-  </md-card-content>
-  <md-card-actions class="center">
-    <button md-button (click)="emitValue(null)" md-dialog-close="null" color="primary">{{cancelText}}</button>
-    <button md-button (click)="emitValue(food)" md-dialog-close="ok" color="primary">{{okText}}</button>
-  </md-card-actions>
-</md-card> 
+<md-dialog-title>
+  <h2>¿Cúanto?</h2>
+</md-dialog-title>
+<md-dialog-content>
+  <md-input-container>
+  <input  mdInput [(ngModel)]="food.amount" placeholder="cantidad" >{{food.unit}}
+  </md-input-container>
+</md-dialog-content>
+ 
+<md-dialog-actions class="right">
+  <button md-button   md-dialog-close color="primary">Cancelar</button>
+  <button md-button  (click)="saveAmount()" md-dialog-close="true" color="primary">Guardar</button>
+</md-dialog-actions>
