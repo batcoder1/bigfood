@@ -15,7 +15,7 @@ import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MdButtonModule, MdCheckboxModule, MdListModule, MdCardModule,
-  MdToolbarModule, MdListItem, MdIconModule, MdMenuModule, MdTabsModule, MdDialogContainer, MdSelectModule
+  MdToolbarModule, MdListItem, MdIconModule, MdMenuModule, MdTabsModule, MdDialogContainer, MdSelectModule, MdProgressSpinnerModule
 } from '@angular/material';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { AngularFireAuthModule, AngularFireAuth } from 'angularfire2/auth';
@@ -55,7 +55,7 @@ const routes: Routes = [
     BrowserAnimationsModule,
     MdButtonModule, MdCheckboxModule, MdListModule, MdCardModule, // material
     MdToolbarModule , MdIconModule, MdMenuModule, MdTabsModule, // material
-    MdSelectModule,  MdDialogModule,
+    MdSelectModule,  MdDialogModule, MdProgressSpinnerModule,
     ReactiveFormsModule, FormsModule,
     RouterModule.forRoot(routes)
   ],
@@ -83,7 +83,8 @@ const routes: Routes = [
     DialogComponent,
     FormsModule,
     MdButtonModule, MdCheckboxModule, MdListModule, MdCardModule, MdMenuModule, // material
-    MdToolbarModule , MdIconModule, MdTabsModule , MdDialogModule, MdSelectModule// material
+    MdToolbarModule , MdIconModule, MdTabsModule , MdDialogModule, MdSelectModule, // material
+    MdProgressSpinnerModule
   ],
   providers: [ FireService, ActiveStateService, EventService],
   bootstrap: [ AppComponent ],
