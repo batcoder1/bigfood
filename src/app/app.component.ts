@@ -4,7 +4,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { FirebaseListObservable } from 'angularfire2/database';
 import { Observable } from 'rxjs/Observable';
 import { FireService } from './providers/fire.service';
-import { AfterViewInit, Component, DoCheck, OnChanges, Output, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, DoCheck, OnChanges, Output, ViewChild, ChangeDetectorRef } from '@angular/core';
 import * as firebase from 'firebase/app';
 import {Location} from '@angular/common';
 
@@ -27,8 +27,9 @@ export class AppComponent implements DoCheck {
     private _location: Location,
     private _state: ActiveStateService,
     private eventService: EventService,
-    private route: ActivatedRoute
-  ) {
+    private route: ActivatedRoute,
+    private cdr: ChangeDetectorRef
+    ) {
 
     this.state = _state;
     // checkea de forma async si nuestro usuario esta logeado and redirigirá
@@ -80,6 +81,7 @@ ngDoCheck() {
           this.activaSaveBotton = buttonShow;
 
     });
+    this.cdr.detectChanges();
 
   }
 
