@@ -1,3 +1,4 @@
+import { FormControl, FormGroup } from '@angular/forms';
 import { DialogComponent } from './../dialog/dialog.component';
 import { ActivatedRoute, Router } from '@angular/router';
 import { EventService } from './../providers/event.service';
@@ -9,6 +10,8 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/finally';
 import { Food } from '../data-model';
 import { MdDialog } from '@angular/material';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/startWith';
 
 
 @Component({
@@ -19,33 +22,40 @@ import { MdDialog } from '@angular/material';
 
 })
 export class FoodListComponent implements OnInit {
-
   foods: FirebaseListObservable<Food[]>;
   isLoading = false;
   selectedFood: Food;
   private sub: any;
   location = '';
-
+  filteredItems: any;
+  filteredOptions: Observable<Food[]>;
+  search = '';
+  filteredList: Food[];
+  myfoods: Food[];
   constructor(private fireService: FireService,
     private activeStateService: ActiveStateService,
-    private route: ActivatedRoute,
-    public dialog: MdDialog,
-    private router: Router
-  ) {
+    private route: ActivatedRoute ,
+    private router: Router) {
 
     this.location = router.url;
-  }
 
+
+  }
   ngOnInit() {
     this.getFoods();
+
   }
 
   getFoods() {
     this.isLoading = true;
     this.foods = this.fireService.foods;
     this.selectedFood = undefined;
-  }
+    this.foods.subscribe( snapshot => {
+      this.myfoods =  snapshot;
+      this.filteredList = snapshot;
+    });
 
+  }
   select(food: Food) {
     this.selectedFood = food;
   }
@@ -54,4 +64,15 @@ export class FoodListComponent implements OnInit {
     this.router.navigate(['/food-detail', food.id]);
   }
 
+
+ filter(name) {
+  if (this.search !== '') {
+      this.myfoods.filter(el => {
+        this.filteredList =  this.myfoods.filter(option => new RegExp(`^${this.search}`, 'gi').test(option.name));
+
+      });
+  }else{
+      this.filteredList = this.myfoods;
+  }
+ }
 }

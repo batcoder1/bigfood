@@ -46,3 +46,8 @@
   right: 30px;
   top: 50px;
 }
+input {
+  width: 98.4%;
+  height: 2em!important;
+  border-bottom: 1px solid grey!important;
+}
