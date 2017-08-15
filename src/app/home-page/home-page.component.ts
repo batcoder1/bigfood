@@ -163,8 +163,12 @@ export class HomePageComponent implements AfterViewChecked, OnInit {
             if (localStorage.getItem('foodDetail')) {
               const foodDetail = JSON.parse(localStorage.getItem('foodDetail'));
               // TODO cuando se crea el usuario, las meals no tienen food, no se puede hacer push si no existe el array foods
-              this.meals[0].foods.push(foodDetail);
               localStorage.removeItem('foodDetail');
+              const comida = JSON.parse(localStorage.getItem('comidaSelected'));
+              this.meals[comida].foods.push(foodDetail);
+
+              localStorage.removeItem('foodDetail');
+              localStorage.removeItem('comidaSelected');
               this.fireService.setUserMeals(this.fireUser.uid, this.meals);
             }
           });
@@ -186,10 +190,15 @@ export class HomePageComponent implements AfterViewChecked, OnInit {
 
     return total;
   }
-  goToFoodList() {
+  goToFoodList(comidaSelected) {
+    localStorage.setItem('comidaSelected', comidaSelected);
     this.eventService.displayCancel(true);
+    this.eventService.displaySave(true);
     this.router.navigate(['/food-list']);
     event.preventDefault();
   }
-
+  goToDetail(food: Food) {
+    this.eventService.displayCancel(true);
+    this.router.navigate(['/food-detail', food.id]);
+  }
 }

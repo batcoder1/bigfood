@@ -36,7 +36,7 @@
       <md-divider></md-divider> 
   
       <md-list>
-        <md-list-item *ngFor="let food of meal.foods" routerLink="food-detail">
+        <md-list-item *ngFor="let food of meal.foods" (click) = "goToDetail(food)" long-press (onLongPress)="onLongPress(food)" >
           <span class="md-font" md-line> {{food.name}}  </span>
           <section  layout-align="end" layout-wrap>
              <span class="md-font">  {{food.calories}}</span>
@@ -50,7 +50,7 @@
 
     <md-card-footer class="grey backgrey">
       <md-card-action>
-         <button md-button (click)="goToFoodList()" >+ Añadir alimento</button>
+         <button md-button (click)="goToFoodList(i)" >+ Añadir alimento</button>
       </md-card-action>
     </md-card-footer>
 

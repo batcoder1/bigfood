@@ -1,3 +1,4 @@
+import { LongPressDirective } from './directives/long-press.directive';
 import { MdDialogModule, MdDialogRef } from '@angular/material';
 import { EventService } from './providers/event.service';
 import { ActiveStateService } from './providers/active-state.service';
@@ -72,7 +73,8 @@ const routes: Routes = [
     FoodDetailComponent,
     LoginPageComponent,
     ProfilePageComponent,
-    DialogComponent
+    DialogComponent,
+    LongPressDirective
   ],
   exports: [
     AppComponent,
@@ -84,9 +86,9 @@ const routes: Routes = [
     FormsModule,
     MdButtonModule, MdCheckboxModule, MdListModule, MdCardModule, MdMenuModule, // material
     MdToolbarModule , MdIconModule, MdTabsModule , MdDialogModule, MdSelectModule, // material
-    MdProgressSpinnerModule
+    MdProgressSpinnerModule, LongPressDirective
   ],
-  providers: [ FireService, ActiveStateService, EventService],
+  providers: [ FireService, ActiveStateService, EventService ],
   bootstrap: [ AppComponent ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })
