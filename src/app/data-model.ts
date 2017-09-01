@@ -54,13 +54,17 @@ export class Goals {
 }
 
 export class DietDays {
-  fecha: '';
-  meals: Meal[];
+
+  date: Date = new Date();
+  goalDay: number;
+  totalCalories: number;
+  exercise: number;
+  meals: Meal[] = [];
 }
 
 export class Meal {
   name = '';
-  foods: Food[];
+  foods: Food[]= [];
 }
 
 export const units = ['grs', 'kg', 'unit', 'l', 'ml'];
