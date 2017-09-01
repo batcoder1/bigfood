@@ -1,7 +1,7 @@
 
  
 
-<md-card *ngIf="indexDays">
+<md-card *ngIf="days !== undefined && days.length > 0  && indexDays >= 0" >
   <md-grid-list class="space">
       <md-grid-tile class="big-font arrow">
         <md-icon (click)="rewindDay()">keyboard_arrow_left</md-icon>
@@ -37,7 +37,7 @@
 </md-card>
   
   
-  <md-list *ngIf="indexDays">
+  <md-list *ngIf="days !== undefined  && days.length && indexDays >= 0">
     <md-card *ngFor="let meal of days[indexDays].meals; let i = index">
       <md-card-content>
         <md-list>
