@@ -8,7 +8,6 @@ import { HomePageComponent } from './home-page/home-page.component';
 import { RouterModule, Routes } from '@angular/router';
 import { FoodListComponent } from './food-list/food-list.component';
 import { FoodDetailComponent } from './food-detail/food-detail.component';
-import { FoodUpdateComponent } from './food-update.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -43,7 +42,6 @@ const routes: Routes = [
   { path: '', component: HomePageComponent, data: { stateName: 'home' } },
   { path: 'food-list', component: FoodListComponent , data: { stateName: 'food-list'} },
   { path: 'food-detail/:id', component: FoodDetailComponent , data: { stateName: 'food-detail'}},
-  { path: 'food-update', component: FoodUpdateComponent , data: { stateName: 'food-update' }},
   { path: 'profile', component: ProfilePageComponent , data: { stateName: 'profile' }},
   { path: 'login', component: LoginPageComponent , data: { stateName: 'login' }}
 ];
@@ -67,7 +65,6 @@ const routes: Routes = [
     AppComponent,
     HomePageComponent,
     FoodDetailComponent,
-    FoodUpdateComponent,
     FoodListComponent,
     LoginPageComponent,
     FoodDetailComponent,
@@ -80,7 +77,6 @@ const routes: Routes = [
     AppComponent,
     HomePageComponent,
     FoodDetailComponent,
-    FoodUpdateComponent,
     FoodListComponent,
     DialogComponent,
     FormsModule,
