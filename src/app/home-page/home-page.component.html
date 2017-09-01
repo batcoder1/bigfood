@@ -1,12 +1,28 @@
-<md-card>
-  <md-grid-list class="text-center">
-    <md-grid-tile>{{goalDay}}</md-grid-tile>
+
+ 
+
+<md-card *ngIf="indexDays">
+  <md-grid-list class="space">
+      <md-grid-tile class="big-font arrow">
+        <md-icon (click)="rewindDay()">keyboard_arrow_left</md-icon>
+      </md-grid-tile>
+      <md-grid-tile class="big-font text-center  day"> {{days[indexDays].date}} </md-grid-tile>
+      <md-grid-tile class="big-font right arrow">
+          <md-icon (click)="fowardDay()">keyboard_arrow_right</md-icon>  
+      </md-grid-tile>
+    
+  </md-grid-list>
+
+  <md-divider></md-divider> 
+  
+  <md-grid-list class="text-center space">
+    <md-grid-tile class="big-font">{{days[indexDays].goalDay}}</md-grid-tile>
     <md-grid-tile>-</md-grid-tile>
-    <md-grid-tile>{{totalCalories}}</md-grid-tile> 
+    <md-grid-tile class="big-font">{{days[indexDays].totalCalories}}</md-grid-tile> 
     <md-grid-tile>+</md-grid-tile> 
-    <md-grid-tile>{{exercise}}</md-grid-tile> 
+    <md-grid-tile class="big-font">{{days[indexDays].exercise}}</md-grid-tile> 
     <md-grid-tile>=</md-grid-tile> 
-    <md-grid-tile> {{rest}} </md-grid-tile>
+    <md-grid-tile class="big-font"> {{rest}} </md-grid-tile>
   </md-grid-list>
   <md-grid-list class="md-font grey text-center">
     <md-grid-tile>Objetivo</md-grid-tile>
@@ -17,42 +33,43 @@
     <md-grid-tile></md-grid-tile>
     <md-grid-tile>Restantes</md-grid-tile>
   </md-grid-list>
-
-</md-card>
-
-
-<md-list *ngIf="profile">
-  <md-card *ngFor="let meal of meals; let i = index">
-     <md-card-content>
-      <md-list>
-        <md-list-item>
-          <span class="big-font" md-line> {{meal.name}}  </span>
-          <section  layout-align="end" layout-wrap>
-             <span class="md-font">{{totalMealCalories[i]}}</span>
-          </section>
-        </md-list-item>  
-      </md-list>  
-     
-      <md-divider></md-divider> 
   
-      <md-list>
-        <md-list-item *ngFor="let food of meal.foods" (click) = "goToDetail(food)" long-press (onLongPress)="onLongPress(food)" >
-          <span class="md-font" md-line> {{food.name}}  </span>
-          <section  layout-align="end" layout-wrap>
-             <span class="md-font">  {{food.calories}}</span>
-          </section>
-          <p md-line>
-            <span class="sm-font left grey">{{food.description}}, {{food.amount}}{{food.unit}}</span>
-          </p>
-        </md-list-item>
-      </md-list>
-    </md-card-content>
-
-    <md-card-footer class="grey backgrey">
-      <md-card-action>
-         <button md-button (click)="goToFoodList(i)" >+ Añadir alimento</button>
-      </md-card-action>
-    </md-card-footer>
-
-  </md-card>
-</md-list>
+</md-card>
+  
+  
+  <md-list *ngIf="indexDays">
+    <md-card *ngFor="let meal of days[indexDays].meals; let i = index">
+      <md-card-content>
+        <md-list>
+          <md-list-item>
+            <span class="big-font" md-line> {{meal.name}}  </span>
+            <section  layout-align="end" layout-wrap>
+              <span class="md-font">{{totalMealCalories[i]}}</span>
+            </section>
+          </md-list-item>  
+        </md-list>  
+        
+        <md-divider></md-divider> 
+        
+        <md-list>
+          <md-list-item *ngFor="let food of meal.foods" (click) = "goToDetail(food)" long-press (onLongPress)="onLongPress(food)" >
+            <span class="md-font" md-line> {{food.name}}  </span>
+            <section  layout-align="end" layout-wrap>
+              <span class="md-font">  {{food.calories}}</span>
+            </section>
+            <p md-line>
+              <span class="sm-font left grey">{{food.description}}, {{food.amount}}{{food.unit}}</span>
+            </p>
+          </md-list-item>
+        </md-list>
+      </md-card-content>
+      
+      <md-card-footer class="grey backgrey">
+        <md-card-action>
+          <button md-button (click)="goToFoodList(i)" >+ Añadir alimento</button>
+        </md-card-action>
+      </md-card-footer>
+      
+    </md-card>
+  </md-list>
+  
