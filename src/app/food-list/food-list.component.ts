@@ -1,5 +1,4 @@
 import { FormControl, FormGroup } from '@angular/forms';
-import { DialogComponent } from './../dialog/dialog.component';
 import { ActivatedRoute, Router } from '@angular/router';
 import { EventService } from './../providers/event.service';
 import { ActiveStateService } from './../providers/active-state.service';
@@ -65,13 +64,13 @@ export class FoodListComponent implements OnInit {
   }
 
 
- filter(name) {
+ filter() {
   if (this.search !== '') {
       this.myfoods.filter(el => {
         this.filteredList =  this.myfoods.filter(option => new RegExp(`^${this.search}`, 'gi').test(option.name));
 
       });
-  }else{
+  }else {
       this.filteredList = this.myfoods;
   }
  }
