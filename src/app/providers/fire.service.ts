@@ -1,4 +1,5 @@
-import { Food, Meal, Profile, User, Units, Goals } from './../data-model';
+import { forEach } from '@angular/router/src/utils/collection';
+import { Food, Meal, Profile, User, Units, Goals, DietDays } from './../data-model';
 import { Observable } from 'rxjs/Observable';
 import { Injectable, Input } from '@angular/core';
 import { FirebaseListObservable, AngularFireDatabase } from 'angularfire2/database';
@@ -12,10 +13,14 @@ export class FireService {
   afAuth: AngularFireAuth;
   profile: Profile;
   fireUser: firebase.User;
+  database: any;
+  calendar: DietDays[];
+
   constructor(afAuth: AngularFireAuth, db: AngularFireDatabase) {
     this.user = afAuth.authState;
     this.foods = db.list('foods');
     this.afAuth = afAuth;
+    this.database = firebase.database();
   }
 
   loginWithGoogle() {
@@ -35,19 +40,22 @@ export class FireService {
 
 
   getFoods() {
-    const database = firebase.database();
-    return database.ref('/foods').once('value');
+    return this.database.ref('/foods').once('value');
+  }
+  getGoals() {
+    return this.database.ref('/goals').once('value');
   }
   getUserMeals() {
-    const database = firebase.database();
     this.fireUser = JSON.parse(localStorage.getItem('fireUser'));
-
-    return database.ref('/meals/' + this.fireUser.uid).once('value');
+    return this.database.ref('/meals/' + this.fireUser.uid).once('value');
+  }
+  getUserDietDays() {
+    this.fireUser = JSON.parse(localStorage.getItem('fireUser'));
+    return this.database.ref('/dietDays/' + this.fireUser.uid).once('value');
   }
 
   getFoodById(id): Promise<Food> {
     return new Promise((resolve, reject) => {
-      const database = firebase.database();
       this.getFoods().then(snapshot => {
         snapshot.forEach(child => {
         const food = child.val();
@@ -59,13 +67,13 @@ export class FireService {
     });
   }
   setUserData(fireUser: firebase.User) {
-    firebase.database().ref('users/' + fireUser.uid).set({
+    this.database.ref('users/' + fireUser.uid).set({
       email: fireUser.email,
       profile_picture : fireUser.photoURL,
     });
   }
   setUserProfile(userId, profile: Profile) {
-    firebase.database().ref('profiles/' + userId).set({
+    this.database.ref('profiles/' + userId).set({
       username: profile.username,
       imageUrl: profile.imageUrl,
       email: profile.email,
@@ -76,13 +84,14 @@ export class FireService {
       postalCode: profile.postalCode
     });
   }
-  setUserMeals(userId, meals: Meal[]) {
-    firebase.database().ref('meals/' + userId).set({
-      meals: meals
+
+  setUserDietDays(userId, dietDays: DietDays[]) {
+    this.database.ref('dietDays/' + userId).set({
+         dietDays: dietDays
     });
   }
   setUserGoals(userId, goals: Goals) {
-    firebase.database().ref('goals/' + userId).set({
+    this.database.ref('goals/' + userId).set({
       initialWeight: goals.initialWeight,
       currentWeight: goals.currentWeight,
       desireWeight: goals.desireWeight,
@@ -91,7 +100,7 @@ export class FireService {
     });
   }
  setUserUnits(userId, units: Units) {
-    firebase.database().ref('units/' + userId).set({
+    this.database.ref('units/' + userId).set({
       weight: units.weight,
       height: units.height,
       distance: units.distance,
