@@ -53,6 +53,9 @@ export class AppComponent implements DoCheck {
   }
   goBack() {
         this._location.back();
+        localStorage.removeItem('userData');
+        localStorage.removeItem('foodDetail');
+
   }
   goHome() {
         this.router.navigate(['']);
