@@ -51,3 +51,8 @@ input {
   height: 2em!important;
   border-bottom: 1px solid grey!important;
 }
+
+.mat-card{
+  padding: 0px!important;
+  margin: 0 0 3em;
+}

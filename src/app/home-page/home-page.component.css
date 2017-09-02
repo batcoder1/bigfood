@@ -3,7 +3,7 @@
   flex: 1 1 auto;
 }
 md-grid-tile {
-  width: 25%;
+  width: 60%;
    
 }
 
@@ -32,8 +32,8 @@ md-grid-list{
   font-size: 14px!important;
 }
 .mat-card{
-    padding: 11px 10px!important;
-    margin: 10px 0px;
+    padding: 8px 0px!important;
+    margin: 2em 0;
 }
 
 .grey{
@@ -69,4 +69,27 @@ md-grid-list{
 }
 .arrow{
   width: 5%!important;
+}
+.footer {
+  background-color: #F3F1F1;
+  color: #848282;
+  width: 97.5%;
+  position: relative;
+  left: 1em;
+}
+.mat-divider {
+ 
+  border-top-style: solid;
+  border: 1px!important;
+  margin: auto;
+  width: 100%;
+}
+.mat-card-actions{
+  padding: 0px!important;
+  margin-left: 0!important;
+ 
+}
+.mat-card-content{
+  margin-bottom: 0em!important;
+  margin-bottom: 0.96em!important
 }
