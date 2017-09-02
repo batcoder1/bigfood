@@ -26,9 +26,11 @@ button.mat-menu-item{
    align-self: flex-end ; 
 }
 
-mat-card-content {
+.mat-card-content {
     margin-bottom: 1em!important;
 }
 .mat-card {
-    padding: 34px 10px!important;
+    padding: 0px!important;
 }
+
+
