@@ -2,8 +2,11 @@
 html {
   font-family: Roboto, "Helvetica Neue", sans-serif;
   font-size: 12px!important;
+  background-color: #FBFBFB;
 }
-
+body{
+  margin: 0!important;
+}
 .fill-remaining-space {
   flex: 1 1 auto;
 }
@@ -40,11 +43,7 @@ md-grid-list {
 .big-font {
   font-size: 14px!important;
 }
-
-.mat-card {
-  padding: 11px 10px!important;
-  margin: 10px 0px;
-}
+ 
 
 .grey {
   color: gray;
@@ -75,4 +74,103 @@ md-grid-list {
 
 .text-center {
   text-align: center;
+}
+.mat-dialog-container {
+
+  height: auto!important;
+}
+.skull {
+  width: 250px;
+  height: 250px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+}
+.skull .head {
+  width: 100%;
+  height: 60%;
+  background-color: #bf0505;
+  border-radius: 15% / 20%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.skull .head:before, .skull .head:after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  background-color: #fff;
+  width: 30%;
+  height: 15%;
+  bottom: 20%;
+}
+.skull .head:before {
+  left: 10%;
+}
+.skull .head:after {
+  right: 10%;
+}
+.skull .head .crack {
+  width: 8%;
+  height: 8%;
+  background-color: #fff;
+  position: absolute;
+  top: 0;
+  right: 28%;
+  transform: skew(-18deg);
+}
+.skull .head .crack:before {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 14.70588px;
+  border-top: 35.71429px solid #fff;
+  border-right: 11.90476px solid transparent;
+  border-left: 3.125px solid transparent;
+}
+.skull .mouth {
+  width: 40%;
+  height: 20%;
+  position: absolute;
+  top: 60%;
+  left: 30%;
+  background-color: #bf0505;
+  border-radius: 0 0 25px 25px;
+}
+.skull .mouth:before {
+  content: "";
+  position: absolute;
+  width: 15%;
+  height: 50%;
+  border-radius: 50% / 30%;
+  background-color: #fff;
+  left: 42.5%;
+  top: -25%;
+}
+.skull .mouth .teeth {
+  position: absolute;
+  bottom: 0;
+  left: 45%;
+  width: 10%;
+  height: 50%;
+  margin-bottom: -5%;
+  background-color: #fff;
+  border-radius: 50% / 20%;
+}
+.skull .mouth .teeth:before, .skull .mouth .teeth:after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50% / 20%;
+  background-color: #fff;
+}
+.skull .mouth .teeth:before {
+  left: -250%;
+}
+.skull .mouth .teeth:after {
+  right: -250%;
 }
