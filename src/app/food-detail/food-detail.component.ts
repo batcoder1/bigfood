@@ -4,7 +4,7 @@ import { Units } from './../data-model';
 import { DialogComponent } from './../dialog/dialog.component';
 import { MdDialog } from '@angular/material';
 import { Component, Input, OnInit, OnDestroy } from '@angular/core';
-import { Food, Macros, units } from '../data-model';
+import { Food, Macros, UNITS } from '../data-model';
 
 
 @Component({
@@ -16,7 +16,7 @@ import { Food, Macros, units } from '../data-model';
 export class FoodDetailComponent implements OnInit, OnDestroy {
   food: Food;
   id: number;
-  units = units;
+  units = UNITS;
   selectedOption: string;
   todoList: any = [];
   okButtonText = 'Create task';
@@ -38,7 +38,6 @@ export class FoodDetailComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
       this.id = +params['id']; // (+) converts string 'id' to a number
-
       // In a real app: dispatch action to load the details here.
     });
     this.fireService.getFoodById(this.id).then(food => {
@@ -50,8 +49,8 @@ export class FoodDetailComponent implements OnInit, OnDestroy {
 
   openDialog(food) {
     const dialogRef = this.dialog.open(DialogComponent, { data: food });
-    dialogRef.afterClosed().subscribe(foodDetail => {
-      this.selectedOption = foodDetail;
+    dialogRef.afterClosed().subscribe(res => {
+      this.selectedOption = res;
       localStorage.setItem('foodDetail', JSON.stringify(food));
     });
   }
@@ -79,7 +78,7 @@ export class FoodDetailComponent implements OnInit, OnDestroy {
   toGrades(porcentaje): number {
     return porcentaje * 360 / 100;
   }
-  getStartProtein(){
+  getStartProtein() {
     return 'transform: rotate(' + this.hcGrades + 'deg)';
   }
 }
