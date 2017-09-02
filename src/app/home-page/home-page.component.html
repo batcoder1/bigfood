@@ -6,7 +6,7 @@
       <md-grid-tile class="big-font arrow">
         <md-icon (click)="rewindDay()">keyboard_arrow_left</md-icon>
       </md-grid-tile>
-      <md-grid-tile class="big-font text-center  day"> {{days[indexDays].date}} </md-grid-tile>
+      <md-grid-tile class="big-font text-center  day"> {{days[indexDays].date | date:'EEEE, d MMMM, y' }}</md-grid-tile>
       <md-grid-tile class="big-font right arrow">
           <md-icon (click)="fowardDay()">keyboard_arrow_right</md-icon>  
       </md-grid-tile>
@@ -62,14 +62,12 @@
             </p>
           </md-list-item>
         </md-list>
+        <md-card-footer>
+          <md-card-actions  class="footer" >
+            <button md-button (click)="goToFoodList(i)" >+ Añadir alimento</button>
+          </md-card-actions>
+        </md-card-footer>
       </md-card-content>
-      
-      <md-card-footer class="grey backgrey">
-        <md-card-action>
-          <button md-button (click)="goToFoodList(i)" >+ Añadir alimento</button>
-        </md-card-action>
-      </md-card-footer>
-      
     </md-card>
   </md-list>
   
