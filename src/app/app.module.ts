@@ -15,7 +15,8 @@ import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MdButtonModule, MdCheckboxModule, MdListModule, MdCardModule,
-  MdToolbarModule, MdListItem, MdIconModule, MdMenuModule, MdTabsModule, MdDialogContainer, MdSelectModule, MdProgressSpinnerModule
+  MdToolbarModule, MdListItem, MdIconModule, MdMenuModule, MdTabsModule, MdDialogContainer, MdSelectModule,
+  MdProgressSpinnerModule, MdSliderModule, MdRadioModule
 } from '@angular/material';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { AngularFireAuthModule, AngularFireAuth } from 'angularfire2/auth';
@@ -52,8 +53,8 @@ const routes: Routes = [
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     BrowserAnimationsModule,
-    MdButtonModule, MdCheckboxModule, MdListModule, MdCardModule, // material
-    MdToolbarModule , MdIconModule, MdMenuModule, MdTabsModule, // material
+    MdButtonModule, MdCheckboxModule, MdListModule, MdCardModule, MdSliderModule,
+    MdToolbarModule , MdIconModule, MdMenuModule, MdTabsModule, MdRadioModule,
     MdSelectModule,  MdDialogModule, MdProgressSpinnerModule,
     ReactiveFormsModule, FormsModule,
     RouterModule.forRoot(routes)
@@ -80,8 +81,8 @@ const routes: Routes = [
     FoodListComponent,
     DialogComponent,
     FormsModule,
-    MdButtonModule, MdCheckboxModule, MdListModule, MdCardModule, MdMenuModule, // material
-    MdToolbarModule , MdIconModule, MdTabsModule , MdDialogModule, MdSelectModule, // material
+    MdButtonModule, MdCheckboxModule, MdListModule, MdCardModule, MdMenuModule, MdSliderModule,
+    MdToolbarModule , MdIconModule, MdTabsModule , MdDialogModule, MdSelectModule, MdRadioModule,
     MdProgressSpinnerModule, LongPressDirective
   ],
   providers: [ FireService, ActiveStateService, EventService ],
