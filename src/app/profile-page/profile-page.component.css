@@ -1,0 +1,17 @@
+.section {
+    font-weight: 500!important;
+}
+.mat-card {
+    
+    margin: 2em 0;
+}
+.right{
+    text-align: right;
+}
+.mat-list-text-goal-label{
+    width: 10em!important;
+}
+.mat-list-text-goal-value{
+    width: 20em!important;
+    text-align: right;
+}

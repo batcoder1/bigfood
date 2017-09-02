@@ -1,107 +1,120 @@
-<md-list>
-  <md-list-item>
-    <span class="md-font" md-line> Nombre  </span>
-    <section layout-align="end" layout-wrap>
-      <span class="md-font">  {{user.name}}</span>
-    </section>
-  </md-list-item>
-  
-  <md-list-item>
-    <span class="md-font" md-line> Fecha nacimiento  </span>
-    <section layout-align="end" layout-wrap>
-      <span class="md-font">  {{user.birthday}}</span>
-    </section>
-  </md-list-item>
-  <md-list-item>
-    <span class="md-font" md-line> Altura  </span>
-    <section layout-align="end" layout-wrap>
-      <span class="md-font">  {{user.height}}</span>
-    </section>
-  </md-list-item>
-  <md-list-item>
-    <span class="md-font" md-line> Peso  </span>
-    <section layout-align="end" layout-wrap>
-      <span class="md-font">  {{user.weight}}</span>
-    </section>
-  </md-list-item>
-  <md-list-item>
-    <span class="md-font" md-line> Pais  </span>
-    <section layout-align="end" layout-wrap>
-      <span class="md-font">  {{user.country}}</span>
-    </section>
-  </md-list-item>
-  <md-list-item>
-    <span class="md-font" md-line> Codigo Postal  </span>
-    <section layout-align="end" layout-wrap>
-      <span class="md-font">  {{user.postalCode}}</span>
-    </section>
-  </md-list-item>
-  <md-list-item>
-    <span class="md-font" md-line> Email  </span>
-    <section layout-align="end" layout-wrap>
-      <span class="md-font">  {{user.email}}</span>
-    </section>
-  </md-list-item>
-  <md-list-item>
-    <span class="md-font" md-line> Unidades  </span>
-  </md-list-item>
-  <md-list-item>
-    <span class="md-font" md-line> Peso  </span>
-    <section layout-align="end" layout-wrap>
-      <span class="md-font">  {{units.weight}}</span>
-    </section>
-  </md-list-item>
-  <md-list-item>
-    <span class="md-font" md-line> Distancia  </span>
-    <section layout-align="end" layout-wrap>
-      <span class="md-font">  {{units.distance}}</span>
-    </section>
-  </md-list-item>
-  <md-list-item>
-    <span class="md-font" md-line> Energia  </span>
-    <section layout-align="end" layout-wrap>
-      <span class="md-font">  {{units.Energy}}</span>
-    </section>
-  </md-list-item>
-  <md-list-item>
-    <span class="md-font" md-line> Agua  </span>
-    <section layout-align="end" layout-wrap>
-      <span class="md-font">  {{units.water}}</span>
-    </section>
-  </md-list-item>
+<md-card>
+  <md-list *ngIf="user && user !== undefined">
+    <md-list-item>
+      <span class="md-font section" md-line> Datos Personales  </span>
+    </md-list-item>
+    <md-list-item (click)="openDialog('Nombre', user, 'name')">
+      <span class="md-font" md-line> Nombre  </span>
+      <section layout-align="end" layout-wrap>
+        <span class="md-font">  {{user.name}}</span>
+      </section>
+    </md-list-item>
 
-  <md-list-item>
-    <span class="md-font" md-line> Objetivos  </span>
-  </md-list-item>
-  <md-list-item>
-    <span class="md-font" md-line> Peso Inicial  </span>
-    <section layout-align="end" layout-wrap>
-      <span class="md-font">  {{goals.initialWeight}}</span>
-    </section>
-  </md-list-item>
-  <md-list-item>
-    <span class="md-font" md-line> Peso Actual  </span>
-    <section layout-align="end" layout-wrap>
-      <span class="md-font">  {{goals.currentWeight}}</span>
-    </section>
-  </md-list-item>
-  <md-list-item>
-    <span class="md-font" md-line> Peso Deseado  </span>
-    <section layout-align="end" layout-wrap>
-      <span class="md-font">  {{goals.desireWeight}}</span>
-    </section>
-  </md-list-item>
-  <md-list-item>
-    <span class="md-font" md-line> Meta Semanal  </span>
-    <section layout-align="end" layout-wrap>
-      <span class="md-font">  {{goals.weeklyGoal}}</span>
-    </section>
-  </md-list-item>
-  <md-list-item>
-    <span class="md-font" md-line> Nivel de Actividad  </span>
-    <section layout-align="end" layout-wrap>
-      <span class="md-font">  {{goals.activityLevel}}</span>
-    </section>
-  </md-list-item>
+    <md-list-item (click)="openDialog('Fecha Nacimiento', user, 'birthday')">
+      <span class="md-font" md-line> Fecha nacimiento  </span>
+      <section layout-align="end" layout-wrap>
+        <span class="md-font">{{user.birthday}}</span>
+      </section>
+    </md-list-item>
+    <md-list-item (click)="openDialog('Altura', user, 'height')">
+      <span class="md-font" md-line> Altura  </span>
+      <section layout-align="end" layout-wrap>
+        <span class="md-font">  {{user.height}}</span>
+      </section>
+    </md-list-item>
+    <md-list-item (click)="openDialog('Peso', user, 'weight')">
+      <span class="md-font" md-line> Peso  </span>
+      <section layout-align="end" layout-wrap>
+        <span class="md-font">  {{user.weight}}</span>
+      </section>
+    </md-list-item>
+    <md-list-item (click)="openDialog('Pais', user, 'country')">
+      <span class="md-font" md-line> Pais  </span>
+      <section layout-align="end" layout-wrap>
+        <span class="md-font">  {{user.country}}</span>
+      </section>
+    </md-list-item>
+    <md-list-item (click)="openDialog('Codigo Postal', user, 'postalCode')">
+      <span class="md-font" md-line> Codigo Postal  </span>
+      <section layout-align="end" layout-wrap>
+        <span class="md-font">  {{user.postalCode}}</span>
+      </section>
+    </md-list-item>
+    <md-list-item>
+      <span class="md-font" md-line> Email  </span>
+      <section layout-align="end" layout-wrap>
+        <span class="md-font">  {{user.email}}</span>
+      </section>
+    </md-list-item>
 
-</md-list>
+  </md-list>
+</md-card>
+
+<md-card>
+  <md-list *ngIf="user && user !== undefined">
+    <md-list-item>
+      <span class="md-font section" md-line> Unidades  </span>
+    </md-list-item>
+    <md-list-item (click)="openDialog('Peso', user, 'units.weight')">
+      <span class="md-font" md-line> Peso  </span>
+      <section layout-align="end" layout-wrap>
+        <span class="md-font">  {{user.units.weight}}</span>
+      </section>
+    </md-list-item>
+    <md-list-item (click)="openDialog('Distancia', user, 'units.distance')">
+      <span class="md-font" md-line> Distancia  </span>
+      <section layout-align="end" layout-wrap>
+        <span class="md-font">  {{user.units.distance}}</span>
+      </section>
+    </md-list-item>
+    <md-list-item (click)="openDialog('Energía', user, 'units.Energy')"> 
+      <span class="md-font" md-line> Energía  </span>
+      <section layout-align="end" layout-wrap>
+        <span class="md-font">  {{user.units.Energy}}</span>
+      </section>
+    </md-list-item>
+    <md-list-item (click)="openDialog('Agua', user, 'units.water')">
+      <span class="md-font" md-line> Agua  </span>
+      <section layout-align="end" layout-wrap>
+        <span class="md-font">  {{user.units.water}}</span>
+      </section>
+    </md-list-item>
+  </md-list>
+</md-card>
+
+<md-card>
+  <md-list *ngIf="user && user !== undefined">
+    <md-list-item>
+      <span class="md-font section" md-line> Objetivos  </span>
+    </md-list-item>
+    <md-list-item (click)="openDialog('Peso Inicial', user, 'goals.initialWeight')">
+      <span class="md-font" md-line> Peso Inicial  </span>
+      <section layout-align="end" layout-wrap>
+        <span class="md-font">  {{user.goals.initialWeight}}</span>
+      </section>
+    </md-list-item>
+    <md-list-item (click)="openDialog('Peso Actual', user, 'goals.currentWeight')">
+      <span class="md-font" md-line> Peso Actual  </span>
+      <section layout-align="end" layout-wrap>
+        <span class="md-font">  {{user.goals.currentWeight}}</span>
+      </section>
+    </md-list-item>
+    <md-list-item (click)="openDialog('Peso Deseado', user, 'goals.desireWeight')">
+      <span class="md-font" md-line> Peso Deseado  </span>
+      <section layout-align="end" layout-wrap>
+        <span class="md-font">  {{user.goals.desireWeight}}</span>
+      </section>
+    </md-list-item>
+    <md-list-item (click)="openDialog('Meta Semanal', user, 'goals.weeklyGoal')">
+      <span class="md-font mat-list-text-goal-label" md-line> Meta Semanal  </span>
+      <section layout-align="end" class="mat-list-text-goal-value" layout-wrap>
+        <span class="md-font">{{myGoal}}</span>
+      </section>
+    </md-list-item>
+    <md-list-item>
+        <span class="md-font" md-line> Nivel de Actividad  </span>
+        <md-slider layout-align="end"  flex min="0" max="5" [(ngModel)]="user.goals.activityLevel" step="1" aria-label="red" (click)='saveData()'></md-slider>
+        <span class="md-font">  {{user.goals.activityLevel}}</span>
+    </md-list-item>
+  </md-list>
+</md-card>
