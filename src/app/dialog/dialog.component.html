@@ -1,22 +1,33 @@
-<!-- <md-dialog>
-  <md-dialog-title>Dialog</md-dialog-title>
-  <md-dialog-content>What would you like to do?</md-dialog-content>
-  <md-dialog-actions>
-    <md-button md-dialog-close="cancel" (click)="emitValue(null)" color="primary" >Cancel</md-button>
-    <md-raised-button color="primary" md-dialog-close="ok" (click)="emitValue(value)" >OK</md-raised-button >
-  </md-dialog-actions>
-</md-dialog> -->
 
 <md-dialog-title>
-  <h2>¿Cúanto?</h2>
+  <h2 *ngIf="food !== undefined" >¿Cúanto?</h2>
+  <h2 *ngIf="userData !== undefined" >{{userData.label}}</h2>
 </md-dialog-title>
 <md-dialog-content>
   <md-input-container>
-  <input  mdInput [(ngModel)]="food.amount" placeholder="cantidad" >{{food.unit}}
+  <input *ngIf="food !== undefined" mdInput [(ngModel)]="food.amount" placeholder="cantidad">
+  
+  <input *ngIf="user !== undefined && userData.nomvar == 'birthday'" mdInput [(ngModel)]="user.birthday" [placeholder]="user.birthday" >
+  <input *ngIf="user !== undefined && userData.nomvar == 'name'" mdInput [(ngModel)]="user.name" [placeholder]="user.name" >
+  <input *ngIf="user !== undefined && userData.nomvar == 'height'" mdInput [(ngModel)]="user.height" [placeholder]="user.height" >
+  <input *ngIf="user !== undefined && userData.nomvar == 'weight'" mdInput [(ngModel)]="user.weight" [placeholder]="user.weight" >
+  <input *ngIf="user !== undefined && userData.nomvar == 'postalCode'" mdInput [(ngModel)]="user.postalCode" [placeholder]="user.postalCode" >
+  <input *ngIf="user !== undefined && userData.nomvar == 'mail'" mdInput [(ngModel)]="user.mail" [placeholder]="user.mail" >
+  <input *ngIf="user !== undefined && userData.nomvar == 'units.weight'" mdInput [(ngModel)]="user.units.weight" [placeholder]="user.units.weight" >
+  <input *ngIf="user !== undefined && userData.nomvar == 'units.distance'" mdInput [(ngModel)]="user.units.distance" [placeholder]="user.units.distance" >
+  <input *ngIf="user !== undefined && userData.nomvar == 'units.Energy'" mdInput [(ngModel)]="user.units.Energy" [placeholder]="user.units.Energy" >
+  <input *ngIf="user !== undefined && userData.nomvar == 'units.water'" mdInput [(ngModel)]="user.units.water" [placeholder]="user.units.water" >
+  <input *ngIf="user !== undefined && userData.nomvar == 'goals.initialWeight'" mdInput [(ngModel)]="user.goals.initialWeight" [placeholder]="user.goals.initialWeight" >
+  <input *ngIf="user !== undefined && userData.nomvar == 'goals.currentWeight'" mdInput [(ngModel)]="user.goals.currentWeight" [placeholder]="user.goals.currentWeight" >
+  <input *ngIf="user !== undefined && userData.nomvar == 'goals.desireWeight'" mdInput [(ngModel)]="user.goals.desireWeight" [placeholder]="user.goals.desireWeight" >
+  
+  <md-radio-group name="weeklyGoal" *ngIf="user !== undefined && userData.nomvar == 'goals.weeklyGoal'" [ngModel]="user.goals.weeklyGoal" >
+      <md-radio-button *ngFor="let goal of goals ; let i = index"  (change)="updateWeekyGoal(goal)" [value]="i">{{goal.value}}</md-radio-button>
+    </md-radio-group>
   </md-input-container>
 </md-dialog-content>
  
 <md-dialog-actions class="right">
   <button md-button   md-dialog-close color="primary">Cancelar</button>
-  <button md-button  (click)="saveAmount()" md-dialog-close="true" color="primary">Guardar</button>
+  <button md-button  (click)="save()" md-dialog-close="true" color="primary">Guardar</button>
 </md-dialog-actions>
