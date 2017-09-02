@@ -5,6 +5,7 @@ import {
   OnChanges,
   OnInit
 } from '@angular/core';
+import { DatePipe } from '@angular/common';
 import { ChangeDetectorRef } from '@angular/core';
 import {
   DietDays,
@@ -12,7 +13,6 @@ import {
   Goals,
   Macros,
   Meal,
-  Profile,
   Units,
   User
 } from './../data-model';
@@ -41,7 +41,6 @@ export class HomePageComponent implements AfterViewChecked, OnInit {
   days: DietDays[];
   foods: FirebaseListObservable<Food[]>;
   totalMealCalories: number[] = [];
-  profile: Profile;
   goals: Goals;
   meal: Meal;
   meals: Meal[];
@@ -63,6 +62,9 @@ export class HomePageComponent implements AfterViewChecked, OnInit {
   }
 
   ngOnInit(): void {
+    this.fireUser = JSON.parse(localStorage.getItem('fireUser'));
+    this.goals = { initialWeight: 70, currentWeight: 70, desireWeight: 70, weeklyGoal: 0, activityLevel: 1 };
+    this.units = { weight: 'kg', height: 'cm', distance: 'km', Energy: 'kcal', water: 'l' };
 
     this.calendar = this.getDaysInMonth(new Date().getMonth());
     this.totalCalories = 0;
@@ -70,23 +72,8 @@ export class HomePageComponent implements AfterViewChecked, OnInit {
     this.exercise = 0;
     this.rest = 0;
     this.indexDays = 0;
-    this.fireUser = JSON.parse(localStorage.getItem('fireUser'));
     this.eventService.displaySave(false);
 
-    this.profile = new Profile();
-    this.fireService.setUserData(this.fireUser);
-
-    this.profile = {
-      imageUrl: this.fireUser.photoURL,
-      email: this.fireUser.email,
-      username: this.fireUser.email.split('@')[0],
-      birthday: '15-06-1980',
-      height: 173,
-      weight: 76,
-      country: 'España',
-      postalCode: 28020
-    };
-    // this.fireService.setUserProfile(this.fireUser.uid, this.profile);
 
     this.meals = [
       { name: 'Desayuno', foods: [] },
@@ -94,20 +81,27 @@ export class HomePageComponent implements AfterViewChecked, OnInit {
       { name: 'Cena', foods: [] }
     ];
 
-    this.day = {  date: new Date(), meals: this.meals, goalDay: 0, totalCalories: 0, exercise: 0 };
+    this.day = { date: new Date(), meals: this.meals, goalDay: 0, totalCalories: 0, exercise: 0 };
     this.days = [];
     // this.days.push(this.day);
     // this.calendar.push(this.day);
 
-    this.goals = { initialWeight: 76, currentWeight: 76, desireWeight: 75, weeklyGoal: 0, activityLevel: 1 };
-    this.fireService.setUserGoals(this.fireUser.uid, this.goals);
+    this.fireService.getUser().then(usu => {
+      const user = usu.val();
+      if (user == null) {
+        this.fireService.createUser(this.fireUser).then(res => {
+          const usuario = new User();
+          usuario.email = this.fireUser.email;
+          this.updateUser(usuario);
+        });
+      }
+    });
 
-    this.units = { weight: 'kg', height: 'cm', distance: 'km', Energy: 'kcal', water: 'l' };
-    this.fireService.setUserUnits(this.fireUser.uid, this.units);
 
+      this.fireService.getUserData().then(user => {
+        this.user = user.val();
 
-    this.fireService.getUserProfile()
-      .then(snapshot => this.profile = snapshot.val());
+      });
 
 
     this.fireService.getFoods()
@@ -179,19 +173,22 @@ export class HomePageComponent implements AfterViewChecked, OnInit {
 
   ngAfterViewChecked() {
     const foodDetail = JSON.parse(localStorage.getItem('foodDetail'));
+    const userData = JSON.parse(localStorage.getItem('userData'));
+    if (userData) {
+      this.fireService.setUserData(this.fireUser, userData);
+      this.updateCalories(userData);
+      localStorage.removeItem('userData');
+    }
     if (this.days) {
       this.totalCalories = 0;
       if (foodDetail) {
         this.addFoodToMeal();
       }
-      this.mealsCaloriesSum();
-      if (this.days[this.indexDays]) {
-        const myDay = this.days[this.indexDays];
-        myDay.totalCalories = this.totalCalories;
-        myDay.goalDay = this.caloriesBurnedAtDay();
-        this.rest = myDay.goalDay - myDay.totalCalories + myDay.exercise;
-
+      if (this.user) {
+        this.mealsCaloriesSum();
+        this.updateCalories(this.user);
       }
+
       this.cdr.detectChanges();
     }
   }
@@ -235,16 +232,16 @@ export class HomePageComponent implements AfterViewChecked, OnInit {
       localStorage.removeItem('comidaSelected');
     }
   }
-  caloriesBurnedAtDay(): number {
-    const res = this.profile.birthday.split('-');
+  caloriesBurnedAtDay(user: User): number {
+    const res = user.birthday.split('-');
     const fechaNac = new Date(res[1] + '-' + res[0] + '-' + res[2]);
     const fechaNacMilisec = fechaNac.getMilliseconds();
     const hoy = new Date();
     const hoyMilisec = hoy.getMilliseconds();
     const edad = (hoyMilisec - fechaNacMilisec) / 1000 / 60 / 60 / 24 / 365;
 
-    const tmb = (10 * this.profile.weight) + (6.25 * this.profile.height) - (5 * edad);
-    const total = Math.round(tmb * this.activity[this.goals.activityLevel]);
+    const tmb = (10 * user.weight) + (6.25 * user.height) - (5 * edad);
+    const total = Math.round(tmb * this.activity[user.goals.activityLevel]);
 
     return total;
   }
@@ -309,5 +306,46 @@ export class HomePageComponent implements AfterViewChecked, OnInit {
   }
   rewindDay() {
     this.indexDays--;
+  }
+
+  updateUser(user: User) {
+    if (user.goals === undefined) {
+      user.birthday = '01-01-1950';
+    }
+    if (user.goals === undefined) {
+      user.height = 170;
+    }
+    if (user.goals === undefined) {
+      user.weight = 70;
+    }
+    if (user.goals === undefined) {
+      user.gender = 0;
+    }
+    if (user.goals === undefined) {
+      user.goals = this.goals;
+    }
+    if (user.units === undefined) {
+      user.units = this.units;
+    }
+    if (user.postalCode === undefined) {
+      user.postalCode = '';
+    }
+    if (user.country === undefined) {
+      user.country = '';
+    }
+    if (user.name === undefined) {
+      user.name = '';
+    }
+    this.fireService.setUserData(this.fireUser, user);
+  }
+
+  updateCalories(user: User) {
+    if (this.days[this.indexDays]) {
+      const myDay = this.days[this.indexDays];
+      myDay.totalCalories = this.totalCalories;
+      myDay.goalDay = this.caloriesBurnedAtDay(user);
+      this.rest = myDay.goalDay - myDay.totalCalories + myDay.exercise;
+
+    }
   }
 }
