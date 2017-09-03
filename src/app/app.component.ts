@@ -61,7 +61,9 @@ export class AppComponent implements DoCheck {
   goHome() {
     const user: User = JSON.parse(localStorage.getItem('userData'));
     const fireUser = JSON.parse(localStorage.getItem('fireUser'));
-    this.fireService.setUserData(fireUser, user);
+    if (user !== null && fireUser !== null) {
+      this.fireService.setUserData(fireUser, user);
+    }
     this.router.navigate(['']);
   }
 
