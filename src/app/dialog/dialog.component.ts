@@ -41,6 +41,8 @@ export class DialogComponent {
     if (element && element.hasOwnProperty('label')) {
       this.userData = new UserData(element.label, element.value[element.nomvar], element.nomvar);
       this.user = element.value;
+
+
     } else {
       this.food = element;
     }

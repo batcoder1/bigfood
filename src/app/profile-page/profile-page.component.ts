@@ -30,6 +30,7 @@ export class ProfilePageComponent implements OnInit {
     {id: 4, value: 'Ganar 0,25 kg por semana'},
     {id: 5, value: 'Ganar 0,5 kg por semana'}
   ];
+  activityLevels = ['No muy activo', 'Ligeramente Activo', 'Activo', 'Muy activo'];
   constructor(public fireService: FireService,
     private eventService: EventService,
     public dialog: MdDialog) {

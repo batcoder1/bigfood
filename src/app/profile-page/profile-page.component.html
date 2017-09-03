@@ -113,8 +113,8 @@
     </md-list-item>
     <md-list-item>
         <span class="md-font" md-line> Nivel de Actividad  </span>
-        <md-slider layout-align="end"  flex min="0" max="5" [(ngModel)]="user.goals.activityLevel" step="1" aria-label="red" (click)='saveData()'></md-slider>
-        <span class="md-font">  {{user.goals.activityLevel}}</span>
+        <md-slider layout-align="end"  flex min="0" max="3" [(ngModel)]="user.goals.activityLevel" step="1" aria-label="red" (click)='saveData()'></md-slider>
+        <span  class="md-font mat-list-text-goal-value">  {{activityLevels[user.goals.activityLevel]}}</span>
     </md-list-item>
   </md-list>
 </md-card>

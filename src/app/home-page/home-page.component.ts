@@ -233,8 +233,8 @@ export class HomePageComponent implements AfterViewChecked, OnInit {
     }
   }
   caloriesBurnedAtDay(user: User): number {
-    const res = user.birthday.split('-');
-    const fechaNac = new Date(res[1] + '-' + res[0] + '-' + res[2]);
+
+    const fechaNac = new Date(user.birthday);
     const fechaNacMilisec = fechaNac.getMilliseconds();
     const hoy = new Date();
     const hoyMilisec = hoy.getMilliseconds();
@@ -310,7 +310,7 @@ export class HomePageComponent implements AfterViewChecked, OnInit {
 
   updateUser(user: User) {
     if (user.goals === undefined) {
-      user.birthday = '01-01-1950';
+      user.birthday = new Date('01-01-1950');
     }
     if (user.goals === undefined) {
       user.height = 170;
