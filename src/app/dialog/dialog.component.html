@@ -21,6 +21,10 @@
   <input *ngIf="user !== undefined && userData.nomvar == 'goals.currentWeight'" mdInput [(ngModel)]="user.goals.currentWeight" [placeholder]="user.goals.currentWeight" >
   <input *ngIf="user !== undefined && userData.nomvar == 'goals.desireWeight'" mdInput [(ngModel)]="user.goals.desireWeight" [placeholder]="user.goals.desireWeight" >
   
+  <md-select *ngIf="user !== undefined && userData.nomvar == 'country'"  [(ngModel)]="user.country" >
+      <md-option *ngFor="let country of countries; let i=index" (change)="updateCountry(i)"  [value]="i" >{{country}}</md-option>
+   </md-select>
+
   <md-radio-group name="weeklyGoal" *ngIf="user !== undefined && userData.nomvar == 'goals.weeklyGoal'" [ngModel]="user.goals.weeklyGoal" >
       <md-radio-button *ngFor="let goal of goals ; let i = index"  (change)="updateWeekyGoal(goal)" [value]="i">{{goal.value}}</md-radio-button>
     </md-radio-group>

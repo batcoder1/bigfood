@@ -17,6 +17,10 @@ export class ProfilePageComponent implements OnInit {
   units: Units;
   selectedOption: string;
   countries = [];
+  pais: {
+    id: number;
+    value: string
+  };
   myGoal: string;
   goals = [
     {id: 0, value: 'Perder 0,75 kg por semana'},
@@ -30,14 +34,21 @@ export class ProfilePageComponent implements OnInit {
     private eventService: EventService,
     public dialog: MdDialog) {
       this.countries = COUNTRIES;
-    // fireService.setUserData(JSON.parse(localStorage.getItem('fireUser')), this.user);
-    fireService.getUserData().then(snapshot => this.user = snapshot.val());
+      // fireService.setUserData(JSON.parse(localStorage.getItem('fireUser')), this.user);
+      fireService.getUserData().then(snapshot => {
+        this.user = snapshot.val();
+        this.myGoal =  this.goals[this.user.goals.weeklyGoal].value;
+        this.pais = {
+          id:  this.user.country,
+          value: this.countries[this.user.country]
+        };
+    });
   }
   saveData() {
     // this.valueEmitted.emit(value);
     this.eventService.displayCancel(true);
     this.eventService.displaySave(true);
-    localStorage.setItem('userData', JSON.stringify(this.user));
+
   }
 
   openDialog(label: string, user: User, nomvar: string) {
@@ -50,7 +61,12 @@ export class ProfilePageComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(res => {
       this.user = dataUser.value;
+      localStorage.setItem('userData', JSON.stringify(this.user));
       this.myGoal =  this.goals[dataUser.value.goals.weeklyGoal].value;
+      this.pais = {
+        id:  dataUser.value.country,
+        value: this.countries[dataUser.value.country]
+      };
     });
   }
 

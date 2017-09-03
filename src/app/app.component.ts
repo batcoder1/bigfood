@@ -1,3 +1,4 @@
+import { User } from './data-model';
 import { EventService } from './providers/event.service';
 import { ActiveStateService } from './providers/active-state.service';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -6,7 +7,7 @@ import { Observable } from 'rxjs/Observable';
 import { FireService } from './providers/fire.service';
 import { AfterViewInit, Component, DoCheck, OnChanges, Output, ViewChild, ChangeDetectorRef } from '@angular/core';
 import * as firebase from 'firebase/app';
-import {Location} from '@angular/common';
+import { Location } from '@angular/common';
 
 
 @Component({
@@ -15,11 +16,11 @@ import {Location} from '@angular/common';
   styleUrls: ['app.component.css']
 })
 export class AppComponent implements DoCheck {
-   public isLoggedIn: boolean;
-   activaCancelBotton= false;
-   activaSaveBotton= false;
-   state: ActiveStateService;
-   subscribe: any;
+  public isLoggedIn: boolean;
+  activaCancelBotton = false;
+  activaSaveBotton = false;
+  state: ActiveStateService;
+  subscribe: any;
 
 
   constructor(private fireService: FireService,
@@ -29,7 +30,7 @@ export class AppComponent implements DoCheck {
     private eventService: EventService,
     private route: ActivatedRoute,
     private cdr: ChangeDetectorRef
-    ) {
+  ) {
 
     this.state = _state;
     // checkea de forma async si nuestro usuario esta logeado and redirigirá
@@ -52,36 +53,39 @@ export class AppComponent implements DoCheck {
     );
   }
   goBack() {
-        this._location.back();
-        localStorage.removeItem('userData');
-        localStorage.removeItem('foodDetail');
+    localStorage.removeItem('userData');
+    localStorage.removeItem('foodDetail');
+    this._location.back();
 
   }
   goHome() {
-        this.router.navigate(['']);
+    const user: User = JSON.parse(localStorage.getItem('userData'));
+    const fireUser = JSON.parse(localStorage.getItem('fireUser'));
+    this.fireService.setUserData(fireUser, user);
+    this.router.navigate(['']);
   }
 
   doLogout() {
     console.log('logout');
     this.fireService.logout();
   }
- onFoodList(onfoodList: boolean) {
-   this.activaCancelBotton = onfoodList;
- }
- ngInit() {
-  this.eventListener();
- }
-ngDoCheck() {
-   this.eventListener();
-}
+  onFoodList(onfoodList: boolean) {
+    this.activaCancelBotton = onfoodList;
+  }
+  ngInit() {
+    this.eventListener();
+  }
+  ngDoCheck() {
+    this.eventListener();
+  }
 
- eventListener() {
+  eventListener() {
     this.eventService.displayStream.subscribe(buttonShow => {
-          this.activaCancelBotton = buttonShow;
+      this.activaCancelBotton = buttonShow;
 
     });
     this.eventService.saveStream.subscribe(buttonShow => {
-          this.activaSaveBotton = buttonShow;
+      this.activaSaveBotton = buttonShow;
 
     });
     this.cdr.detectChanges();

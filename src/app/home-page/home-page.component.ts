@@ -331,7 +331,7 @@ export class HomePageComponent implements AfterViewChecked, OnInit {
       user.postalCode = '';
     }
     if (user.country === undefined) {
-      user.country = '';
+      user.country = 0;
     }
     if (user.name === undefined) {
       user.name = '';

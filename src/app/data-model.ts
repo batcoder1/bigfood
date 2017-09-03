@@ -21,7 +21,7 @@ export class User {
   height: number;
   weight: number;
   gender: number;
-  country: string;
+  country: number;
   postalCode: string;
   units: Units;
   goals: Goals;

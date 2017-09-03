@@ -12,7 +12,7 @@
 
     <md-list-item (click)="openDialog('Fecha Nacimiento', user, 'birthday')">
       <span class="md-font" md-line> Fecha nacimiento  </span>
-      <section layout-align="end" layout-wrap>
+      <section layout-align="end"  class="mat-list-text-goal-value" layout-wrap>
         <span class="md-font">{{user.birthday}}</span>
       </section>
     </md-list-item>
@@ -31,7 +31,7 @@
     <md-list-item (click)="openDialog('Pais', user, 'country')">
       <span class="md-font" md-line> Pais  </span>
       <section layout-align="end" layout-wrap>
-        <span class="md-font">  {{user.country}}</span>
+        <span class="md-font">  {{pais.value}}</span>
       </section>
     </md-list-item>
     <md-list-item (click)="openDialog('Codigo Postal', user, 'postalCode')">
