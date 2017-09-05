@@ -1,12 +1,6 @@
-import {
-  AfterViewChecked,
-  AfterViewInit,
-  Component,
-  OnChanges,
-  OnInit
-} from '@angular/core';
+import { AfterViewChecked, AfterViewInit, Component, OnChanges, OnInit, Pipe } from '@angular/core';
 import { DatePipe } from '@angular/common';
-import { ChangeDetectorRef } from '@angular/core';
+import { ChangeDetectorRef, PipeTransform } from '@angular/core';
 import {
   DietDays,
   Food,
@@ -54,11 +48,15 @@ export class HomePageComponent implements AfterViewChecked, OnInit {
   buttonSubscription: Subscription;
   today: string;
   indexDays: number;
+  backArrowValid = true;
+  forwardArrowValid = true;
+  dateDay: Date;
   constructor(fireService: FireService,
     private eventService: EventService,
     private router: Router,
     private cdr: ChangeDetectorRef) {
     this.fireService = fireService;
+
   }
 
   ngOnInit(): void {
@@ -81,7 +79,7 @@ export class HomePageComponent implements AfterViewChecked, OnInit {
       { name: 'Cena', foods: [] }
     ];
 
-    this.day = { date: new Date(), meals: this.meals, goalDay: 0, totalCalories: 0, exercise: 0 };
+    this.day = { date: new Date(), meals: this.meals, goalDay: 0, totalCalories: 0, exercise: 0, weight: 0 };
     this.days = [];
     // this.days.push(this.day);
     // this.calendar.push(this.day);
@@ -136,6 +134,7 @@ export class HomePageComponent implements AfterViewChecked, OnInit {
             indexCalendar++;
           });
           this.days = myDays;
+          localStorage.setItem('days', JSON.stringify(this.days));
 
         });
         const hoy = new Date();
@@ -157,7 +156,7 @@ export class HomePageComponent implements AfterViewChecked, OnInit {
             // creamos todo el mes vacio
             localStorage.setItem('daysCreated', 'true');
             for (let i = 0; i < this.calendar.length; i++) {
-              const newDay = { date: this.calendar[i], meals: this.meals, goalDay: 0, totalCalories: 0, exercise: 0 };
+              const newDay = { date: this.calendar[i], meals: this.meals, goalDay: 0, totalCalories: 0, exercise: 0 , weight: 0};
               this.days.push(newDay);
               if ((this.calendar[i].getDate() === hoy.getDate()) && (this.calendar[i].getMonth() === hoy.getMonth())) {
                 this.today = this.getDateFormat(this.calendar[i]);
@@ -167,6 +166,8 @@ export class HomePageComponent implements AfterViewChecked, OnInit {
             this.fireService.setUserDietDays(this.fireUser.uid, this.days);
           }
         }
+
+        this.dateDay = new Date(this.days[this.indexDays].date);
       });
 
   }
@@ -301,11 +302,23 @@ export class HomePageComponent implements AfterViewChecked, OnInit {
     console.log(result);
     return result;
   }
-  fowardDay() {
+  forwardDay() {
     this.indexDays++;
+    if ((this.indexDays >= 1) && (this.indexDays < this.days.length - 1)) {
+      this.backArrowValid = true;
+    }else {
+      this.forwardArrowValid = false;
+
+    }
   }
   rewindDay() {
     this.indexDays--;
+    if (this.indexDays < 1) {
+      this.backArrowValid = false;
+    } else {
+      this.forwardArrowValid = true;
+
+    }
   }
 
   updateUser(user: User) {

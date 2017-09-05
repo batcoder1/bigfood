@@ -50,6 +50,7 @@ export class DietDays {
   goalDay: number;
   totalCalories: number;
   exercise: number;
+  weight: number;
   meals: Meal[] = [];
 }
 

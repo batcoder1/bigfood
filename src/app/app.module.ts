@@ -1,5 +1,4 @@
 import { ChartsModule } from 'ng2-charts';
-import { MyDateAdapter } from './utils/my-date.adapter';
 import { LongPressDirective } from './directives/long-press.directive';
 import { MdDialogModule, MdDialogRef } from '@angular/material';
 import { EventService } from './providers/event.service';
@@ -103,7 +102,7 @@ const routes: Routes = [
     MdToolbarModule, MdIconModule, MdTabsModule, MdDialogModule, MdSelectModule, MdRadioModule,
     MdProgressSpinnerModule, LongPressDirective, MdDatepickerModule, MdNativeDateModule, ChartsModule
   ],
-  providers: [FireService, ActiveStateService, EventService, MyDateAdapter,
+  providers: [FireService, ActiveStateService, EventService,
     { provide: MD_DATE_FORMATS, useValue: MY_DATE_FORMATS }],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]

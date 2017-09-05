@@ -4,11 +4,13 @@
 <md-card *ngIf="days !== undefined && days.length > 0  && indexDays >= 0" >
   <md-grid-list class="space">
       <md-grid-tile class="big-font arrow">
-        <md-icon (click)="rewindDay()">keyboard_arrow_left</md-icon>
+        <md-icon *ngIf="backArrowValid" (click)="rewindDay()">keyboard_arrow_left</md-icon>
+        <md-icon *ngIf="!backArrowValid" class="grey" >keyboard_arrow_left</md-icon>
       </md-grid-tile>
-      <md-grid-tile class="big-font text-center  day"> {{days[indexDays].date | date:'EEEE, d MMMM, y' }}</md-grid-tile>
+      <md-grid-tile class="big-font text-center  day" > {{days[indexDays].date | date:'EEEE, d MMMM, y' }}</md-grid-tile>
       <md-grid-tile class="big-font right arrow">
-          <md-icon (click)="fowardDay()">keyboard_arrow_right</md-icon>  
+          <md-icon *ngIf="forwardArrowValid" (click)="forwardDay()">keyboard_arrow_right</md-icon>  
+          <md-icon *ngIf="!forwardArrowValid" class="grey" >keyboard_arrow_right</md-icon>  
       </md-grid-tile>
     
   </md-grid-list>
