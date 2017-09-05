@@ -174,3 +174,9 @@ md-grid-list {
 .skull .mouth .teeth:after {
   right: -250%;
 }
+
+@media only screen and (min-width: 1224px) {
+  body{
+    margin: 0 20em 0 20em!important;
+  }
+}
