@@ -51,6 +51,7 @@ export class HomePageComponent implements AfterViewChecked, OnInit {
   backArrowValid = true;
   forwardArrowValid = true;
   dateDay: Date;
+  stepsToday: number;
   constructor(fireService: FireService,
     private eventService: EventService,
     private router: Router,
@@ -61,7 +62,7 @@ export class HomePageComponent implements AfterViewChecked, OnInit {
 
   ngOnInit(): void {
     this.fireUser = JSON.parse(localStorage.getItem('fireUser'));
-    this.goals = { initialWeight: 70, currentWeight: 70, desireWeight: 70, weeklyGoal: 0, activityLevel: 1 };
+    this.goals = { initialWeight: 70, currentWeight: 70, desireWeight: 70, weeklyGoal: 0, activityLevel: 1, stepsAtDay: 10000 };
     this.units = { weight: 'kg', height: 'cm', distance: 'km', Energy: 'kcal', water: 'l' };
 
     this.calendar = this.getDaysInMonth(new Date().getMonth());
@@ -79,7 +80,7 @@ export class HomePageComponent implements AfterViewChecked, OnInit {
       { name: 'Cena', foods: [] }
     ];
 
-    this.day = { date: new Date(), meals: this.meals, goalDay: 0, totalCalories: 0, exercise: 0, weight: 0 };
+    this.day = { date: new Date(), meals: this.meals, goalDay: 0, totalCalories: 0, exercise: 0, weight: 0, steps: 0 };
     this.days = [];
     // this.days.push(this.day);
     // this.calendar.push(this.day);
@@ -156,7 +157,7 @@ export class HomePageComponent implements AfterViewChecked, OnInit {
             // creamos todo el mes vacio
             localStorage.setItem('daysCreated', 'true');
             for (let i = 0; i < this.calendar.length; i++) {
-              const newDay = { date: this.calendar[i], meals: this.meals, goalDay: 0, totalCalories: 0, exercise: 0 , weight: 0};
+              const newDay = { date: this.calendar[i], meals: this.meals, goalDay: 0, totalCalories: 0, exercise: 0 , weight: 0, steps: 0};
               this.days.push(newDay);
               if ((this.calendar[i].getDate() === hoy.getDate()) && (this.calendar[i].getMonth() === hoy.getMonth())) {
                 this.today = this.getDateFormat(this.calendar[i]);
@@ -180,15 +181,15 @@ export class HomePageComponent implements AfterViewChecked, OnInit {
       this.updateCalories(userData);
       localStorage.removeItem('userData');
     }
-    if (this.days) {
+    if (this.days && this.days.length > 0 && this.user) {
       this.totalCalories = 0;
       if (foodDetail) {
         this.addFoodToMeal();
       }
-      if (this.user) {
-        this.mealsCaloriesSum();
-        this.updateCalories(this.user);
-      }
+      this.mealsCaloriesSum();
+      this.updateCalories(this.user);
+      this.stepsToday = this.days[this.indexDays].steps  * 100 / this.user.goals.stepsAtDay ;
+
 
       this.cdr.detectChanges();
     }

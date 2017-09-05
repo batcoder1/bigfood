@@ -18,7 +18,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
   MdButtonModule, MdCheckboxModule, MdListModule, MdCardModule,
   MdToolbarModule, MdListItem, MdIconModule, MdMenuModule, MdTabsModule, MdDialogContainer, MdSelectModule,
-  MdProgressSpinnerModule, MdSliderModule, MdRadioModule, MdDatepickerModule, MdNativeDateModule, DateAdapter, MD_DATE_FORMATS
+  MdProgressSpinnerModule, MdSliderModule, MdRadioModule, MdDatepickerModule, MdNativeDateModule, DateAdapter, MD_DATE_FORMATS, MdProgressBarModule
 } from '@angular/material';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { AngularFireAuthModule, AngularFireAuth } from 'angularfire2/auth';
@@ -72,7 +72,7 @@ const routes: Routes = [
     MdButtonModule, MdCheckboxModule, MdListModule, MdCardModule, MdSliderModule,
     MdToolbarModule, MdIconModule, MdMenuModule, MdTabsModule, MdRadioModule,
     MdSelectModule, MdDialogModule, MdProgressSpinnerModule, MdDatepickerModule,
-    ReactiveFormsModule, FormsModule, MdNativeDateModule, ChartsModule,
+    ReactiveFormsModule, FormsModule, MdNativeDateModule, ChartsModule, MdProgressBarModule,
     RouterModule.forRoot(routes)
   ],
   entryComponents: [
@@ -100,7 +100,8 @@ const routes: Routes = [
     FormsModule,
     MdButtonModule, MdCheckboxModule, MdListModule, MdCardModule, MdMenuModule, MdSliderModule,
     MdToolbarModule, MdIconModule, MdTabsModule, MdDialogModule, MdSelectModule, MdRadioModule,
-    MdProgressSpinnerModule, LongPressDirective, MdDatepickerModule, MdNativeDateModule, ChartsModule
+    MdProgressSpinnerModule, LongPressDirective, MdDatepickerModule, MdNativeDateModule, ChartsModule,
+    MdProgressBarModule
   ],
   providers: [FireService, ActiveStateService, EventService,
     { provide: MD_DATE_FORMATS, useValue: MY_DATE_FORMATS }],

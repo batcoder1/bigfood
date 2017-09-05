@@ -61,7 +61,7 @@ md-grid-list{
  .space{
    
    margin-top: 1em;
-   margin-bottom: 1em;
+   margin-bottom: 0.4em;
  }
 
 .day{
@@ -94,7 +94,26 @@ md-grid-list{
   margin-bottom: 0.96em!important
 }
 md-grid-list {
- 
-
   padding: 0px 1.5em!important;
+}
+.progress-bar {
+  margin:1em 1em 0.3em 1em!important;
+  width: 80%!important;
+}
+.container {
+  display: flex;
+  flex-direction: row;
+  margin-top: 0.5em;
+}
+.item{
+  display: flex;
+
+}
+.steps{
+  width: 10%!important;
+  margin: 0.5em 0em 0.5em 2em;
+}
+.stepsValue{
+  width: 10%!important;
+  margin: 0.5em 1em 0.5em 0em;
 }

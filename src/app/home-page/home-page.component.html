@@ -14,7 +14,7 @@
       </md-grid-tile>
     
   </md-grid-list>
-
+  
   <md-divider></md-divider> 
   
   <md-grid-list class="text-center space">
@@ -35,8 +35,13 @@
     <md-grid-tile></md-grid-tile>
     <md-grid-tile>Restantes</md-grid-tile>
   </md-grid-list>
-  
+  <md-container class="container">
+    <span class="steps md-font grey"> Steps</span> 
+    <md-progress-bar class="progress-bar " mode="determinate" [value]="stepsToday"></md-progress-bar>
+    <span class="stepsValue md-font grey"> {{days[indexDays].steps}}</span> 
+  </md-container>
 </md-card>
+
   
   
   <md-list *ngIf="days !== undefined  && days.length && indexDays >= 0">

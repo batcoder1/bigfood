@@ -28,7 +28,6 @@ export class User {
 
 }
 
-
 export class Units {
   weight = '';
   height = '';
@@ -42,6 +41,7 @@ export class Goals {
   desireWeight = 0;
   weeklyGoal = 0;
   activityLevel = 0;
+  stepsAtDay = 0;
 }
 
 export class DietDays {
@@ -50,6 +50,7 @@ export class DietDays {
   goalDay: number;
   totalCalories: number;
   exercise: number;
+  steps: number;
   weight: number;
   meals: Meal[] = [];
 }
