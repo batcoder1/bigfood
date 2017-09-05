@@ -1,0 +1,20 @@
+.radios{
+    display: flex;
+    flex-direction: row;
+    margin: 0.5em 5em!important;
+}
+.radioGroupElement {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1; 
+   
+    
+}
+.radioItem {
+  flex-grow: 1;
+  justify-content: space-evenly;
+  padding-bottom: 0.5em;
+
+}
+  
+ 

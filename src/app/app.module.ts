@@ -1,3 +1,5 @@
+import { ChartsModule } from 'ng2-charts';
+import { MyDateAdapter } from './utils/my-date.adapter';
 import { LongPressDirective } from './directives/long-press.directive';
 import { MdDialogModule, MdDialogRef } from '@angular/material';
 import { EventService } from './providers/event.service';
@@ -13,10 +15,11 @@ import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MdButtonModule, MdCheckboxModule, MdListModule, MdCardModule,
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {
+  MdButtonModule, MdCheckboxModule, MdListModule, MdCardModule,
   MdToolbarModule, MdListItem, MdIconModule, MdMenuModule, MdTabsModule, MdDialogContainer, MdSelectModule,
-  MdProgressSpinnerModule, MdSliderModule, MdRadioModule
+  MdProgressSpinnerModule, MdSliderModule, MdRadioModule, MdDatepickerModule, MdNativeDateModule, DateAdapter, MD_DATE_FORMATS
 } from '@angular/material';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { AngularFireAuthModule, AngularFireAuth } from 'angularfire2/auth';
@@ -25,38 +28,52 @@ import { AngularFireModule } from 'angularfire2';
 import { environment } from '../environments/environment';
 import * as firebase from 'firebase/app';
 import { ProfilePageComponent } from './profile-page/profile-page.component';
+import { ProgressPageComponent } from './progress-page/progress-page.component';
 
 
 
-  // Initialize Firebase
+// Initialize Firebase
 
 export const firebaseConfig = {
-    apiKey: 'AIzaSyADF4n2WgMR39MruI5JFM5vkJJXG-HgChg',
-    authDomain: 'bigfood-7576a.firebaseapp.com',
-    databaseURL: 'https://bigfood-7576a.firebaseio.com',
-    projectId: 'bigfood-7576a',
-    storageBucket: 'bigfood-7576a.appspot.com',
-    messagingSenderId: '735026853257'
-  };
+  apiKey: 'AIzaSyADF4n2WgMR39MruI5JFM5vkJJXG-HgChg',
+  authDomain: 'bigfood-7576a.firebaseapp.com',
+  databaseURL: 'https://bigfood-7576a.firebaseio.com',
+  projectId: 'bigfood-7576a',
+  storageBucket: 'bigfood-7576a.appspot.com',
+  messagingSenderId: '735026853257'
+};
+const MY_DATE_FORMATS = {
+  parse: {
+    dateInput: { month: 'short', year: 'numeric', day: 'numeric' }
+  },
+  display: {
+    // dateInput: { month: 'short', year: 'numeric', day: 'numeric' },
+    dateInput: 'input',
+    monthYearLabel: { year: 'numeric', month: 'short' },
+    dateA11yLabel: { year: 'numeric', month: 'long', day: 'numeric' },
+    monthYearA11yLabel: { year: 'numeric', month: 'long' },
+  }
+};
 
 const routes: Routes = [
   { path: '', component: HomePageComponent, data: { stateName: 'home' } },
-  { path: 'food-list', component: FoodListComponent , data: { stateName: 'food-list'} },
-  { path: 'food-detail/:id', component: FoodDetailComponent , data: { stateName: 'food-detail'}},
-  { path: 'profile', component: ProfilePageComponent , data: { stateName: 'profile' }},
-  { path: 'login', component: LoginPageComponent , data: { stateName: 'login' }}
+  { path: 'food-list', component: FoodListComponent, data: { stateName: 'food-list' } },
+  { path: 'food-detail/:id', component: FoodDetailComponent, data: { stateName: 'food-detail' } },
+  { path: 'profile', component: ProfilePageComponent, data: { stateName: 'profile' } },
+  { path: 'login', component: LoginPageComponent, data: { stateName: 'login' } },
+  { path: 'progress', component: ProgressPageComponent, data: { stateName: 'progress' } }
 ];
 @NgModule({
-   imports: [
+  imports: [
     BrowserModule,
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     BrowserAnimationsModule,
     MdButtonModule, MdCheckboxModule, MdListModule, MdCardModule, MdSliderModule,
-    MdToolbarModule , MdIconModule, MdMenuModule, MdTabsModule, MdRadioModule,
-    MdSelectModule,  MdDialogModule, MdProgressSpinnerModule,
-    ReactiveFormsModule, FormsModule,
+    MdToolbarModule, MdIconModule, MdMenuModule, MdTabsModule, MdRadioModule,
+    MdSelectModule, MdDialogModule, MdProgressSpinnerModule, MdDatepickerModule,
+    ReactiveFormsModule, FormsModule, MdNativeDateModule, ChartsModule,
     RouterModule.forRoot(routes)
   ],
   entryComponents: [
@@ -72,7 +89,8 @@ const routes: Routes = [
     LoginPageComponent,
     ProfilePageComponent,
     DialogComponent,
-    LongPressDirective
+    LongPressDirective,
+    ProgressPageComponent
   ],
   exports: [
     AppComponent,
@@ -82,11 +100,12 @@ const routes: Routes = [
     DialogComponent,
     FormsModule,
     MdButtonModule, MdCheckboxModule, MdListModule, MdCardModule, MdMenuModule, MdSliderModule,
-    MdToolbarModule , MdIconModule, MdTabsModule , MdDialogModule, MdSelectModule, MdRadioModule,
-    MdProgressSpinnerModule, LongPressDirective
+    MdToolbarModule, MdIconModule, MdTabsModule, MdDialogModule, MdSelectModule, MdRadioModule,
+    MdProgressSpinnerModule, LongPressDirective, MdDatepickerModule, MdNativeDateModule, ChartsModule
   ],
-  providers: [ FireService, ActiveStateService, EventService ],
-  bootstrap: [ AppComponent ],
-  schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
+  providers: [FireService, ActiveStateService, EventService, MyDateAdapter,
+    { provide: MD_DATE_FORMATS, useValue: MY_DATE_FORMATS }],
+  bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule { }

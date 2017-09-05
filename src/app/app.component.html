@@ -22,12 +22,18 @@
 
 <md-menu #appMenu="mdMenu">
  
+  <button md-menu-item routerLink="/">
+     <md-icon >home</md-icon>Home
+  </button>
   <button md-menu-item routerLink="profile">
-     <md-icon class="big-font">account_box</md-icon>Perfil
+     <md-icon  >account_box</md-icon>Perfil
+  </button>
+  <button md-menu-item routerLink="progress">
+     <md-icon>insert_chart</md-icon>Progress
   </button>
  
   <button md-menu-item (click)="doLogout()">
-     <md-icon class="big-font" >launch</md-icon>Salir
+     <md-icon>launch</md-icon>Salir
   </button>
   
 </md-menu>
