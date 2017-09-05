@@ -33,4 +33,16 @@ button.mat-menu-item{
     padding: 0px!important;
 }
 
+.version{
+ font-size:8px;
+ position: absolute;
+ top:-1em; 
+ right: 0.5em;
+ 
+}
+.container{
+  position: absolute;
+  margin-left: 25%;
+  margin-right: 25%;
+}
 

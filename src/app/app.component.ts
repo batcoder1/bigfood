@@ -21,7 +21,7 @@ export class AppComponent implements DoCheck {
   activaSaveBotton = false;
   state: ActiveStateService;
   subscribe: any;
-
+  version: string;
 
   constructor(private fireService: FireService,
     private router: Router,
@@ -31,7 +31,7 @@ export class AppComponent implements DoCheck {
     private route: ActivatedRoute,
     private cdr: ChangeDetectorRef
   ) {
-
+    this.version= 'v.alfa'
     this.state = _state;
     // checkea de forma async si nuestro usuario esta logeado and redirigirá
     // automaticamente al login cuando el estado cambie.

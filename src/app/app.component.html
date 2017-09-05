@@ -1,20 +1,21 @@
 
 <md-toolbar color="primary">
   
-
+  
   <md-toolbar-column *ngIf="isLoggedIn">
-     <button  md-icon-button  md-button [mdMenuTriggerFor]="appMenu">
-        <img src="/assets/icon.png" style="width: 2.5em;"/>
+    <button  md-icon-button  md-button [mdMenuTriggerFor]="appMenu">
+      <img src="/assets/icon.png" style="width: 2.5em;"/>
     </button>
     
   </md-toolbar-column>
-
+  
   <md-toolbar-column class="flex-reverse">
+    <span class="version">{{version}}</span>
     <button  *ngIf="activaCancelBotton"   class="element-flex"  md-icon-button  md-button  (click)=goBack()>
-       <md-icon class="icon">clear</md-icon>
+      <md-icon class="icon">clear</md-icon>
     </button>
     <button  *ngIf="activaSaveBotton"   class="element-flex"  md-icon-button  md-button  (click)=goHome()>
-       <md-icon class="icon">done</md-icon>
+      <md-icon class="icon">done</md-icon>
     </button>
   </md-toolbar-column>  
    
@@ -29,18 +30,13 @@
      <md-icon  >account_box</md-icon>Perfil
   </button>
   <button md-menu-item routerLink="progress">
-     <md-icon>insert_chart</md-icon>Progress
+     <md-icon>insert_chart</md-icon>Progreso
   </button>
  
   <button md-menu-item (click)="doLogout()">
      <md-icon>launch</md-icon>Salir
   </button>
-  
 </md-menu>
  
-<router-outlet  >
-
-
-
-</router-outlet>
+<router-outlet></router-outlet>
  
