@@ -58,13 +58,15 @@
     <md-list-item (click)="openDialog('Peso', user, 'units.weight')">
       <span class="md-font" md-line> Peso  </span>
       <section layout-align="end" layout-wrap>
-        <span class="md-font">  {{user.units.weight}}</span>
+        <span *ngIf="user.units.weight == 0" class="md-font">Kg</span>
+        <span *ngIf="user.units.weight == 1" class="md-font">Lb</span>
       </section>
     </md-list-item>
     <md-list-item (click)="openDialog('Distancia', user, 'units.distance')">
       <span class="md-font" md-line> Distancia  </span>
       <section layout-align="end" layout-wrap>
-        <span class="md-font">  {{user.units.distance}}</span>
+        <span *ngIf="user.units.distance == 0" class="md-font">Km</span>
+        <span *ngIf="user.units.distance == 1" class="md-font">Millas</span>
       </section>
     </md-list-item>
     <md-list-item (click)="openDialog('Energía', user, 'units.Energy')"> 

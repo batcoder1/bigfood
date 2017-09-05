@@ -93,3 +93,8 @@ md-grid-list{
   margin-bottom: 0em!important;
   margin-bottom: 0.96em!important
 }
+md-grid-list {
+ 
+
+  padding: 0px 1.5em!important;
+}

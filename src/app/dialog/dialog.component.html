@@ -1,37 +1,51 @@
-
 <md-dialog-title>
-  <h2 *ngIf="food !== undefined" >¿Cúanto?</h2>
-  <h2 *ngIf="userData !== undefined" >{{userData.label}}</h2>
+  <h2 *ngIf="food !== undefined">¿Cúanto?</h2>
+  <h2 *ngIf="userData !== undefined">{{userData.label}}</h2>
 </md-dialog-title>
 <md-dialog-content>
   <md-input-container>
-  <input *ngIf="food !== undefined" mdInput [(ngModel)]="food.amount" placeholder="cantidad">
-  
-  <input *ngIf="user !== undefined && userData.nomvar == 'birthday'" type="date" mdInput [(ngModel)]="user.birthday" [placeholder]="user.birthday" >
-  <input *ngIf="user !== undefined && userData.nomvar == 'name'" mdInput [(ngModel)]="user.name" [placeholder]="user.name" >
-  <input *ngIf="user !== undefined && userData.nomvar == 'height'" type="number" mdInput [(ngModel)]="user.height" [placeholder]="user.height" >
-  <input *ngIf="user !== undefined && userData.nomvar == 'weight'" type="number" mdInput [(ngModel)]="user.weight" [placeholder]="user.weight" >
-  <input *ngIf="user !== undefined && userData.nomvar == 'postalCode'" type="number" mdInput [(ngModel)]="user.postalCode" [placeholder]="user.postalCode" >
-  <input *ngIf="user !== undefined && userData.nomvar == 'mail'" type="mail" mdInput [(ngModel)]="user.mail" [placeholder]="user.mail" >
-  <input *ngIf="user !== undefined && userData.nomvar == 'units.weight'" type="number" mdInput [(ngModel)]="user.units.weight" [placeholder]="user.units.weight" >
-  <input *ngIf="user !== undefined && userData.nomvar == 'units.distance'" mdInput [(ngModel)]="user.units.distance" [placeholder]="user.units.distance" >
-  <input *ngIf="user !== undefined && userData.nomvar == 'units.Energy'" mdInput [(ngModel)]="user.units.Energy" [placeholder]="user.units.Energy" >
-  <input *ngIf="user !== undefined && userData.nomvar == 'units.water'" mdInput [(ngModel)]="user.units.water" [placeholder]="user.units.water" >
-  <input *ngIf="user !== undefined && userData.nomvar == 'goals.initialWeight'" type="number" mdInput [(ngModel)]="user.goals.initialWeight" [placeholder]="user.goals.initialWeight" >
-  <input *ngIf="user !== undefined && userData.nomvar == 'goals.currentWeight'" type="number" mdInput [(ngModel)]="user.goals.currentWeight" [placeholder]="user.goals.currentWeight" >
-  <input *ngIf="user !== undefined && userData.nomvar == 'goals.desireWeight'" type="number" mdInput [(ngModel)]="user.goals.desireWeight" [placeholder]="user.goals.desireWeight" >
-  
-  <md-select *ngIf="user !== undefined && userData.nomvar == 'country'"  [(ngModel)]="user.country" >
-      <md-option *ngFor="let country of countries; let i=index" (change)="updateCountry(i)"  [value]="i" >{{country}}</md-option>
-   </md-select>
+    <md-form-field>
+     <input *ngIf="food !== undefined" mdInput [(ngModel)]="food.amount" placeholder="cantidad">
+    </md-form-field>
+    <input *ngIf="user !== undefined && userData.nomvar == 'birthday'" type="date" mdInput [(ngModel)]="user.birthday" [placeholder]="user.birthday">
+    <input *ngIf="user !== undefined && userData.nomvar == 'name'" mdInput [(ngModel)]="user.name" [placeholder]="user.name">
+    <input *ngIf="user !== undefined && userData.nomvar == 'height'" type="number" mdInput [(ngModel)]="user.height" [placeholder]="user.height">
+    <input *ngIf="user !== undefined && userData.nomvar == 'weight'" type="number" mdInput [(ngModel)]="user.weight" [placeholder]="user.weight">
+    <input *ngIf="user !== undefined && userData.nomvar == 'postalCode'" type="number" mdInput [(ngModel)]="user.postalCode"
+      [placeholder]="user.postalCode">
+    <input *ngIf="user !== undefined && userData.nomvar == 'mail'" type="mail" mdInput [(ngModel)]="user.mail" [placeholder]="user.mail">
 
-  <md-radio-group name="weeklyGoal" *ngIf="user !== undefined && userData.nomvar == 'goals.weeklyGoal'" [ngModel]="user.goals.weeklyGoal" >
-      <md-radio-button *ngFor="let goal of goals ; let i = index"  (change)="updateWeekyGoal(goal)" [value]="i">{{goal.value}}</md-radio-button>
+    <md-radio-group name="weight" *ngIf="user !== undefined && userData.nomvar == 'units.weight'" [ngModel]="user.units.weight">
+      <md-radio-button value="0" (change)="updateUnits('weight',0)">Kg</md-radio-button>
+      <md-radio-button value="1" (change)="updateUnits('weight',1)">Lb</md-radio-button>
+    </md-radio-group>
+
+    <md-radio-group name="distance" *ngIf="user !== undefined && userData.nomvar == 'units.distance'" [ngModel]="user.units.distance">
+      <md-radio-button value="0" (change)="updateUnits('distance',0)">Km</md-radio-button>
+      <md-radio-button value="1" (change)="updateUnits('distance',1)">Millas</md-radio-button>
+    </md-radio-group>
+
+    <input *ngIf="user !== undefined && userData.nomvar == 'units.Energy'" mdInput [(ngModel)]="user.units.Energy" [placeholder]="user.units.Energy">
+    <input *ngIf="user !== undefined && userData.nomvar == 'units.water'" mdInput [(ngModel)]="user.units.water" [placeholder]="user.units.water">
+
+    <input *ngIf="user !== undefined && userData.nomvar == 'goals.initialWeight'" type="number" mdInput [(ngModel)]="user.goals.initialWeight"
+      [placeholder]="user.goals.initialWeight">
+    <input *ngIf="user !== undefined && userData.nomvar == 'goals.currentWeight'" type="number" mdInput [(ngModel)]="user.goals.currentWeight"
+      [placeholder]="user.goals.currentWeight">
+    <input *ngIf="user !== undefined && userData.nomvar == 'goals.desireWeight'" type="number" mdInput [(ngModel)]="user.goals.desireWeight"
+      [placeholder]="user.goals.desireWeight">
+
+    <md-select *ngIf="user !== undefined && userData.nomvar == 'country'" [(ngModel)]="user.country">
+      <md-option *ngFor="let country of countries; let i=index" (change)="updateCountry(i)" [value]="i">{{country}}</md-option>
+    </md-select>
+
+    <md-radio-group name="weeklyGoal" *ngIf="user !== undefined && userData.nomvar == 'goals.weeklyGoal'" [ngModel]="user.goals.weeklyGoal">
+      <md-radio-button *ngFor="let goal of goals ; let i = index" (change)="updateWeekyGoal(goal)" [value]="i">{{goal.value}}</md-radio-button>
     </md-radio-group>
   </md-input-container>
 </md-dialog-content>
- 
+
 <md-dialog-actions class="right">
-  <button md-button   md-dialog-close color="primary">Cancelar</button>
-  <button md-button  (click)="save()" md-dialog-close="true" color="primary">Guardar</button>
+  <button md-button md-dialog-close color="primary">Cancelar</button>
+  <button md-button (click)="save()" md-dialog-close="true" color="primary">Guardar</button>
 </md-dialog-actions>

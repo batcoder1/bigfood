@@ -1,3 +1,4 @@
+import { Units } from './../data-model';
 import { elementAt } from 'rxjs/operator/elementAt';
 import { EventService } from './../providers/event.service';
 import * as events from 'events';
@@ -23,6 +24,7 @@ export class DialogComponent {
   @Output() valueEmitted = new EventEmitter<string>();
   food: Food;
   user: User;
+  units: Units;
   userData: UserData;
   goals= [];
   countries = [];
@@ -40,9 +42,9 @@ export class DialogComponent {
     this.countries = COUNTRIES;
     if (element && element.hasOwnProperty('label')) {
       this.userData = new UserData(element.label, element.value[element.nomvar], element.nomvar);
-      this.user = element.value;
-
-
+      if (element.value && element.hasOwnProperty('label')) {
+        this.user = element.value;
+      }
     } else {
       this.food = element;
     }
@@ -58,5 +60,8 @@ export class DialogComponent {
   }
   updateCountry(idCountry: any) {
     this.user.country = idCountry;
+  }
+  updateUnits(label, value: any) {
+    this.user.units[label] = value;
   }
 }
