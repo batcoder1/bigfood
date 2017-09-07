@@ -1,7 +1,7 @@
-import { WorkerAppModule } from '@angular/platform-webworker';
+
 import { ChartsModule } from 'ng2-charts';
 import { LongPressDirective } from './directives/long-press.directive';
-import { MdDialogModule, MdDialogRef } from '@angular/material';
+import { MdDialogModule, MdDialogRef, MdSidenav } from '@angular/material';
 import { EventService } from './providers/event.service';
 import { ActiveStateService } from './providers/active-state.service';
 import { FireService } from './providers/fire.service';
@@ -20,7 +20,7 @@ import {
   MdButtonModule, MdCheckboxModule, MdListModule, MdCardModule,
   MdToolbarModule, MdListItem, MdIconModule, MdMenuModule, MdTabsModule, MdDialogContainer, MdSelectModule,
   MdProgressSpinnerModule, MdSliderModule, MdRadioModule, MdDatepickerModule, MdNativeDateModule, DateAdapter,
-   MD_DATE_FORMATS, MdProgressBarModule
+  MD_DATE_FORMATS, MdProgressBarModule, MdSidenavModule
 } from '@angular/material';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { AngularFireAuthModule, AngularFireAuth } from 'angularfire2/auth';
@@ -31,7 +31,6 @@ import * as firebase from 'firebase/app';
 import { ProfilePageComponent } from './profile-page/profile-page.component';
 import { ProgressPageComponent } from './progress-page/progress-page.component';
 import { ReportComponent } from './report/report.component';
-
 
 
 // Initialize Firebase
@@ -76,7 +75,8 @@ const routes: Routes = [
     MdToolbarModule, MdIconModule, MdMenuModule, MdTabsModule, MdRadioModule,
     MdSelectModule, MdDialogModule, MdProgressSpinnerModule, MdDatepickerModule,
     ReactiveFormsModule, FormsModule, MdNativeDateModule, ChartsModule, MdProgressBarModule,
-    RouterModule.forRoot(routes), WorkerAppModule
+    MdSidenavModule,
+    RouterModule.forRoot(routes)
   ],
   entryComponents: [
     DialogComponent
@@ -105,7 +105,7 @@ const routes: Routes = [
     MdButtonModule, MdCheckboxModule, MdListModule, MdCardModule, MdMenuModule, MdSliderModule,
     MdToolbarModule, MdIconModule, MdTabsModule, MdDialogModule, MdSelectModule, MdRadioModule,
     MdProgressSpinnerModule, LongPressDirective, MdDatepickerModule, MdNativeDateModule, ChartsModule,
-    MdProgressBarModule, WorkerAppModule
+    MdProgressBarModule, MdSidenavModule
   ],
   providers: [FireService, ActiveStateService, EventService,
     { provide: MD_DATE_FORMATS, useValue: MY_DATE_FORMATS }],

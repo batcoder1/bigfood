@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="es">
 
   <head>
@@ -7,15 +8,22 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
-    <meta name="theme-color" content="#db5945">
+   
     <link rel="manifest" href="/manifest.json">
     
   </head>
 
-  <body>
+  <body class="big-screen">
     <app-root> </app-root>
+    <noscript>
+        <!-- anchor linking to external file -->
+        <h2> Esta página tiene contenido javascript, habilitalo o descarga 
+        <a href="https://www.google.es/chrome/browser/desktop/index.html#eula">Goggle chrome </a>
+      </noscript>
   </body>
-  <script>
+  
+  
+     <!-- <script>
       if ('serviceWorker' in navigator) {
         navigator.serviceWorker.register('service-worker.js').then(function(registration) {
           // Registration was successful
@@ -25,5 +33,6 @@
           console.log('ServiceWorker registration failed: ', err);
         });
       }
-    </script>
+    </script>   -->
+   
 </html>

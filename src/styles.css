@@ -176,7 +176,7 @@ md-grid-list {
 }
 
 @media only screen and (min-width: 1224px) {
-  body{
+  .big-screen{
     margin: 0 20em 0 20em!important;
   }
 }

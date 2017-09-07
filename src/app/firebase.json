@@ -1,0 +1,44 @@
+{
+    "hosting": {
+      "public": "dist",
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ],
+      "redirects": [ {
+        "source" : "/login",
+        "destination" : "/",
+        "type" : 404
+      }, {
+        "source" : "/firebase/*",
+        "destination" : "https://www.firebase.com",
+        "type" : 302
+      } ],
+      "rewrites": [ {
+        "source": "/app/**",
+        "destination": "/app/index.html"
+      } ],
+      "headers": [ {
+        "source" : "**/*.@(eot|otf|ttf|ttc|woff|font.css)",
+        "headers" : [ {
+          "key" : "Access-Control-Allow-Origin",
+          "value" : "*"
+        } ]
+        }, {
+        "source" : "**/*.@(jpg|jpeg|gif|png)",
+        "headers" : [ {
+          "key" : "Cache-Control",
+          "value" : "max-age=7200"
+        } ]
+        }, {
+        "source" : "404.html",
+        "headers" : [ {
+          "key" : "Cache-Control",
+          "value" : "max-age=300"
+        } ]
+      } ],
+      "cleanUrls": true,
+      "trailingSlash": false
+    }
+  }

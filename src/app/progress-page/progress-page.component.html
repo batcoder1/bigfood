@@ -2,6 +2,7 @@
     <canvas baseChart width="400" height="400" [datasets]="lineChartData" [labels]="lineChartLabels" [options]="lineChartOptions"
     [legend]="lineChartLegend" [chartType]="lineChartType" (chartHover)="chartHovered($event)"
      (chartClick)="chartClicked($event)"></canvas>
+     
   <md-card-content *ngIf="days && days !== undefined" class = "radios">
       <md-radio-group name="radioTipoData" class="radioGroupElement"  [ngModel]="data.value">
                  <md-radio-button (change)="updateData('weight',0)" class="radioItem" [value]="0" selected >Peso</md-radio-button>

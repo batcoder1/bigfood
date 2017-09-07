@@ -1,25 +1,26 @@
-
 <md-toolbar color="primary">
-  
-  
+
+
   <md-toolbar-column *ngIf="isLoggedIn">
-    <button  md-icon-button  md-button [mdMenuTriggerFor]="appMenu">
+    <!-- <button md-icon-button md-button (click)="sidenav.toggle()"> -->
+    <button md-icon-button md-button [mdMenuTriggerFor]="appMenu">
       <img src="/assets/icon.png" style="width: 2.5em;"/>
     </button>
-    
+
   </md-toolbar-column>
-  
+
   <md-toolbar-column class="flex-reverse">
     <span class="version">{{version}}</span>
-    <button  *ngIf="activaCancelBotton"   class="element-flex"  md-icon-button  md-button  (click)=goBack()>
+    <button *ngIf="activaCancelBotton" class="element-flex" md-icon-button md-button (click)=goBack()>
       <md-icon class="icon">clear</md-icon>
     </button>
-    <button  *ngIf="activaSaveBotton"   class="element-flex"  md-icon-button  md-button  (click)=goHome()>
+    <button *ngIf="activaSaveBotton" class="element-flex" md-icon-button md-button (click)=goHome()>
       <md-icon class="icon">done</md-icon>
     </button>
-  </md-toolbar-column>  
-   
+  </md-toolbar-column>
+  
 </md-toolbar>
+
 
 <md-menu #appMenu="mdMenu">
  
@@ -36,7 +37,28 @@
   <button md-menu-item (click)="doLogout()">
      <md-icon>launch</md-icon>Salir
   </button>
-</md-menu>
- 
+</md-menu> 
+
 <router-outlet></router-outlet>
- 
+
+<!-- <md-sidenav-layout class="sidenav-layout" >
+
+  
+      <md-sidenav #sidenav mode="side" class="sidenav">
+          <md-toolbar color="primary">BigFood</md-toolbar>
+        <md-nav-list>
+          <a md-list-item routerLink="/">
+            <md-icon>home</md-icon>Home</a>
+          <a md-list-item routerLink="profile">
+            <md-icon>account_box</md-icon>Perfil</a>
+          <a md-list-item routerLink="progress">
+            <md-icon>insert_chart</md-icon>Progress</a>
+          <a md-list-item (click)="doLogout()">
+            <md-icon>launch</md-icon>Salir</a>
+        </md-nav-list>
+
+      </md-sidenav>
+   
+    
+      <router-outlet></router-outlet>
+  </md-sidenav-layout> -->

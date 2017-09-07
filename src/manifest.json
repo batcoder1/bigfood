@@ -1,6 +1,6 @@
 {
-    "short_name": "bigfood",
-    "name": "bigfood",
+    "short_name": "BigFood",
+    "name": "BigFood",
     "icons": [
       {
         "src":"/assets/icon.png",
@@ -9,13 +9,18 @@
       },
       {
         "src":"/assets/icon.png",
+        "sizes": "144x144",
+        "type": "image/png"
+      },
+      {
+        "src":"/assets/icon512.png",
         "sizes": "512x512",
         "type": "image/png"
       }
     ],
     "start_url": "/",
-    "background_color": "#fff",
-    "theme_color": "#536878",
+    "background_color": "#FBFBFB",
+    "theme_color": "#3f51b5",
     "display": "standalone",
     "orientation": "portrait"
   }

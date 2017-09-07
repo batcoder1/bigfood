@@ -29,7 +29,7 @@ export class HomePageComponent implements AfterViewChecked, OnInit {
   isloggin: boolean;
   user: User;
   myUser: any;
-  fireUser: firebase.User;
+  fireUser: any;
   calendar: Date[];
   day: DietDays;
   days: DietDays[];
