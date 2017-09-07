@@ -1,3 +1,4 @@
+import { WorkerAppModule } from '@angular/platform-webworker';
 import { ChartsModule } from 'ng2-charts';
 import { LongPressDirective } from './directives/long-press.directive';
 import { MdDialogModule, MdDialogRef } from '@angular/material';
@@ -18,7 +19,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
   MdButtonModule, MdCheckboxModule, MdListModule, MdCardModule,
   MdToolbarModule, MdListItem, MdIconModule, MdMenuModule, MdTabsModule, MdDialogContainer, MdSelectModule,
-  MdProgressSpinnerModule, MdSliderModule, MdRadioModule, MdDatepickerModule, MdNativeDateModule, DateAdapter, MD_DATE_FORMATS, MdProgressBarModule
+  MdProgressSpinnerModule, MdSliderModule, MdRadioModule, MdDatepickerModule, MdNativeDateModule, DateAdapter,
+   MD_DATE_FORMATS, MdProgressBarModule
 } from '@angular/material';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { AngularFireAuthModule, AngularFireAuth } from 'angularfire2/auth';
@@ -28,6 +30,7 @@ import { environment } from '../environments/environment';
 import * as firebase from 'firebase/app';
 import { ProfilePageComponent } from './profile-page/profile-page.component';
 import { ProgressPageComponent } from './progress-page/progress-page.component';
+import { ReportComponent } from './report/report.component';
 
 
 
@@ -73,7 +76,7 @@ const routes: Routes = [
     MdToolbarModule, MdIconModule, MdMenuModule, MdTabsModule, MdRadioModule,
     MdSelectModule, MdDialogModule, MdProgressSpinnerModule, MdDatepickerModule,
     ReactiveFormsModule, FormsModule, MdNativeDateModule, ChartsModule, MdProgressBarModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes), WorkerAppModule
   ],
   entryComponents: [
     DialogComponent
@@ -89,7 +92,8 @@ const routes: Routes = [
     ProfilePageComponent,
     DialogComponent,
     LongPressDirective,
-    ProgressPageComponent
+    ProgressPageComponent,
+    ReportComponent
   ],
   exports: [
     AppComponent,
@@ -101,7 +105,7 @@ const routes: Routes = [
     MdButtonModule, MdCheckboxModule, MdListModule, MdCardModule, MdMenuModule, MdSliderModule,
     MdToolbarModule, MdIconModule, MdTabsModule, MdDialogModule, MdSelectModule, MdRadioModule,
     MdProgressSpinnerModule, LongPressDirective, MdDatepickerModule, MdNativeDateModule, ChartsModule,
-    MdProgressBarModule
+    MdProgressBarModule, WorkerAppModule
   ],
   providers: [FireService, ActiveStateService, EventService,
     { provide: MD_DATE_FORMATS, useValue: MY_DATE_FORMATS }],
