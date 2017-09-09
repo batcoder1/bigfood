@@ -52,12 +52,13 @@ export class HomePageComponent implements AfterViewChecked, OnInit {
   forwardArrowValid = true;
   dateDay: Date;
   stepsToday: number;
+  currentUser:  any;
   constructor(fireService: FireService,
     private eventService: EventService,
     private router: Router,
     private cdr: ChangeDetectorRef) {
     this.fireService = fireService;
-
+    this.currentUser = this.fireService.currentUser();
   }
 
   ngOnInit(): void {
@@ -99,16 +100,14 @@ export class HomePageComponent implements AfterViewChecked, OnInit {
 
       this.fireService.getUserData().then(user => {
         this.user = user.val();
-
       });
 
-
-    this.fireService.getFoods()
+      this.fireService.getFoods()
       .then(snapshot => {
         snapshot.forEach(child => this.foods = child.val());
       });
 
-    this.fireService.getUserDietDays()
+      this.fireService.getUserDietDays()
       .then(snapshot => {
         snapshot.forEach(child => {
           let myDays: DietDays[] = [];
@@ -157,7 +156,7 @@ export class HomePageComponent implements AfterViewChecked, OnInit {
             // creamos todo el mes vacio
             localStorage.setItem('daysCreated', 'true');
             for (let i = 0; i < this.calendar.length; i++) {
-              const newDay = { date: this.calendar[i], meals: this.meals, goalDay: 0, totalCalories: 0, exercise: 0 , weight: 0, steps: 0};
+              const newDay = { date: this.calendar[i], meals: this.meals, goalDay: 0, totalCalories: 0, exercise: 0, weight: 0, steps: 0 };
               this.days.push(newDay);
               if ((this.calendar[i].getDate() === hoy.getDate()) && (this.calendar[i].getMonth() === hoy.getMonth())) {
                 this.today = this.getDateFormat(this.calendar[i]);
@@ -167,17 +166,15 @@ export class HomePageComponent implements AfterViewChecked, OnInit {
             this.fireService.setUserDietDays(this.fireUser.uid, this.days);
           }
         }
-
         this.dateDay = new Date(this.days[this.indexDays].date);
       });
 
   }
-
   ngAfterViewChecked() {
     const foodDetail = JSON.parse(localStorage.getItem('foodDetail'));
     const userData = JSON.parse(localStorage.getItem('userData'));
-    if (userData) {
-      this.fireService.setUserData(this.fireUser, userData);
+    if (userData !== undefined && userData !== null) {
+      this.fireService.setUserData(this.fireUser, this.user);
       this.updateCalories(userData);
       localStorage.removeItem('userData');
     }
@@ -188,9 +185,7 @@ export class HomePageComponent implements AfterViewChecked, OnInit {
       }
       this.mealsCaloriesSum();
       this.updateCalories(this.user);
-      this.stepsToday = this.days[this.indexDays].steps  * 100 / this.user.goals.stepsAtDay ;
-
-
+      this.stepsToday = this.days[this.indexDays].steps * 100 / this.user.goals.stepsAtDay;
       this.cdr.detectChanges();
     }
   }
@@ -307,7 +302,7 @@ export class HomePageComponent implements AfterViewChecked, OnInit {
     this.indexDays++;
     if ((this.indexDays >= 1) && (this.indexDays < this.days.length - 1)) {
       this.backArrowValid = true;
-    }else {
+    } else {
       this.forwardArrowValid = false;
 
     }
@@ -323,16 +318,16 @@ export class HomePageComponent implements AfterViewChecked, OnInit {
   }
 
   updateUser(user: User) {
-    if (user.goals === undefined) {
-      user.birthday = new Date('01-01-1950');
+    if (user.birthday === undefined) {
+      user.birthday = '01-01-1950';
     }
-    if (user.goals === undefined) {
+    if (user.height === undefined) {
       user.height = 170;
     }
-    if (user.goals === undefined) {
+    if (user.weight === undefined) {
       user.weight = 70;
     }
-    if (user.goals === undefined) {
+    if (user.gender === undefined) {
       user.gender = 0;
     }
     if (user.goals === undefined) {
@@ -357,8 +352,11 @@ export class HomePageComponent implements AfterViewChecked, OnInit {
     if (this.days[this.indexDays]) {
       const myDay = this.days[this.indexDays];
       myDay.totalCalories = this.totalCalories;
-      myDay.goalDay = this.caloriesBurnedAtDay(user);
-      this.rest = myDay.goalDay - myDay.totalCalories + myDay.exercise;
+      if (user !== undefined && user !== null) {
+        myDay.goalDay = this.caloriesBurnedAtDay(user);
+        this.rest = myDay.goalDay - myDay.totalCalories + myDay.exercise;
+
+      }
 
     }
   }

@@ -1,0 +1,18 @@
+<md-card class="loginmodal-container">
+
+  <md-card-title class="login-title">
+    <img class="logo" src="/assets/icon.png" width="48" />
+  </md-card-title>
+  <md-card-title class="login-title">
+    SIGN UP
+  </md-card-title>
+  <md-card-content class="login-container">
+    <md-input [(ngModel)]="user.mail" placeholder="mail" type="email"></md-input>
+    <md-input [(ngModel)]="user.password" placeholder="password" type="password"></md-input>
+    <md-input [(ngModel)]="user.confirm" placeholder="confirm" type="password"></md-input>
+    <span id="err"><small>{{error.message}}</small></span>
+    <button md-raised-button color="primary" (click)="createUserByMail(user)">Sign Up</button>
+    <md-slide-toggle color="primary"><small>Remember me!</small></md-slide-toggle>
+  </md-card-content>
+   
+</md-card>

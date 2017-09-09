@@ -11,37 +11,6 @@
 
 }
  
-.loginmodal-submit {
-  /* border: 1px solid #3079ed; */
-  width: 100%;
-  border: 0px;
-  color: #fff;
-  text-shadow: 0 1px rgba(0,0,0,0.1);
-  background-color: #4d90fe;
-  padding: 12px 5px;
-  font-family: roboto;
-  font-size: 14px;
-  border-radius: 2px;
-  margin: 1em;
-}
-.loginmodal-submit:hover {
-  /* border: 1px solid #2f5bb7; */
-  border: 0px;
-  text-shadow: 0 1px rgba(0,0,0,0.3);
-  background-color: #357ae8;
-  /* background-image: -webkit-gradient(linear, 0 0, 0 100%,   from(#4d90fe), to(#357ae8)); */
-}
-.loginmodal-container a {
-  text-decoration: none;
-  color: #666;
-  font-weight: 400;
-  text-align: center;
-  display: inline-block;
-  opacity: 0.6;
-  transition: opacity ease 0.5s;
-}
- 
-
 .mat-card-actions, .mat-card-content, .mat-card-subtitle, .mat-card-title{
   text-align: center;
 }
@@ -50,3 +19,113 @@
     padding: 40px 30px!important;
     margin: 10px 0px;
 }
+
+.login-container {
+ 
+  display: flex;
+  flex-direction: column;
+  padding:  1em;
+  transition: opacity ease 0.5s;
+}
+.social-container {
+   background: #FFFFFF;
+  display: flex;
+  flex-direction: column;
+  padding:  2em;
+   
+}
+.login{
+  flex-basis: auto;
+  background-color: #3f51b5;
+  padding: 1em 1em 1em 1em;
+  color: white;
+  box-shadow: 1px 1px 1px grey;
+  margin-top: 1em;
+}
+.recovery{
+  flex-basis: auto;
+  background-color: #3f51b5;
+  padding: 0.5em 1em 0.5em 1em;
+  color: white;
+  box-shadow: 1px 1px 1px grey;
+  
+}
+ 
+.input {
+  flex-basis: auto;
+}
+
+.login:hover .recovery:hover{
+  background-color: rgba(47, 63, 146, 0.94);
+}
+.expansion {
+  margin: 0 0 2em 0;
+}
+md-expansion-panel-header{
+  height: 30px!important;
+  font-size: 12px!important;
+}
+
+.google {
+  background: url(/assets/google.png) transparent 5px 50% no-repeat;
+  display: inline-block;
+  vertical-align: middle;
+  width: 42px;
+  height: 42px;
+}
+
+
+span.icon {
+  background: url('https://google-developers.appspot.com/identity/sign-in/g-normal.png') transparent 5px 50% no-repeat;
+  display: inline-block;
+  vertical-align: middle;
+  width: 42px;
+  height: 42px;
+}
+span.buttonText {
+  display: inline-block;
+  vertical-align: middle;
+  padding-right: 42px;
+  font-size: 14px;
+  font-weight: 500;
+  /* Use the Roboto font that is loaded in the <head> */
+  font-family: 'Roboto', sans-serif;
+}
+.customBtn {
+  display: inline-block;
+  background-color:#fff;
+  color: #444;
+ 
+  box-shadow: 1px 1px 1px grey;
+  white-space: nowrap;
+}
+.customBtn, .login:hover {
+  cursor: pointer;
+}
+
+.connect{
+  margin-top: 2em;
+}
+
+.signup-question{
+  color: grey;
+}
+.signup-group {
+  text-align: right;
+}
+.signup{
+  padding: 0.5em;
+  margin: 0.5em;
+  color: grey;
+  box-shadow: 1px 1px 1px grey;
+  
+}
+.signup:hover  {
+  
+  box-shadow: 1px 1px 1px grey;
+  background: #F7F7F7;
+  cursor: pointer;
+}
+ .md-input-prefix{
+   background-color: white!important;
+ }

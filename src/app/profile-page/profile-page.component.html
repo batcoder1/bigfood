@@ -12,10 +12,17 @@
 
     <md-list-item (click)="openDialog('Fecha Nacimiento', user, 'birthday')">
       <span class="md-font" md-line> Fecha nacimiento  </span>
-      <section layout-align="end"  class="mat-list-text-goal-value" layout-wrap>
+      <section layout-align="end" class="mat-list-text-goal-value" layout-wrap>
         <span class="md-font">{{user.birthday}}</span>
       </section>
     </md-list-item>
+    <md-list-item (click)="openDialog('Sexo', user, 'gender')">
+        <span class="md-font" md-line> Peso  </span>
+        <section layout-align="end" layout-wrap>
+          <span *ngIf="user.gender == 0" class="md-font">Hombre</span>
+          <span *ngIf="user.gender == 1" class="md-font">Mujer</span>
+        </section>
+    </md-list-item>    
     <md-list-item (click)="openDialog('Altura', user, 'height')">
       <span class="md-font" md-line> Altura  </span>
       <section layout-align="end" layout-wrap>
@@ -50,39 +57,6 @@
   </md-list>
 </md-card>
 
-<md-card>
-  <md-list *ngIf="user && user !== undefined">
-    <md-list-item>
-      <span class="md-font section" md-line> Unidades  </span>
-    </md-list-item>
-    <md-list-item (click)="openDialog('Peso', user, 'units.weight')">
-      <span class="md-font" md-line> Peso  </span>
-      <section layout-align="end" layout-wrap>
-        <span *ngIf="user.units.weight == 0" class="md-font">Kg</span>
-        <span *ngIf="user.units.weight == 1" class="md-font">Lb</span>
-      </section>
-    </md-list-item>
-    <md-list-item (click)="openDialog('Distancia', user, 'units.distance')">
-      <span class="md-font" md-line> Distancia  </span>
-      <section layout-align="end" layout-wrap>
-        <span *ngIf="user.units.distance == 0" class="md-font">Km</span>
-        <span *ngIf="user.units.distance == 1" class="md-font">Millas</span>
-      </section>
-    </md-list-item>
-    <md-list-item (click)="openDialog('Energía', user, 'units.Energy')"> 
-      <span class="md-font" md-line> Energía  </span>
-      <section layout-align="end" layout-wrap>
-        <span class="md-font">  {{user.units.Energy}}</span>
-      </section>
-    </md-list-item>
-    <md-list-item (click)="openDialog('Agua', user, 'units.water')">
-      <span class="md-font" md-line> Agua  </span>
-      <section layout-align="end" layout-wrap>
-        <span class="md-font">  {{user.units.water}}</span>
-      </section>
-    </md-list-item>
-  </md-list>
-</md-card>
 
 <md-card>
   <md-list *ngIf="user && user !== undefined">
@@ -114,9 +88,42 @@
       </section>
     </md-list-item>
     <md-list-item>
-        <span class="md-font" md-line> Nivel de Actividad  </span>
-        <md-slider layout-align="end"  flex min="0" max="3" [(ngModel)]="user.goals.activityLevel" step="1" aria-label="red" (click)='saveData()'></md-slider>
-        <span  class="md-font mat-list-text-goal-value">  {{activityLevels[user.goals.activityLevel]}}</span>
+      <span class="md-font" md-line> Nivel de Actividad  </span>
+      <md-slider layout-align="end" flex min="0" max="3" [(ngModel)]="user.goals.activityLevel" step="1" aria-label="red" (click)='saveData()'></md-slider>
+      <span class="md-font mat-list-text-goal-value">  {{activityLevels[user.goals.activityLevel]}}</span>
+    </md-list-item>
+  </md-list>
+</md-card>
+<md-card>
+  <md-list *ngIf="user && user !== undefined">
+    <md-list-item>
+      <span class="md-font section" md-line> Unidades  </span>
+    </md-list-item>
+    <md-list-item (click)="openDialog('Peso', user, 'units.weight')">
+      <span class="md-font" md-line> Peso  </span>
+      <section layout-align="end" layout-wrap>
+        <span *ngIf="user.units.weight == 0" class="md-font">Kg</span>
+        <span *ngIf="user.units.weight == 1" class="md-font">Lb</span>
+      </section>
+    </md-list-item>
+    <md-list-item (click)="openDialog('Distancia', user, 'units.distance')">
+      <span class="md-font" md-line> Distancia  </span>
+      <section layout-align="end" layout-wrap>
+        <span *ngIf="user.units.distance == 0" class="md-font">Km</span>
+        <span *ngIf="user.units.distance == 1" class="md-font">Millas</span>
+      </section>
+    </md-list-item>
+    <md-list-item (click)="openDialog('Energía', user, 'units.Energy')">
+      <span class="md-font" md-line> Energía  </span>
+      <section layout-align="end" layout-wrap>
+        <span class="md-font">  {{user.units.Energy}}</span>
+      </section>
+    </md-list-item>
+    <md-list-item (click)="openDialog('Agua', user, 'units.water')">
+      <span class="md-font" md-line> Agua  </span>
+      <section layout-align="end" layout-wrap>
+        <span class="md-font">  {{user.units.water}}</span>
+      </section>
     </md-list-item>
   </md-list>
 </md-card>

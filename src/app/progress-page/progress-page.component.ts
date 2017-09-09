@@ -29,7 +29,7 @@ export class ProgressPageComponent implements OnInit {
   lineChartOptions: any = { responsive: true };
   data: Data;
   periodo: Data;
-  lineChartLegend = true;
+  lineChartLegend = false;
   lineChartType = 'line';
 
   constructor(fireService: FireService) {
@@ -45,26 +45,47 @@ export class ProgressPageComponent implements OnInit {
     });
   }
   loadChart() {
+    const milisegAtDay = 1000 * 3600 * 24;
     this.days = JSON.parse(localStorage.getItem('days'));
+    this.lineChartData[this.valueData].data = [];
+    this.lineChartLabels = [];
     this.days.forEach((day, index) => {
       const today = new Date();
+      let inicioPeriodo;
+      if (this.periodo.type === 'semana') {
+        inicioPeriodo = new Date(today.getTime() - (milisegAtDay * 7));
+
+      } else if (this.periodo.type === 'mes') {
+        if (this.periodo.value === 1) {
+          // 1mes
+          inicioPeriodo = new Date(today.getTime() - (milisegAtDay * 30));
+
+        } else if (this.periodo.value === 2) {
+          // 3meses
+          inicioPeriodo = new Date(today.getTime() - (milisegAtDay * 30 * 3));
+        } else {
+          // 6meses
+          inicioPeriodo = new Date(today.getTime() - (milisegAtDay * 30 * 6));
+        }
+      } else if (this.periodo.type === 'anno') {
+        if (this.periodo.value === 4) {
+          // 1anno
+          inicioPeriodo = new Date(today.getTime() - (milisegAtDay * 30 * 12));
+
+        } else {
+          // 3annos
+          inicioPeriodo = new Date(today.getTime() - (milisegAtDay * 30 * 12 * 3));
+        }
+      }
       const date = new Date(day.date);
-      if (date <= today) {
+      if (inicioPeriodo <= date && date <= today ) {
         this.lineChartData[this.valueData].data = [...this.lineChartData[this.valueData].data, day[this.typeData[this.data.value]]];
         this.lineChartData[this.valueData].label = this.data.type;
-        this.lineChartLabels = [...this.lineChartLabels, date.getDate() + '/' + date.getMonth() + 1];
+        const mes = new Date(day.date).getMonth() + 1;
+        this.lineChartLabels = [...this.lineChartLabels, date.getDate() + '/' + mes];
 
       }
     });
-  }
-
-  // events
-  chartClicked(e: any): void {
-    console.log(e);
-  }
-
-  chartHovered(e: any): void {
-    console.log(e);
   }
 
   updateData(type, value) {
@@ -76,6 +97,7 @@ export class ProgressPageComponent implements OnInit {
   updatePeriodo(type, value) {
     this.periodo.type = type;
     this.periodo.value = value;
+    this.loadChart();
   }
 
 

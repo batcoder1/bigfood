@@ -1,44 +1,41 @@
 <md-card>
-    <canvas baseChart width="400" height="400" [datasets]="lineChartData" [labels]="lineChartLabels" [options]="lineChartOptions"
-    [legend]="lineChartLegend" [chartType]="lineChartType" (chartHover)="chartHovered($event)"
-     (chartClick)="chartClicked($event)"></canvas>
-     
-  <md-card-content *ngIf="days && days !== undefined" class = "radios">
-      <md-radio-group name="radioTipoData" class="radioGroupElement"  [ngModel]="data.value">
-                 <md-radio-button (change)="updateData('weight',0)" class="radioItem" [value]="0" selected >Peso</md-radio-button>
-                 <md-radio-button (change)="updateData('exercise',1)" class="radioItem" [value]="1">Ejercicio</md-radio-button>
-                 <md-radio-button (change)="updateData('totalCalories',2)" class="radioItem" [value]="2">Calorias</md-radio-button>
-      </md-radio-group>
-      <md-radio-group name="radioPeriodo" class="radioGroupElement"  [ngModel]="periodo.value">
-                 <md-radio-button (change)="updatePeriodo('semana',1)" class="radioItem" [value]="0" selected>1 semana</md-radio-button>
-                 <md-radio-button (change)="updatePeriodo('mes',1)" class="radioItem" [value]="1">1 mes</md-radio-button>
-                 <md-radio-button (change)="updatePeriodo('mes',3)" class="radioItem" [value]="2">3 meses</md-radio-button>
-                 <md-radio-button (change)="updatePeriodo('mes',6)" class="radioItem" [value]="3">6 meses</md-radio-button>
-                 <md-radio-button (change)="updatePeriodo('anno',1)" class="radioItem" [value]="4">1 año</md-radio-button>
-                 <md-radio-button (change)="updatePeriodo('anno',3)" class="radioItem" [value]="5">3 años</md-radio-button>
-      </md-radio-group>
+  <md-card-content *ngIf="days && days !== undefined" class="selects">
+    <md-select name="tipoData" class="select" [ngModel]="data.value">
+      <md-option (click)="updateData('weight',0)" [value]="0" selected>Peso</md-option>
+      <md-option (click)="updateData('exercise',1)" [value]="1">Ejercicio</md-option>
+      <md-option (click)="updateData('totalCalories',2)" [value]="2">Calorias</md-option>
+    </md-select>
+    <md-select name="periodo" class="select" [ngModel]="periodo.value">
+      <md-option (click)="updatePeriodo('semana',0)" [value]="0" selected>1 semana</md-option>
+      <md-option (click)="updatePeriodo('mes',1)" [value]="1">1 mes</md-option>
+      <md-option (click)="updatePeriodo('mes',2)" [value]="2">3 meses</md-option>
+      <md-option (click)="updatePeriodo('mes',3)" [value]="3">6 meses</md-option>
+      <md-option (click)="updatePeriodo('anno',4)" [value]="4">1 año</md-option>
+      <md-option (click)="updatePeriodo('anno',5)" [value]="5">3 años</md-option>
+    </md-select>
 
-    </md-card-content>
+  </md-card-content>
+  <canvas baseChart width="400" height="400" [datasets]="lineChartData" [labels]="lineChartLabels" [options]="lineChartOptions"
+    [legend]="lineChartLegend" [chartType]="lineChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
 
-     
-   
-</md-card>  
 
-  <md-card>
-      <md-card-content>
-        <md-list>
-            <md-list-item *ngFor="let day of days" >
-              <span class="md-font" md-line> {{day.date | date: 'mediumDate' }}  </span>
-              <section layout-align="end" layout-wrap>
-                <span class="md-font">  {{day[typeData[data.value]]}}</span>
-              </section>
-              <p md-line>
-                <span class="sm-font left grey">{{day.date | date: 'EEEE'}}</span>
-              </p>
-            </md-list-item>
-          
-        </md-list>
-      </md-card-content>
-    </md-card>
 
-  
+
+</md-card>
+
+<md-card>
+  <md-card-content>
+    <md-list>
+      <md-list-item *ngFor="let day of days">
+        <span class="md-font" md-line> {{day.date | date: 'mediumDate' }}  </span>
+        <section layout-align="end" layout-wrap>
+          <span class="md-font">  {{day[typeData[data.value]]}}</span>
+        </section>
+        <p md-line>
+          <span class="sm-font left grey">{{day.date | date: 'EEEE'}}</span>
+        </p>
+      </md-list-item>
+
+    </md-list>
+  </md-card-content>
+</md-card>

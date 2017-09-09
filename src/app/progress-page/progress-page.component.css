@@ -15,6 +15,21 @@
   justify-content: space-evenly;
   padding-bottom: 0.5em;
 
+
 }
-  
+
+.selects{
+    display: flex;
+    flex-direction: row;
+    margin: 0.5em 5em!important;
+}
+
+.select{
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1; 
+    margin-right: 1em;
+    padding-top: 0!important;
+    
+}
  

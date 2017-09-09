@@ -1,8 +1,42 @@
-<md-card  class="loginmodal-container">
-  <md-card-title>
-    Login to Your Account
-  </md-card-title>  
-  <md-card-content class="center">	
-    <md-button  class="login loginmodal-submit" (click)="login()">Login With Google</md-button>
+<md-card class="loginmodal-container">
+
+  <md-card-title class="login-title">
+    <img class="logo" src="/assets/icon.png" width="48" />
+  </md-card-title>
+  <md-card-title class="login-title">
+    LOGIN
+  </md-card-title>
+
+  <md-card-content class="login-container">
+    <md-input [(ngModel)]="mail" placeholder="email" type="email"></md-input>
+    <md-input [(ngModel)]="password" placeholder="password" type="password"></md-input>
+    <md-expansion-panel class="expansion">
+      <md-expansion-panel-header>
+        <md-panel-title>
+          Forget password?
+        </md-panel-title>
+      </md-expansion-panel-header>
+      <md-form-field>
+        <md-input id="mail" [value]="email" placeholder="mail"></md-input>
+      </md-form-field>
+      <md-form-field>
+        <md-button class="recovery" (click)="recoveryPass(mail)">Recovery</md-button>
+      </md-form-field>
+    </md-expansion-panel>
+   
+   <span><small>{{error.message}}</small></span>
+   
+    <md-button class="login" (click)="loginWithMail(mail, password)">Log In</md-button>
+
+    <span class="connect">OR CONNECT WITH</span>
+
+    <md-button class="customBtn">
+      <span class="icon"></span>
+      <span class="buttonText">Google</span>
+    </md-button>
   </md-card-content>
 </md-card>
+<div class="signup-group">
+  <span class="signup-question">Don't have a account?</span>
+  <md-button class="signup" (click)="goToSignUp()">Sign Up</md-button>
+</div>

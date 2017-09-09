@@ -1,3 +1,4 @@
+import { MdInputModule } from '@angular2-material/input';
 
 import { ChartsModule } from 'ng2-charts';
 import { LongPressDirective } from './directives/long-press.directive';
@@ -20,7 +21,7 @@ import {
   MdButtonModule, MdCheckboxModule, MdListModule, MdCardModule,
   MdToolbarModule, MdListItem, MdIconModule, MdMenuModule, MdTabsModule, MdDialogContainer, MdSelectModule,
   MdProgressSpinnerModule, MdSliderModule, MdRadioModule, MdDatepickerModule, MdNativeDateModule, DateAdapter,
-  MD_DATE_FORMATS, MdProgressBarModule, MdSidenavModule
+  MD_DATE_FORMATS, MdProgressBarModule, MdSidenavModule, MdExpansionModule, MdSlideToggleModule
 } from '@angular/material';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { AngularFireAuthModule, AngularFireAuth } from 'angularfire2/auth';
@@ -31,6 +32,7 @@ import * as firebase from 'firebase/app';
 import { ProfilePageComponent } from './profile-page/profile-page.component';
 import { ProgressPageComponent } from './progress-page/progress-page.component';
 import { ReportComponent } from './report/report.component';
+import { SignupComponent } from './signup/signup.component';
 
 
 // Initialize Firebase
@@ -62,7 +64,8 @@ const routes: Routes = [
   { path: 'food-detail/:id', component: FoodDetailComponent, data: { stateName: 'food-detail' } },
   { path: 'profile', component: ProfilePageComponent, data: { stateName: 'profile' } },
   { path: 'login', component: LoginPageComponent, data: { stateName: 'login' } },
-  { path: 'progress', component: ProgressPageComponent, data: { stateName: 'progress' } }
+  { path: 'progress', component: ProgressPageComponent, data: { stateName: 'progress' } },
+  { path: 'signup', component: SignupComponent, data: { stateName: 'signup' } }
 ];
 @NgModule({
   imports: [
@@ -73,9 +76,9 @@ const routes: Routes = [
     BrowserAnimationsModule,
     MdButtonModule, MdCheckboxModule, MdListModule, MdCardModule, MdSliderModule,
     MdToolbarModule, MdIconModule, MdMenuModule, MdTabsModule, MdRadioModule,
-    MdSelectModule, MdDialogModule, MdProgressSpinnerModule, MdDatepickerModule,
+    MdSelectModule, MdDialogModule, MdProgressSpinnerModule, MdDatepickerModule, MdInputModule,
     ReactiveFormsModule, FormsModule, MdNativeDateModule, ChartsModule, MdProgressBarModule,
-    MdSidenavModule,
+    MdSidenavModule, MdExpansionModule, MdSlideToggleModule,
     RouterModule.forRoot(routes)
   ],
   entryComponents: [
@@ -93,19 +96,15 @@ const routes: Routes = [
     DialogComponent,
     LongPressDirective,
     ProgressPageComponent,
-    ReportComponent
+    ReportComponent,
+    SignupComponent
   ],
   exports: [
-    AppComponent,
-    HomePageComponent,
-    FoodDetailComponent,
-    FoodListComponent,
-    DialogComponent,
     FormsModule,
     MdButtonModule, MdCheckboxModule, MdListModule, MdCardModule, MdMenuModule, MdSliderModule,
     MdToolbarModule, MdIconModule, MdTabsModule, MdDialogModule, MdSelectModule, MdRadioModule,
     MdProgressSpinnerModule, LongPressDirective, MdDatepickerModule, MdNativeDateModule, ChartsModule,
-    MdProgressBarModule, MdSidenavModule
+    MdInputModule, MdProgressBarModule, MdSidenavModule, MdExpansionModule, MdSlideToggleModule
   ],
   providers: [FireService, ActiveStateService, EventService,
     { provide: MD_DATE_FORMATS, useValue: MY_DATE_FORMATS }],

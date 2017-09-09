@@ -16,8 +16,9 @@ export class Macros {
 export class User {
   id: number;
   name: string;
+  photo: string;
   email: string;
-  birthday: Date;
+  birthday: string;
   height: number;
   weight: number;
   gender: number;
@@ -25,6 +26,7 @@ export class User {
   postalCode: string;
   units: Units;
   goals: Goals;
+  password: string;
 
 }
 

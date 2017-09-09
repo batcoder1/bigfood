@@ -26,17 +26,23 @@ export class FireService {
   loginWithGoogle() {
     return this.afAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
   }
+  loginWithMail(mail, password) {
+    return this.afAuth.auth.signInWithEmailAndPassword(mail, password);
 
+  }
   logout() {
     return this.afAuth.auth.signOut();
   }
 
   getUser() {
     const database = firebase.database();
+    this.fireUser = JSON.parse(localStorage.getItem('fireUser'));
     return this.database.ref('/users/' + this.fireUser.uid).once('value');
   }
   getUserData() {
     const database = firebase.database();
+    this.fireUser = JSON.parse(localStorage.getItem('fireUser'));
+
     return this.database.ref('/profiles/' + this.fireUser.uid).once('value');
   }
   setUserData(fireUser: firebase.User, user: User) {
@@ -49,27 +55,37 @@ export class FireService {
       units: user.units,
       weight: user.weight,
       height: user.height,
-      name: user.name
+      name: user.name,
+      gender: user.gender,
+      photo: fireUser.photoURL
 
     });
   }
   createUser(fireUser: firebase.User) {
+    this.fireUser = JSON.parse(localStorage.getItem('fireUser'));
     return new Promise((resolve, reject) => {
-      this.database.ref('users/' + fireUser.uid).set({
-        email: fireUser.email,
-        profile_picture: fireUser.photoURL
-      });
+        this.database.ref('users/' + fireUser.uid).set({
+          email: fireUser.email,
+          profile_picture: fireUser.photoURL
+        });
       resolve(0);
     });
   }
-
+ createUserByMail(email: string, password: string) {
+  return firebase.auth().createUserWithEmailAndPassword(email, password);
+ }
   getFoods() {
     return this.database.ref('/foods').once('value');
   }
-
+  sendEmailVerification() {
+    return firebase.auth().currentUser.sendEmailVerification();
+  }
   getUserDietDays() {
     this.fireUser = JSON.parse(localStorage.getItem('fireUser'));
     return this.database.ref('/dietDays/' + this.fireUser.uid).once('value');
+  }
+  currentUser() {
+    return firebase.auth().currentUser;
   }
   setUserDietDays(userId, dietDays: DietDays[]) {
     this.database.ref('dietDays/' + userId).set({

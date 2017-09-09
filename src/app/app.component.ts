@@ -54,6 +54,7 @@ export class AppComponent implements DoCheck, OnInit {
 
   doLogout() {
     console.log('logout');
+    localStorage.clear();
     this.fireService.logout();
   }
   onFoodList(onfoodList: boolean) {

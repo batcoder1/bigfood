@@ -16,7 +16,8 @@
     "target": "es5",
     "types": [
       "firebase",
-      "jasmine"
+      "jasmine",
+      "hammerjs"
     ],
     "typeRoots": [
       "../node_modules/@types"
