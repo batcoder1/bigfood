@@ -129,3 +129,7 @@ span.buttonText {
  .md-input-prefix{
    background-color: white!important;
  }
+ .logo {
+   color: #B6003D;
+   background-color: primary;
+ }

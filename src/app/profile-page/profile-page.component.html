@@ -17,10 +17,10 @@
       </section>
     </md-list-item>
     <md-list-item (click)="openDialog('Sexo', user, 'gender')">
-        <span class="md-font" md-line> Peso  </span>
+        <span class="md-font" md-line> Sexo  </span>
         <section layout-align="end" layout-wrap>
-          <span *ngIf="user.gender == 0" class="md-font">Hombre</span>
-          <span *ngIf="user.gender == 1" class="md-font">Mujer</span>
+          <span *ngIf="user.gender == 0" class="md-font"><img src="/assets/hombre.png" width="25"/></span>
+          <span *ngIf="user.gender == 1" class="md-font"><img src="/assets/mujer.png" width="25"/></span>
         </section>
     </md-list-item>    
     <md-list-item (click)="openDialog('Altura', user, 'height')">

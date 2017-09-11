@@ -87,10 +87,16 @@ export class FireService {
   currentUser() {
     return firebase.auth().currentUser;
   }
-  setUserDietDays(userId, dietDays: DietDays[]) {
-    this.database.ref('dietDays/' + userId).set({
-      dietDays: dietDays
-    });
+  setUserDietDay(userId, dietDay, id) {
+    this.database.ref('dietDays/' + userId + '/' + id).set(dietDay);
+  }
+  setUserDietMonth(userId, dietDays: DietDays[]) {
+    const dietRef = firebase.database().ref('dietDays/' + userId);
+
+    dietRef.set(dietDays);
+
+
+
   }
 
   getFoodById(id): Promise<Food> {

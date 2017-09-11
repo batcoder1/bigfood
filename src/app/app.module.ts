@@ -1,3 +1,4 @@
+import { DailyPageComponent } from './daily-page/daily-page.component';
 import { MdInputModule } from '@angular2-material/input';
 
 import { ChartsModule } from 'ng2-charts';
@@ -60,6 +61,7 @@ const MY_DATE_FORMATS = {
 
 const routes: Routes = [
   { path: '', component: HomePageComponent, data: { stateName: 'home' } },
+  { path: 'daily', component: DailyPageComponent, data: { stateName: 'daily' } },
   { path: 'food-list', component: FoodListComponent, data: { stateName: 'food-list' } },
   { path: 'food-detail/:id', component: FoodDetailComponent, data: { stateName: 'food-detail' } },
   { path: 'profile', component: ProfilePageComponent, data: { stateName: 'profile' } },
@@ -87,6 +89,7 @@ const routes: Routes = [
   declarations: [
     AppComponent,
     HomePageComponent,
+    DailyPageComponent,
     FoodDetailComponent,
     FoodListComponent,
     LoginPageComponent,

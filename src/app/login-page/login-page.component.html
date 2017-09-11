@@ -1,7 +1,7 @@
 <md-card class="loginmodal-container">
 
   <md-card-title class="login-title">
-    <img class="logo" src="/assets/icon.png" width="48" />
+    <img class="logo" src="/assets/icon.png" width="70" />
   </md-card-title>
   <md-card-title class="login-title">
     LOGIN
@@ -17,7 +17,7 @@
         </md-panel-title>
       </md-expansion-panel-header>
       <md-form-field>
-        <md-input id="mail" [value]="email" placeholder="mail"></md-input>
+        <md-input id="mail" [(ngModel)]="mail" placeholder="mail"></md-input>
       </md-form-field>
       <md-form-field>
         <md-button class="recovery" (click)="recoveryPass(mail)">Recovery</md-button>

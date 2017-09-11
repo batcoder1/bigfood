@@ -49,43 +49,46 @@ export class ProgressPageComponent implements OnInit {
     this.days = JSON.parse(localStorage.getItem('days'));
     this.lineChartData[this.valueData].data = [];
     this.lineChartLabels = [];
-    this.days.forEach((day, index) => {
-      const today = new Date();
-      let inicioPeriodo;
-      if (this.periodo.type === 'semana') {
-        inicioPeriodo = new Date(today.getTime() - (milisegAtDay * 7));
+    if (this.days && this.days.length > 0) {
 
-      } else if (this.periodo.type === 'mes') {
-        if (this.periodo.value === 1) {
-          // 1mes
-          inicioPeriodo = new Date(today.getTime() - (milisegAtDay * 30));
+      this.days.forEach((day, index) => {
+        const today = new Date();
+        let inicioPeriodo;
+        if (this.periodo.type === 'semana') {
+          inicioPeriodo = new Date(today.getTime() - (milisegAtDay * 7));
 
-        } else if (this.periodo.value === 2) {
-          // 3meses
-          inicioPeriodo = new Date(today.getTime() - (milisegAtDay * 30 * 3));
-        } else {
-          // 6meses
-          inicioPeriodo = new Date(today.getTime() - (milisegAtDay * 30 * 6));
+        } else if (this.periodo.type === 'mes') {
+          if (this.periodo.value === 1) {
+            // 1mes
+            inicioPeriodo = new Date(today.getTime() - (milisegAtDay * 30));
+
+          } else if (this.periodo.value === 2) {
+            // 3meses
+            inicioPeriodo = new Date(today.getTime() - (milisegAtDay * 30 * 3));
+          } else {
+            // 6meses
+            inicioPeriodo = new Date(today.getTime() - (milisegAtDay * 30 * 6));
+          }
+        } else if (this.periodo.type === 'anno') {
+          if (this.periodo.value === 4) {
+            // 1anno
+            inicioPeriodo = new Date(today.getTime() - (milisegAtDay * 30 * 12));
+
+          } else {
+            // 3annos
+            inicioPeriodo = new Date(today.getTime() - (milisegAtDay * 30 * 12 * 3));
+          }
         }
-      } else if (this.periodo.type === 'anno') {
-        if (this.periodo.value === 4) {
-          // 1anno
-          inicioPeriodo = new Date(today.getTime() - (milisegAtDay * 30 * 12));
+        const date = new Date(day.date);
+        if (inicioPeriodo <= date && date <= today) {
+          this.lineChartData[this.valueData].data = [...this.lineChartData[this.valueData].data, day[this.typeData[this.data.value]]];
+          this.lineChartData[this.valueData].label = this.data.type;
+          const mes = new Date(day.date).getMonth() + 1;
+          this.lineChartLabels = [...this.lineChartLabels, date.getDate() + '/' + mes];
 
-        } else {
-          // 3annos
-          inicioPeriodo = new Date(today.getTime() - (milisegAtDay * 30 * 12 * 3));
         }
-      }
-      const date = new Date(day.date);
-      if (inicioPeriodo <= date && date <= today ) {
-        this.lineChartData[this.valueData].data = [...this.lineChartData[this.valueData].data, day[this.typeData[this.data.value]]];
-        this.lineChartData[this.valueData].label = this.data.type;
-        const mes = new Date(day.date).getMonth() + 1;
-        this.lineChartLabels = [...this.lineChartLabels, date.getDate() + '/' + mes];
-
-      }
-    });
+      });
+    }
   }
 
   updateData(type, value) {

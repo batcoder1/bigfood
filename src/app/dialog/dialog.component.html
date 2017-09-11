@@ -4,9 +4,10 @@
 </md-dialog-title>
 <md-dialog-content>
   <md-input-container>
-    <md-form-field>
-     <input *ngIf="food !== undefined" mdInput [(ngModel)]="food.amount" placeholder="cantidad">
-    </md-form-field>
+     
+     <md-input *ngIf="food !== undefined" type="number" [(ngModel)]="food.amount" placeholder="cantidad"></md-input>
+     
+ 
     <input *ngIf="user !== undefined && userData.nomvar == 'birthday'" type="date" mdInput [(ngModel)]="user.birthday" [placeholder]="user.birthday">
     <input *ngIf="user !== undefined && userData.nomvar == 'name'" mdInput [(ngModel)]="user.name" [placeholder]="user.name">
     <input *ngIf="user !== undefined && userData.nomvar == 'height'" type="number" mdInput [(ngModel)]="user.height" [placeholder]="user.height">

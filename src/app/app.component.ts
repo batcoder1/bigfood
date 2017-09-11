@@ -24,6 +24,7 @@ export class AppComponent implements DoCheck, OnInit {
   state: ActiveStateService;
   subscribe: any;
   version: string;
+  stateControl: boolean;
 
   constructor(private fireService: FireService,
     private router: Router,
@@ -49,7 +50,7 @@ export class AppComponent implements DoCheck, OnInit {
     if (user !== null && fireUser !== null) {
       this.fireService.setUserData(fireUser, user);
     }
-    this.router.navigate(['']);
+    this.router.navigate(['daily']);
   }
 
   doLogout() {
@@ -82,6 +83,7 @@ export class AppComponent implements DoCheck, OnInit {
     this.eventListener();
   }
   ngDoCheck() {
+    this.stateControl = this.state.is('home');
     this.eventListener();
   }
 

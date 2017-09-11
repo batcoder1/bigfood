@@ -14,6 +14,8 @@ export class LoginPageComponent   {
    isLoggedIn: boolean;
    fireUser: firebase.User;
    user = { mail: ' ', password: ' '};
+  mail = '';
+  password = '';
 
 
    error= {code: '', message: ''} ;
@@ -39,5 +41,8 @@ export class LoginPageComponent   {
   }
   goToSignUp() {
     this.router.navigate(['signup']);
+  }
+  recoveryPass(mai) {
+    console.log('TODO');
   }
 }
