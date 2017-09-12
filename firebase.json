@@ -15,10 +15,11 @@
         "destination" : "https://www.firebase.com",
         "type" : 302
       } ],
-      "rewrites": [ {
-        "source": "/app/**",
-        "destination": "/app/index.html"
-      } ],
+      "rewrites": [ 
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }],
       "headers": [ {
         "source" : "**/*.@(eot|otf|ttf|ttc|woff|font.css)",
         "headers" : [ {
