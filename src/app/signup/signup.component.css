@@ -6,7 +6,7 @@
 }
 
 .loginmodal-container {
-  padding: 10px;
+   
   font-size: 14px!important;
   background-color: #F7F7F7;
   border-radius: 2px;
@@ -14,6 +14,22 @@
   overflow: hidden;
   font-family: roboto;
 }
+.mat-card {
+  padding: 40px 30px!important;
+  margin: 10px 0px;
+}
 .mat-card-actions, .mat-card-content, .mat-card-subtitle, .mat-card-title{
     text-align: center;
   }
+
+  .signup{
+    flex-basis: auto;
+    padding: 1em 1em 1em 1em;
+    color: white;
+    box-shadow: 1px 1px 1px grey;
+    margin-top: 1em;
+  }
+
+  .slide {
+    margin-top: 1em;
+}
