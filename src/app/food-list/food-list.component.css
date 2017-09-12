@@ -21,10 +21,7 @@
 }
 
 .list-item:hover button {
-  float: right;
   margin: 7px 5px;
-  width: 30px;
-  height: 30px;
   display: inline;
 }
 
