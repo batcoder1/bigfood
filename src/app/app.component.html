@@ -1,14 +1,14 @@
-<md-toolbar color="primary" *ngIf="!stateControl">
+<md-toolbar class="primary" *ngIf="!stateControl">
 
 
   <md-toolbar-column *ngIf="isLoggedIn">
     <!-- <button md-icon-button md-button (click)="sidenav.toggle()"> -->
     <button md-icon-button md-button [mdMenuTriggerFor]="appMenu">
-      <img src="/assets/icon-white.png" style="width: 2.5em;"/>
+     <md-icon>reorder</md-icon>
     </button>
 
   </md-toolbar-column>
-
+  <h2>BigFood</h2>
   <md-toolbar-column class="flex-reverse">
     <span class="version">{{version}}</span>
     <button *ngIf="activaCancelBotton" class="element-flex" md-icon-button md-button (click)=goBack()>
@@ -48,7 +48,7 @@
 
   
       <md-sidenav #sidenav mode="side" class="sidenav">
-          <md-toolbar color="primary">BigFood</md-toolbar>
+          <md-toolbar class="primary">BigFood</md-toolbar>
         <md-nav-list>
           <a md-list-item routerLink="/">
             <md-icon>home</md-icon>Home</a>

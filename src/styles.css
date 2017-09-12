@@ -1,4 +1,28 @@
 @import '~@angular/material/prebuilt-themes/indigo-pink.css';
+/* fallback */
+@font-face {
+  font-family: 'Material Icons';
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://fonts.gstatic.com/s/materialicons/v29/2fcrYFNaTjcS6g4U3t-Y5UEw0lE80llgEseQY3FEmqw.woff2) format('woff2');
+}
+
+.material-icons {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-feature-settings: 'liga';
+  -webkit-font-smoothing: antialiased;
+}
+
 html {
   font-family: Roboto, "Helvetica Neue", sans-serif;
   font-size: 12px!important;
@@ -10,7 +34,10 @@ body{
 .fill-remaining-space {
   flex: 1 1 auto;
 }
-
+.primary {
+  background-color: #022E63;
+  color: white;
+}
 md-grid-tile {
   width: 25%;
 }
