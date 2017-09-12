@@ -1,14 +1,11 @@
 <md-card class="loginmodal-container">
 
-  <md-card-title class="login-title">
-    <img class="logo" src="/assets/icon.png" width="70" />
-  </md-card-title>
-  <md-card-title class="login-title">
-    LOGIN
-  </md-card-title>
+    <md-card-title class="login-title">
+        Login
+      </md-card-title>
 
   <md-card-content class="login-container">
-    <md-input [(ngModel)]="mail" placeholder="email" type="email"></md-input>
+    <md-input [(ngModel)]="mail" placeholder="email" type="email" ></md-input>
     <md-input [(ngModel)]="password" placeholder="password" type="password"></md-input>
     <md-expansion-panel class="expansion">
       <md-expansion-panel-header>
@@ -20,13 +17,13 @@
         <md-input id="mail" [(ngModel)]="mail" placeholder="mail"></md-input>
       </md-form-field>
       <md-form-field>
-        <md-button class="recovery" (click)="recoveryPass(mail)">Recovery</md-button>
+        <md-button class="recovery primary" (click)="recoveryPass(mail)">Recovery</md-button>
       </md-form-field>
     </md-expansion-panel>
    
    <span><small>{{error.message}}</small></span>
    
-    <md-button class="login" (click)="loginWithMail(mail, password)">Log In</md-button>
+    <md-button class="login primary" (click)="loginWithMail(mail, password)">Log In</md-button>
 
     <span class="connect">OR CONNECT WITH</span>
 
