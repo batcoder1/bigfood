@@ -1,31 +1,28 @@
-<md-card-title class="icon-title">
-  <img class="logo" src="/assets/icon.png" width="120" />
-</md-card-title>
+
+<md-card class="top-card">
+  <md-icon class="logout" (click)="doLogout()">exit_to_app</md-icon>
+  <h1 class="icon-title">BigFood</h1>
+
+</md-card>
+
 <md-card class="card-home">
 
-
-  <md-card class="card-menu" routerLink="daily">
-    <md-card-title class="login-title">Diario</md-card-title>
-    <md-card-content>
-      <md-icon class="menu-icon">today</md-icon>
+    <md-card-content class="card-menu">
+        <md-icon class="menu-icon" id="daily" routerLink="daily" mdTooltip="Diario"></md-icon>
     </md-card-content>
-  </md-card>
-  <md-card class="card-menu" routerLink="profile">
-    <md-card-title class="login-title">Profile</md-card-title>
-    <md-card-content>
-      <md-icon class="menu-icon">account_box</md-icon>
+    <md-card-content class="card-menu" >
+        <md-icon class="menu-icon" id="profile" routerLink="profile" mdTooltip="Perfil"></md-icon>
     </md-card-content>
-  </md-card>
-  <md-card class="card-menu" routerLink="food-list">
-    <md-card-title class="login-title">Alimentos</md-card-title>
-    <md-card-content>
-      <md-icon class="menu-icon">schedule</md-icon>
+    <md-card-content class="card-menu" >
+        <md-icon class="menu-icon" id="foods" routerLink="food-list" mdTooltip="Alimentos"></md-icon>
     </md-card-content>
-  </md-card>
-  <md-card class="card-menu" routerLink="progress">
-    <md-card-title class="login-title">Progreso</md-card-title>
-    <md-card-content>
-        <md-icon class="menu-icon">insert_chart</md-icon>
+    <md-card-content class="card-menu" >
+        <md-icon class="menu-icon" id="progress" routerLink="progress" mdTooltip="Progreso"></md-icon>
     </md-card-content>
-  </md-card>
+    <md-card-content class="card-menu" >
+        <md-icon class="menu-icon" id="exercise" routerLink="exercise" mdTooltip="Ejercicio"></md-icon>
+    </md-card-content>
+    <md-card-content class="card-menu" >
+        <md-icon class="menu-icon" id="water" routerLink="water" mdTooltip="Agua"></md-icon>
+    </md-card-content>
 </md-card>

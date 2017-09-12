@@ -1,3 +1,4 @@
+import { FireService } from '../providers/fire.service';
 import { Component  } from '@angular/core';
 
 @Component({
@@ -6,5 +7,12 @@ import { Component  } from '@angular/core';
   styleUrls: ['./home-page.component.css']
 })
 export class HomePageComponent  {
-
+  constructor(private fireService: FireService) {
   }
+
+  doLogout() {
+    localStorage.clear();
+    this.fireService.logout();
+  }
+}
+

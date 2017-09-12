@@ -1,37 +1,82 @@
-.card-home{
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: space-around;
-  background-color: #FFFFFF;
-  
+@media (max-width: 600px){
+.mat-card {
+    padding: 15px;
 }
-.card-menu{
-   
-   flex-basis: 35%;
-   text-align: center;
-   margin: 0.5em;
-   background-color: #1166C7;
+}
+.top-card{
+  background-color: #022E63;
+  color: white;
+}
+.card-home {
+  display: flex;
+  flex-wrap: wrap;
 }
 
-.menu-icon{
-  color: #FFFFFF;
-  align-self: center;
-  width: 90%;
-  height: 90%;
-  font-size: 90px;
-  
+.card-menu {
+  flex: calc(100% / 2);
+  min-height: 180px;
+  text-align: center;
 }
+#daily {
+    width: 180px;
+    height: 180px;
+    background: url("/assets/activity-icons-md.png") -5px -195px;
+}
+
+#foods {
+    width: 180px;
+    height: 180px;
+    background: url("/assets/activity-icons-md.png") -5px 0px;
+}
+
+#progress {
+    width: 180px;
+    height: 180px;
+    background: url("/assets/activity-icons-md.png") -210px 0px;
+}
+#profile {
+    width: 180px;
+    height: 180px;
+    background: url("/assets/activity-icons-md.png") -5px -390px;
+}
+#exercise {
+    width: 180px;
+    height: 180px;
+    background: url("/assets/activity-icons-md.png") -410px -390px;
+}
+#water {
+  width: 180px;
+  height: 180px;
+  background: url("/assets/activity-icons-md.png") -210px -195px;
+}
+
+
+
+.menu-icon {
+  align-self: center;
+  width: 20%;
+  font-size: 50px;
+}
+
 .login-title {
   text-align: center;
-  color: #FFFFFF;
+  color: #021F3F;
 }
+
 .icon-title {
   text-align: center;
-  color: #FFFFFF;
+  color: white;
   margin: 0.5em;
 }
- 
 
+.logout {
+  position: absolute;
+  right: 0.2em;
+  top: 0.2em;
+  font-size: 32px;
+}
 
- 
-  
+.logout:hover,
+.menu-icon:hover {
+  cursor: pointer;
+}
