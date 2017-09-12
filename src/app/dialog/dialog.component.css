@@ -4,6 +4,12 @@
 .right{
     text-align: right
 }
-.my-dialog-container{
-   height: 
-}
+.button{
+    flex-basis: auto;
+    padding: 1em 1em 1em 1em;
+    color: white;
+    box-shadow: 1px 1px 1px grey;
+    margin: 4px;
+    background-color: #022E63;
+    
+  }
