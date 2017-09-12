@@ -54,6 +54,7 @@ export class DailyPageComponent implements AfterViewChecked, OnInit {
   dateDay: Date;
   stepsToday: number;
   currentUser: any;
+  updated: boolean;
   constructor(fireService: FireService,
     private eventService: EventService,
     private router: Router,
@@ -66,7 +67,7 @@ export class DailyPageComponent implements AfterViewChecked, OnInit {
     this.fireUser = JSON.parse(localStorage.getItem('fireUser'));
     this.goals = { initialWeight: 70, currentWeight: 70, desireWeight: 70, weeklyGoal: 0, activityLevel: 1, stepsAtDay: 10000 };
     this.units = { weight: 'kg', height: 'cm', distance: 'km', Energy: 'kcal', water: 'l' };
-
+    this.updated = false;
     this.calendar = this.getDaysInMonth(new Date().getMonth());
     this.totalCalories = 0;
     this.goalDay = 0;
@@ -282,10 +283,11 @@ export class DailyPageComponent implements AfterViewChecked, OnInit {
 
         this.rest = myDay.goalDay - myDay.totalCalories + myDay.exercise;
         const hoy = new Date();
-        if (hoy.getDate() === myDay.date.getDate() &&
+        if (!this.updated && hoy.getDate() === myDay.date.getDate() &&
             hoy.getFullYear() === myDay.date.getFullYear() &&
             hoy.getMonth() === myDay.date.getMonth()) {
           this.updateDay(myDay, this.indexDays);
+          this.updated = true;
         }
       }
 
