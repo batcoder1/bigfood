@@ -10,13 +10,14 @@
     "pree2e": "webdriver-manager update --standalone false --gecko false --quiet",
     "e2e": "protractor",
     "sw": "sw-precache --root=dist --verbose --config=src/sw-precache-config.js",
-    "static-serve": "cd dist && live-server --port=4200 --host=localhost --entry-file=/index.html",
+    "static-serve": "cd dist && live-server --port=3000 --host=localhost --entry-file=/index.html",
     "build": "rimraf dist && NODE_ENV=production webpack && workbox-cli generate:sw",
-    "buildprod": "ng build --prod --aot && npm run sw"
+    "buildprod": "ng build --prod --aot --sourcemap=false &&  npm run sw"
   },
   "private": true,
   "dependencies": {
     "@angular/animations": "^4.3.3",
+    "@angular/app-shell": "^0.1.0",
     "@angular/cdk": "^2.0.0-beta.8",
     "@angular/common": "^4.3.3",
     "@angular/compiler": "^4.3.3",
@@ -27,6 +28,7 @@
     "@angular/platform-browser": "^4.3.3",
     "@angular/platform-browser-dynamic": "^4.3.3",
     "@angular/router": "^4.3.3",
+    "@angular/service-worker": "^1.0.0-beta.16",
     "@angular2-material/button": "^2.0.0-alpha.8-3",
     "@angular2-material/card": "^2.0.0-alpha.8-3",
     "@angular2-material/checkbox": "^2.0.0-alpha.8-3",
@@ -35,6 +37,7 @@
     "@angular2-material/input": "^2.0.0-alpha.8-3",
     "@angular2-material/list": "^2.0.0-alpha.8-3",
     "@angular2-material/toolbar": "^2.0.0-alpha.8-3",
+    "angular2-busy": "^2.0.4",
     "angularfire2": "^4.0.0-rc.1",
     "chart.js": "^2.6.0",
     "core-js": "^2.4.1",

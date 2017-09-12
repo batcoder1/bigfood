@@ -5,16 +5,14 @@
     <meta charset="utf-8">
     <title>BigFood</title>
     <base href="/">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
-   
+    <meta name="theme-color" content="#3f51b5">
     <link rel="manifest" href="/manifest.json">
-    
   </head>
 
   <body class="big-screen">
-    <app-root> </app-root>
+    <app-root> <md-spinner *shellRender></md-spinner></app-root>
     <noscript>
         <!-- anchor linking to external file -->
         <h2> Esta página tiene contenido javascript, habilitalo o descarga 
@@ -25,16 +23,13 @@
     <h3 clas="footer">BigFood</h3>
   </footer>
   
-  
-     <!-- <script>
-      if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('service-worker.js').then(function(registration) {
-          // Registration was successful
-          console.log('ServiceWorker registration successful with scope: ', registration.scope);
-        }).catch(function(err) {
-          // registration failed :(
-          console.log('ServiceWorker registration failed: ', err);
-        });
-      }
-    </script>   -->
+  <script async>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/service-worker.js').then(function(registration) {
+        console.log('Service Worker registered');
+      }).catch(function(err) {
+        console.log('Service Worker registration failed: ', err);
+      });
+    }
+  </script>
 </html>

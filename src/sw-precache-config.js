@@ -12,13 +12,13 @@ module.exports = {
   runtimeCaching: [{
     origin: /fonts\.gstatic\.com/,
       urlPattern: /(.*)$/,
-      handler: 'networkFirst',
+      handler: 'fastest',
    
     },
     {
     
       urlPattern: /^(https\:)(\/\/)([^\:\/]*)(\:\d{1,5})?(\/)([^\/\?\&\#\:]*)?\/?([^\/\?\&\#\:]*)?\/?([^\/\?\&\#\:]*)?\/?([^\/\?\&\#\:]*)?\/?([^\/\?\&\#\:]*)?\/?([^\/\?\&\#\:]*)?\/?([^\/\?\&\#\:]*)?\/?([^\/\?\&\#\:]*)?\/?(.*)$/,
-      handler: 'networkFirst',
+      handler: 'fastest',
    
     }
     
