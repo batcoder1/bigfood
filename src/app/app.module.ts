@@ -22,7 +22,7 @@ import {
   MdButtonModule, MdCheckboxModule, MdListModule, MdCardModule,
   MdToolbarModule, MdListItem, MdIconModule, MdMenuModule, MdTabsModule, MdDialogContainer, MdSelectModule,
   MdProgressSpinnerModule, MdSliderModule, MdRadioModule, MdDatepickerModule, MdNativeDateModule, DateAdapter,
-  MD_DATE_FORMATS, MdProgressBarModule, MdSidenavModule, MdExpansionModule, MdSlideToggleModule
+  MD_DATE_FORMATS, MdProgressBarModule, MdSidenavModule, MdExpansionModule, MdSlideToggleModule, MdTooltipModule
 } from '@angular/material';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { AngularFireAuthModule, AngularFireAuth } from 'angularfire2/auth';
@@ -34,6 +34,7 @@ import { ProfilePageComponent } from './profile-page/profile-page.component';
 import { ProgressPageComponent } from './progress-page/progress-page.component';
 import { ReportComponent } from './report/report.component';
 import { SignupComponent } from './signup/signup.component';
+import { ExercisePageComponent } from './exercise-page/exercise-page.component';
 
 
 // Initialize Firebase
@@ -67,6 +68,7 @@ const routes: Routes = [
   { path: 'profile', component: ProfilePageComponent, data: { stateName: 'profile' } },
   { path: 'login', component: LoginPageComponent, data: { stateName: 'login' } },
   { path: 'progress', component: ProgressPageComponent, data: { stateName: 'progress' } },
+  { path: 'exercise', component: ExercisePageComponent, data: { stateName: 'exercise' } },
   { path: 'signup', component: SignupComponent, data: { stateName: 'signup' } }
 ];
 @NgModule({
@@ -80,7 +82,7 @@ const routes: Routes = [
     MdToolbarModule, MdIconModule, MdMenuModule, MdTabsModule, MdRadioModule,
     MdSelectModule, MdDialogModule, MdProgressSpinnerModule, MdDatepickerModule, MdInputModule,
     ReactiveFormsModule, FormsModule, MdNativeDateModule, ChartsModule, MdProgressBarModule,
-    MdSidenavModule, MdExpansionModule, MdSlideToggleModule,
+    MdSidenavModule, MdExpansionModule, MdSlideToggleModule, MdTooltipModule,
     RouterModule.forRoot(routes)
   ],
   entryComponents: [
@@ -100,14 +102,15 @@ const routes: Routes = [
     LongPressDirective,
     ProgressPageComponent,
     ReportComponent,
-    SignupComponent
+    SignupComponent,
+    ExercisePageComponent
   ],
   exports: [
     FormsModule,
     MdButtonModule, MdCheckboxModule, MdListModule, MdCardModule, MdMenuModule, MdSliderModule,
     MdToolbarModule, MdIconModule, MdTabsModule, MdDialogModule, MdSelectModule, MdRadioModule,
     MdProgressSpinnerModule, LongPressDirective, MdDatepickerModule, MdNativeDateModule, ChartsModule,
-    MdInputModule, MdProgressBarModule, MdSidenavModule, MdExpansionModule, MdSlideToggleModule
+    MdInputModule, MdProgressBarModule, MdSidenavModule, MdExpansionModule, MdSlideToggleModule, MdTooltipModule
   ],
   providers: [FireService, ActiveStateService, EventService,
     { provide: MD_DATE_FORMATS, useValue: MY_DATE_FORMATS }],
