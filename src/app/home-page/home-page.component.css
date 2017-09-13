@@ -10,52 +10,52 @@
 .card-home {
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-around;
+  
 }
 
-.card-menu {
-  flex: calc(100% / 2);
-  min-height: 180px;
-  text-align: center;
-}
+ 
 #daily {
-    width: 180px;
-    height: 180px;
-    background: url("/assets/activity-icons-md.png") -5px -195px;
+    width: 177px;
+    height: 177px;
+    background: url("/assets/activity-icons-md.png") -5px -194px;
 }
 
 #foods {
-    width: 180px;
-    height: 180px;
-    background: url("/assets/activity-icons-md.png") -5px 0px;
+    width: 177px;
+    height: 177px;
+    background: url("/assets/activity-icons-md.png") -5px 1px;
 }
 
 #progress {
-    width: 180px;
-    height: 180px;
-    background: url("/assets/activity-icons-md.png") -210px 0px;
+    width: 177px;
+    height: 177px;
+    background: url("/assets/activity-icons-md.png") -209px 0px;
 }
 #profile {
-    width: 180px;
-    height: 180px;
-    background: url("/assets/activity-icons-md.png") -5px -390px;
+    width: 177px;
+    height: 177px;
+    background: url("/assets/activity-icons-md.png") -5px -389px;
 }
 #exercise {
-    width: 180px;
-    height: 180px;
-    background: url("/assets/activity-icons-md.png") -410px -390px;
+    width: 177px;
+    height: 177px;
+    background: url("/assets/activity-icons-md.png") -411px -389px;
 }
 #water {
-  width: 180px;
-  height: 180px;
-  background: url("/assets/activity-icons-md.png") -210px -195px;
+  width: 177px;
+  height: 177px;
+  background: url("/assets/activity-icons-md.png") -210px -194px;
 }
 
 
 
 .menu-icon {
-  align-self: center;
-  width: 20%;
-  font-size: 50px;
+  align-items: center;
+  margin-bottom: 5px;
+  margin-left: 5px;
+  border-radius: 25px;
+  box-shadow: 4px 4px 4px #B6B5B5;
 }
 
 .login-title {
