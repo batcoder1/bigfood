@@ -1,6 +1,6 @@
 @media (max-width: 600px){
 .mat-card {
-    padding: 15px;
+    padding: 10px;
 }
 }
 .top-card{
@@ -52,8 +52,7 @@
 
 .menu-icon {
   align-items: center;
-  margin-bottom: 5px;
-  margin-left: 5px;
+  margin:auto;
   border-radius: 25px;
   box-shadow: 4px 4px 4px #B6B5B5;
 }
