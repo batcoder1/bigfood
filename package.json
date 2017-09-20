@@ -48,7 +48,7 @@
     "mydatepicker": "^2.0.27",
     "ng2-charts": "^1.6.0",
     "promise-polyfill": "6.0.2",
-    "rxjs": "^5.0.1",
+    "rxjs": "^5.0.1", 
     "sw-precache": "^5.2.0",
     "ts-helpers": "^1.1.1",
     "zone.js": "^0.8.4"
@@ -68,7 +68,6 @@
     "karma-jasmine": "^1.0.2",
     "karma-remap-istanbul": "^0.2.1",
     "protractor": "~4.0.13",
-    "sw-precache": "^5.2.0",
     "ts-node": "1.2.1",
     "tslint": "^4.3.3",
     "typescript": "~2.2"
