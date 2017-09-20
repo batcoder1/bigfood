@@ -7,8 +7,8 @@
         "**/node_modules/**"
       ],
       "redirects": [ {
-        "source" : "/foo",
-        "destination" : "/bar",
+        "source" : "/__/auth/iframe",
+        "destination" : "/index.html",
         "type" : 301
       }, {
         "source" : "/firebase/*",
