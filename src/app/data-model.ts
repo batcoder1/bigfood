@@ -48,7 +48,7 @@ export class Goals {
 
 export class DietDays {
 
-  date: Date = new Date();
+  date: string;
   goalDay: number;
   totalCalories: number;
   exercise: number;
