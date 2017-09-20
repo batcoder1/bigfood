@@ -83,7 +83,7 @@ export class DailyPageComponent implements AfterViewChecked, OnInit {
       { name: 'Cena', foods: [] }
     ];
 
-    this.day = { date: new Date(), meals: this.meals, goalDay: 0, totalCalories: 0, exercise: 0, weight: 0, steps: 0 };
+    this.day = { date: '', meals: this.meals, goalDay: 0, totalCalories: 0, exercise: 0, weight: 0, steps: 0 };
     this.days = [];
     this.actualizarDiario();
 
@@ -188,7 +188,7 @@ export class DailyPageComponent implements AfterViewChecked, OnInit {
     let d: string;
     let m: string;
     if (dd < 10) {
-      d = '0' + dd.toString;
+      d = '0' + dd.toString();
     } else { d = dd.toString(); }
     if (mm < 10) {
       m = '0' + mm;
@@ -283,9 +283,9 @@ export class DailyPageComponent implements AfterViewChecked, OnInit {
 
         this.rest = myDay.goalDay - myDay.totalCalories + myDay.exercise;
         const hoy = new Date();
-        if (!this.updated && hoy.getDate() === myDay.date.getDate() &&
-            hoy.getFullYear() === myDay.date.getFullYear() &&
-            hoy.getMonth() === myDay.date.getMonth()) {
+        if (!this.updated && hoy.getDate().toString() === myDay.date.substring(6, 2) &&
+            hoy.getFullYear().toString() === myDay.date.substring(0, 4) &&
+            hoy.getMonth().toString() === myDay.date.substring(3, 2)) {
           this.updateDay(myDay, this.indexDays);
           this.updated = true;
         }
@@ -300,31 +300,33 @@ export class DailyPageComponent implements AfterViewChecked, OnInit {
         let myDays: DietDays[] = [];
         let indexCalendar = 0;
         myDays = snapshot.val();
-        myDays.forEach(day => {
-          day.date = this.calendar[indexCalendar];
-          day.meals.forEach(meal => {
-            const myfoods: Food[] = [];
-            let myfood: Food;
-            if (meal.foods && meal.foods.length > 0) {
-              meal.foods.forEach(food => {
-                this.fireService.getFoodById(food.id).then(f => {
-                  myfood = f;
-                  myfood.amount = food.amount;
-                  myfoods.push(myfood);
-                  meal.foods.slice(0, 1);
-                });
-              });
-              meal.foods = myfoods;
-            }
-          });
-          indexCalendar++;
-        });
-        this.days = myDays;
-        localStorage.setItem('days', JSON.stringify(this.days));
 
+        if (myDays && myDays.length > 0){
+          myDays.forEach(day => {
+            day.date = this.getDateFormat(this.calendar[indexCalendar]);
+            day.meals.forEach(meal => {
+              const myfoods: Food[] = [];
+              let myfood: Food;
+              if (meal.foods && meal.foods.length > 0) {
+                meal.foods.forEach(food => {
+                  this.fireService.getFoodById(food.id).then(f => {
+                    myfood = f;
+                    myfood.amount = food.amount;
+                    myfoods.push(myfood);
+                    meal.foods.slice(0, 1);
+                  });
+                });
+                meal.foods = myfoods;
+              }
+            });
+            indexCalendar++;
+          });
+          this.days = myDays;
+          localStorage.setItem('days', JSON.stringify(this.days));
+        }
         const hoy = new Date();
         if (this.days && this.days.length > 0) {
-          this.diarioDiaActual(hoy);
+          this.getCurrentDay(hoy);
         } else {
           this.crearMes(hoy);
         }
@@ -338,7 +340,8 @@ export class DailyPageComponent implements AfterViewChecked, OnInit {
       // creamos todo el mes vacio
       localStorage.setItem('daysCreated', 'true');
       for (let i = 0; i < this.calendar.length; i++) {
-        const newDay = { date: this.calendar[i], meals: this.meals, goalDay: 0, totalCalories: 0, exercise: 0, weight: 0, steps: 0 };
+        const myDate = this.getDateFormat(this.calendar[i]);
+        const newDay = { date: myDate , meals: this.meals, goalDay: 0, totalCalories: 0, exercise: 0, weight: 0, steps: 0 };
         this.days.push(newDay);
         if ((this.calendar[i].getDate() === hoy.getDate()) && (this.calendar[i].getMonth() === hoy.getMonth())) {
           this.today = this.getDateFormat(this.calendar[i]);
@@ -348,11 +351,26 @@ export class DailyPageComponent implements AfterViewChecked, OnInit {
       this.fireService.setUserDietMonth(this.fireUser.uid, this.days);
     }
   }
-  diarioDiaActual(hoy: Date) {
+  getCurrentDay(hoy: Date) {
     for (let i = 0; i < this.days.length; i++) {
       if (this.days[i].date) {
-        if ((this.days[i].date.getDate() === hoy.getDate()) && (this.days[i].date.getMonth() === hoy.getMonth())) {
-          this.today = this.getDateFormat(this.days[i].date);
+        let diaHoy = '';
+        let mesHoy = '';
+        if (hoy.getDate() < 10) {
+          diaHoy = '0' + hoy.getDate();
+        } else {
+          diaHoy = hoy.getDate().toString();
+        }
+        const getMonthAdd1 = hoy.getMonth() + 1;
+        if (hoy.getMonth() < 10) {
+          mesHoy = '0' + getMonthAdd1;
+        } else {
+          mesHoy = getMonthAdd1.toString();
+        }
+
+        if ((this.days[i].date.substr(0, 2) ===  diaHoy) &&
+            (this.days[i].date.substr(3, 2) ===  mesHoy)) {
+          this.today = this.days[i].date;
           this.indexDays = i;
         }
       }

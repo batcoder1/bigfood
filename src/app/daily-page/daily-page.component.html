@@ -6,7 +6,7 @@
         <md-icon *ngIf="backArrowValid" (click)="rewindDay()">keyboard_arrow_left</md-icon>
         <md-icon *ngIf="!backArrowValid" class="grey">keyboard_arrow_left</md-icon>
       </md-grid-tile>
-      <md-grid-tile class="big-font text-center  day"> {{days[indexDays].date | date:'EEEE, d MMMM, y' }}</md-grid-tile>
+      <md-grid-tile class="big-font text-center  day"> {{days[indexDays].date}}</md-grid-tile>
       <md-grid-tile class="big-font right arrow">
         <md-icon *ngIf="forwardArrowValid" (click)="forwardDay()">keyboard_arrow_right</md-icon>
         <md-icon *ngIf="!forwardArrowValid" class="grey">keyboard_arrow_right</md-icon>
@@ -35,7 +35,7 @@
       <md-grid-tile>Restantes</md-grid-tile>
     </md-grid-list>
     <md-container class="container">
-      <span class="steps md-font grey"> Steps</span>
+      <span class="steps md-font grey"> Pasos</span>
       <md-progress-bar class="progress-bar " mode="determinate" [value]="stepsToday"></md-progress-bar>
       <span class="stepsValue md-font grey"> {{days[indexDays].steps}}</span>
     </md-container>
