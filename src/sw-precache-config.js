@@ -9,19 +9,31 @@ module.exports = {
   root: 'dist',
   stripPrefix: 'dist/',
   navigateFallback: '/index.html',
-  runtimeCaching: [{
-    origin: /fonts\.gstatic\.com/,
-      urlPattern: /(.*)$/,
-      handler: 'fastest',
-   
+  runtimeCaching: [
+    {
+      urlPattern: /^(https\:)(\/\/)([^\:\/]*)(\:\d{1,5})?(\/)([^\/\?\&\#\:]*)?\/?([^\/\?\&\#\:]*)?\/?([^\/\?\&\#\:]*)?\/?([^\/\?\&\#\:]*)?\/?([^\/\?\&\#\:]*)?\/?([^\/\?\&\#\:]*)?\/?([^\/\?\&\#\:]*)?\/?([^\/\?\&\#\:]*)?\/?(.*)$/,
+      handler: 'cache-first',
     },
     {
-    
-      urlPattern: /^(https\:)(\/\/)([^\:\/]*)(\:\d{1,5})?(\/)([^\/\?\&\#\:]*)?\/?([^\/\?\&\#\:]*)?\/?([^\/\?\&\#\:]*)?\/?([^\/\?\&\#\:]*)?\/?([^\/\?\&\#\:]*)?\/?([^\/\?\&\#\:]*)?\/?([^\/\?\&\#\:]*)?\/?([^\/\?\&\#\:]*)?\/?(.*)$/,
-      handler: 'fastest',
-   
-    }
-    
+      urlPattern: /\/food-list\//,
+      handler: 'cache-first',
+    },
+    {
+      urlPattern: /\/profile\//,
+      handler: 'cache-first',
+    },
+    {
+      urlPattern: /\/daily\//,
+      handler: 'cache-first',
+    },
+    {
+      urlPattern: /\/progress\//,
+      handler: 'cache-first',
+    },
+    {
+      urlPattern: "https://fonts.googleapis.com/icon?family=Material+Icons",
+      handler: 'cache-first',
+    },
     
   ]
 };
